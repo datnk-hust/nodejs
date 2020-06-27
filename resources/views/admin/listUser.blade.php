@@ -75,7 +75,7 @@
         <td>{{$user->email}}</td>
         <td>{{$user->address}}</td>
         <td>{{$user->mobile}}</td>
-        <td>{{$user->department_id}}</td>
+        <td>{{ \App\Department::where(['id'=>$user->department_id]->pluck('department_name')->first()}}</td>
         <td style="text-align: center;">
           <a  href="{{route('edit.user',['id'=>$user->id])}}"><i class="material-icons" style="cursor: pointer;">mode_edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="{{route('del.user',['id'=>$user->id])}}" onclick="return confirm('Bạn có chắc chắn xóa?')"><i class="material-icons" style="color: red; cursor: pointer;">delete_sweep</i></a>
