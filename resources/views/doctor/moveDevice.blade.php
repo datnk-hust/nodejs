@@ -1,7 +1,7 @@
 @extends('doctor.dashboard')
 @section('content')
 <style type="text/css">
-	input[type=text], input[type=datetime-local]{
+	input[type=text], input[type=date]{
   width: 450px;
   padding: 5px;
   margin: 5px 0;
@@ -101,7 +101,7 @@ hr{
 				<td><div style="padding-top: 20px;padding-left: 0px; font-size: 20px;font-weight: bold;">Thời gian điều chuyển</div></td>
 			</tr>
 			<tr>
-				<td><input type="datetime-local" name="req_date" required></td>
+				<td><input type="date" name="req_date" value="{{date('Y-m-d')}}" ></td>
 			</tr>
 			<tr>
 				<td colspan="2"><div style="padding: 20px;text-align: center;">

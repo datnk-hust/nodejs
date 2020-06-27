@@ -14,6 +14,7 @@
 }
 </style>
 <div class="form-group">
+  <div><h3><b>Tìm kiếm thiết bị cần bàn giao</b></h3></div>
   <form>
     <table width="100%" >
       <tr>
@@ -37,6 +38,7 @@
 <br>
 
 <div>
+  @if(count($dvs))
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <th>Mã thiết bị</th>
@@ -48,7 +50,7 @@
       <th></th>
     </thead>
     <tbody>
-      @if(isset($dvs))
+      
       @foreach($dvs as $r)
       <tr>
         <td>{{ $r->dv_id }}</td>
@@ -62,10 +64,12 @@
         </td>
       </tr>
       @endforeach
-      @endif
+      
     </tbody>
   </table>
+  @endif
 </div>
+
 
 <script type="text/javascript">
   $(document).ready(function(){

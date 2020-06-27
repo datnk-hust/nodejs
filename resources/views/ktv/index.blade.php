@@ -101,7 +101,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{route('get.home')}} " style="margin-left: -80px;">Trang chủ</a>
+                <a class="navbar-brand" href="{{route('get.home')}} " style="margin-left: -50px;">Trang chủ</a>
                 <ul class="nav navbar-nav navbar-left">
                    
 

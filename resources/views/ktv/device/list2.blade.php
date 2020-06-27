@@ -193,7 +193,7 @@
         </tr>
         <tr>
           <td width="30%" style="font-size: 17px;font-weight: bold;">Thời gian</td>
-          <td><input type="date" name="fix_date" placeholder="--/--/----" style="border-radius: 6px; height: 45px;" required></td>
+          <td><input type="date" value="{{date('Y-m-d')}}" name="fix_date"  style="border-radius: 6px; height: 45px;" ></td>
         </tr>
         <tr>
           <td style="font-size: 17px;font-weight: bold;">Đơn vị sửa chữa</td>

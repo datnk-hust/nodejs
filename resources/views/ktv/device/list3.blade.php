@@ -207,7 +207,7 @@
         </tr>
         <tr>
         	<td>Thời gian cập nhật</td>
-        	<td><input type="date" name="update_time" placeholder="dd/mm/YYYY" class="form-control" required></td>
+        	<td><input type="date" value="{{date('Y-m-d')}}" name="update_time"  class="form-control" ></td>
         </tr>
         <tr>
           <td colspan="2" style="text-align: center;"><button style="margin-top: 5px;" type="submit" class="btn" onclick="return confirm('Bạn có chắc chắn bàn giao thiết bị?')">Lưu

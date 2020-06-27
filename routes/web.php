@@ -122,7 +122,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('/password/{id}','DoctorController@getPsw')->name('doctor.getPsw');
 		Route::post('/password/{id}','DoctorController@postPsw')->name('doctor.postPsw');
 		Route::post('/notification/device/brocken/{id}','DoctorController@noticeDev')->name('doctor.noticeDev');
-		Route::get('/notification/accept/{id}','DoctorController@acceptNotice')->name('doctor.acceptNoitce');
+		Route::get('/notification/accept/{id}/{user_id}','DoctorController@acceptNotice')->name('doctor.acceptNoitce');
 		Route::post('/transformer/device/{id}','DoctorController@postMoveDev')->name('doctor.postMoveDev');
 		Route::get('add/device','DoctorController@addDevice')->name('doctor.addDevice');
 		Route::get('print/device/{id}/{user_id}','DoctorController@print_device')->name('doctor.print.device');

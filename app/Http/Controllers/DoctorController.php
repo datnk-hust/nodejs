@@ -86,7 +86,7 @@ class DoctorController extends Controller
     }
 
     //accept notice from ktv
-    public function acceptNotice($id){
+    public function acceptNotice($id, $user_id){
         $notice = Notification::find($id);
         if($notice->status == '4')
         {
@@ -117,9 +117,11 @@ class DoctorController extends Controller
             $i = $notice->dv_id;
             $dv = DB::table('device')->where('id',$i)->first();
             $dvname = $dv->dv_name;
+            $notice->dv_id = $dv->dv_id;
             $notice->status = 15;
             $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
             $notice->req_content = "Đã xác nhận thiết bị ".$dvname." sử dụng tốt";
+            $notice->annunciator_id = $user_id;
         }
 
         $notice->save();
@@ -129,7 +131,7 @@ class DoctorController extends Controller
 
     public function addDevice(Request $request){
         $dvt = DB::table('device_type')->get();
-        $dv = Device::where('status',0)->orderBy('id','desc');
+        $dv = Device::where('status',0)->orderBy('id','desc')->get();
         if($request->dvId){
             $dv = $dv->where('dv_id','=',$request->dvId);
         }
@@ -139,7 +141,6 @@ class DoctorController extends Controller
         if($request->dvt){
             $dv = $dv->where('dv_type_id','=', $request->dvt);
         }
-        $dv = $dv->paginate(100);
         return view('doctor.addDevice')->with(['dvs'=>$dv,'dvts'=>$dvt]);
     }
    

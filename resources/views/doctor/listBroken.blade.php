@@ -8,19 +8,10 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
-    height: 40px;
-    width: 500px;
+    height: 35px;
+    width: 600px;
   }
-  .btnsearch{
-    width: 150px;
-    margin-left: 5px;
-    margin-top: 0px;
-    height: 33px;
-    font-size: 17px;
-    height: 40px;
 
-
-  }
   .btnsearch:hover{
     background-color: #BDBDBD;
   }
@@ -138,9 +129,11 @@
       @csrf
       <table width="100%" border="0" class="input-group mb-3">
         <tr>
-            <td width="40%"><input type="text" name="dv_name" placeholder="Nhập tên thiết bị"></td>
-            <td width="50%"><div><button class="btnsearch" type="submit" ><i class="fa fa-search"></i> Tìm kiếm</button></div>
+            <td width="40%"><input type="text"  name="dv_name" placeholder="Nhập tên thiết bị"></td>
+            <td width="40%"><div style="margin-left: 10px;"><button class="btn btn-primary" type="submit" ><i class="fa fa-search"></i> Tìm kiếm</button></div>
             </td>
+            <td></td>
+            <td></td>
             <td><div style="font-size: 20px;">Tổng: {{ $devices->total() }}</div></td>
         </tr>
       </table>  
