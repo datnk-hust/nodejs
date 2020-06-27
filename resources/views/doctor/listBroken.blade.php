@@ -153,9 +153,9 @@
         <th>ID</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
+        <th>Serial</th>
         <th>Loại thiết bị</th>
         <th>Ngày bàn giao</th>
-        <th>Hạn sử dụng</th>
         <th>Ngày báo hỏng</th>
       </tr>
     </thead>
@@ -166,10 +166,10 @@
         <td>{{$row->id}}</td>
         <td>{{$row->dv_name}}</td>
         <td>{{ $row->dv_model}}</td>
+        <td>{{ $row->dv_serial}}</td>
         <td>{{ \App\Device_type::where(['dv_type_id'=>$row->dv_type_id])->pluck('dv_type_name')->first() }}</td>
         <td>{{$row->handover_date}}</td>
-        <td>{{ $row->expire_date }}</td>
-        <td>{{ \App\Notification::where(['dv_id'=>$row->id,'status'=>1])->pluck('req_date')->first() }}</td>
+        <td>{{ \App\Notification::where(['dv_id'=>$row->dv_id,'status'=>0])->pluck('req_date')->first() }}</td>
       </tr>
       @endforeach
       @endif

@@ -28,11 +28,11 @@
 	@csrf
     <table class="addUser" border="0" width="600px;">
       <tr>
-        <td width="40%"><label ><b>Mã người dùng:</b></label></td>
+        <td width="40%"><label ><b>Mã người dùng:<span style="color: red">*</span></b></label></td>
         <td><input type="text"  name="user_id" required class="form-control"></td>
       </tr>
       <tr>
-        <td width="40%"><label ><b>Họ và tên:</b></label></td>
+        <td width="40%"><label ><b>Họ và tên:<span style="color: red">*</span></b></label></td>
         <td><input type="text"  name="fullname" required class="form-control"></td>
       </tr>
       <tr>
@@ -44,11 +44,11 @@
         <td><input type="text"  name="phone" class="form-control"></td>
       </tr>
       <tr>
-        <td><label><b>Email:</b></label></td>
+        <td><label><b>Email:<span style="color: red">*</span></b></label></td>
         <td><input type="text"  name="email" required class="form-control"></td>
       </tr>
       <tr>
-        <td><label><b>Phân quyền:</b></label></td>
+        <td><label><b>Phân quyền:<span style="color: red">*</span></b></label></td>
         <td>
           <select class="rule" name="rule" class="form-control" required>
             <option value="">Lựa chọn chức năng</option>
@@ -62,7 +62,7 @@
         </td>
       </tr>
       <tr>
-        <td><label><b>Khoa:</b></label></td>
+        <td><label><b>Khoa:<span style="color: red">*</span></b></label></td>
         <td><select class="dep" name="dep" required class="form-control">
           <option value="">Lựa chọn khoa phòng</option>
           @if($dep)
@@ -73,11 +73,11 @@
             </select></td>
       </tr>
       <tr>
-        <td><label for="psw"><b>Mật khẩu:</b></label></td>
+        <td><label for="psw"><b>Mật khẩu:<span style="color: red">*</span></b></label></td>
         <td><input type="password" name="psw" class="form-control"></td>
       </tr>
       <tr>
-        <td><label for="psw-repeat"><b>Nhập lại mật khẩu:</b></label></td>
+        <td><label for="psw-repeat"><b>Nhập lại mật khẩu:<span style="color: red">*</span></b></label></td>
         <td><input type="password"  name="psw-repeat" class="form-control"></td>
       </tr>
       <tr><td colspan="2" style="text-align: right;"><button type="submit" class="btn ">Lưu</button></div></td></tr>
