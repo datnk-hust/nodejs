@@ -247,7 +247,7 @@ label {
           <div style="float: right;margin-left: 10px;" class="rgt1"><a class="rgt"  onclick="openForm1()" data-deviceid="{{$dev->status }}" style="color: black;; text-decoration: none;font-weight: bold;">Lịch sử sửa chữa</a></div>
           
           <div style="float: right;margin-left: 10px;" class="rgt1"><a class="rgt"  onclick="openForm()" data-deviceid="{{ $dev->status}}" style="color: black;; text-decoration: none;font-weight: bold;">Xem vật tư kèm theo</a></div>
-           <div ><a style="text-decoration: none;float: right;color: black; font-size: 14px;" href="{{route('device.view.image',['id'=>$dev->id])}}" class="btn btn-danger">Biên bản BG</a></div>
+           <div ><a style="text-decoration: none;float: right;color: black; font-size: 19px;margin-top: 10px;" href="{{route('device.view.image',['id'=>$dev->id])}}" class="btn btn-danger">Ảnh BG</a></div>
         </td>
       </tr>
     </table> 

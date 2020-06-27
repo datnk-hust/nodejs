@@ -63,7 +63,7 @@ label {
     <input type="text"  name="phone" value="{{$user->department->department_name}}"><br>
     <input class="btn" type="submit" value="Cập nhật thông tin" style="margin-left: 50px" ></input>
       <div class="btn">
-        <a href="{{route('doctor.home')}}" style="color: black; text-decoration: none;">Hủy</a>
+        <a href="{{route('doctor.home')}}" style="color: black; text-decoration: none;font-size: 20px;">Hủy</a>
       </div>
   </form>
 </div>
