@@ -177,11 +177,11 @@
         </tr>
         <tr>
           <td><label>Mã người báo hỏng</label></td>
-          <td><input type="text" name="user_id" value="{{Auth::user()->user_id}}"></td>
+          <td><input type="text" name="user_id" value="{{ Auth::user()->user_id }}"></td>
         </tr>
         <tr>
           <td><label>Người thông báo</label></td>
-          <td><input type="text" name="userName" value="{{Auth::user()->fullname}}"></td>
+          <td><input type="text" name="userName" value="{{ Auth::user()->fullname }}"></td>
         </tr>
         <tr>
           <td colspan="2" style="text-align: center;"><button type="submit" class="btn" onclick="return confirm('Bạn có chắc chắn báo hỏng thiết bị?')">Lưu

@@ -566,14 +566,19 @@ public function moveDevice(Request $request, $id)
         }
     $dep = $request->select_dept;
     $dep_name = Department::where(['id' => $dep])->pluck('department_name')->first();
+    if($device->department_id){
     $dep_now = Department::where(['id' => $device->department_id])->pluck('department_name')->first();
+    }else{
+        $dep_now = 'Phòng Vật Tư';
+    }
+
     $name = $device->dv_name;
     $device->status = 1;
     $device->department_id = $request->select_dept;
     $device->handover_date = date('Y-m-d H:i:s');
     $device->save();
     $notice = new Notification;
-    $notice->req_content = "Phòng vật tư xác nhận bàn giao thiết bị ".$name."cho khoa ".$dep_name;
+    $notice->req_content = "Phòng vật tư xác nhận bàn giao thiết bị ".$name." cho khoa ".$dep_name;
     $notice->dv_id = $id;
     $notice->dept_now = $request->select_dept;
     $notice->status = 12;
@@ -582,10 +587,11 @@ public function moveDevice(Request $request, $id)
     //tạo lịch sử điều chuyển
     $his =new History_ktv;
     $his->status = 'mdv'; //mdv = move device
-    $his->action = 'Thiết bị được điều chuyển từ khoa '.$dep_now.' sang khoa '.$dep_name;
+    $his->action = 'Thiết bị được điều chuyển từ '.$dep_now.' sang '.$dep_name;
     $his->time = date('Y-m-d');
     $his->dv_id = $id;
     $his->implementer = 'Phòng vật tư';
+    $his->note = 'Bàn giao sử dụng thiết bị thành công';
     $his->save();
 
     return redirect()->route('device.show0')->with('message','Đã bàn giao thiết bị thành công');

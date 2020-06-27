@@ -66,7 +66,7 @@
         <td>Phòng vật tư</td>
         <td style="text-align: center;">
           <a href="{{ route('doctor.acceptNoitce',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>
+          <!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a> -->
         </td>
       </tr>
       @endforeach
