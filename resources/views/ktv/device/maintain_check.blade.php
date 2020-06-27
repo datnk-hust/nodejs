@@ -98,8 +98,8 @@
 <table width="98%" id="m28" style="margin-left: 7px;display: block;">
       <tr style="background-color: #DBA901">
         <td class="bod" style="text-align: left;width: 12%;"><div style="padding: 7px;"><b>Hoạt động bảo dưỡng</b></div></td>
-        <td class="bod" style="text-align: left;width: 4%;"><b>Ngày bắt đầu</b></td>
-        <td class="bod" style="text-align: left;width: 7%;"><b>Tần suất </b> </td>
+        <td class="bod" style="text-align: left;width: 6%;"><b>Ngày bắt đầu</b></td>
+        <td class="bod" style="text-align: left;width: 5%;"><b>Tần suất </b> </td>
         @for($i =1; $i<=28; $i++)
         @if($i<10)
                 <td class="bod">0{{ $i }}</td>
@@ -113,7 +113,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}}</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
         @for($i = 1; $i<=28; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 
@@ -138,8 +138,8 @@
 <table width="98%" id="m30" style="margin-left: 7px;display: block;">
       <tr style="background-color: #DBA901">
         <td class="bod" style="text-align: left;width: 12%;"><div style="padding: 7px;"><b>Hoạt động bảo dưỡng</b></div></td>
-        <td class="bod" style="text-align: left;width: 4%;"><b>Ngày bắt đầu</b></td>
-        <td class="bod" style="text-align: left;width: 7%;"><b>Tần suất </b> </td>
+        <td class="bod" style="text-align: left;width: 6%;"><b>Ngày bắt đầu</b></td>
+        <td class="bod" style="text-align: left;width: 5%;"><b>Tần suất </b> </td>
         @for($i =1; $i<=30; $i++)
         @if($i<10)
                 <td class="bod">0{{ $i }}</td>
@@ -153,7 +153,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}}</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
         @for($i = 1; $i<=30; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 
@@ -178,8 +178,8 @@
 <table width="98%" id="m31" style="margin-left: 7px;display: block;">
       <tr style="background-color: #DBA901">
         <td class="bod" style="text-align: left;width: 12%;"><div style="padding: 7px;"><b>Hoạt động bảo dưỡng</b></div></td>
-        <td class="bod" style="text-align: left;width: 4%;"><b>Ngày bắt đầu</b></td>
-        <td class="bod" style="text-align: left;width: 7%;"><b>Tần suất </b> </td>
+        <td class="bod" style="text-align: left;width: 6%;"><b>Ngày bắt đầu</b></td>
+        <td class="bod" style="text-align: left;width: 4%;"><b>Tần suất </b> </td>
         @for($i =1; $i<=31; $i++)
         @if($i<10)
                 <td class="bod">0{{ $i }}</td>
@@ -193,7 +193,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}}</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
         @for($i = 1; $i<=31; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 
