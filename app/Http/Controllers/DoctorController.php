@@ -82,7 +82,7 @@ class DoctorController extends Controller
         $dev->status = 2;
         $dvname = $dev->dv_name;
         $dev->save();
-        return redirect()->route('doctor.home')->with('message','Đã báo hỏng thiết bị'.$dvname.' thành công.');
+        return redirect()->route('doctor.home')->with('message','Đã báo hỏng thiết bị '.$dvname.' thành công.');
     }
 
     //accept notice from ktv

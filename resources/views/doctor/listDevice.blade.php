@@ -181,7 +181,7 @@
         </tr>
         <tr>
           <td><label>Người thông báo</label></td>
-          <td><input type="text" name="userName" value="{{Auth::user()->fullame}}"></td>
+          <td><input type="text" name="userName" value="{{Auth::user()->fullname}}"></td>
         </tr>
         <tr>
           <td colspan="2" style="text-align: center;"><button type="submit" class="btn" onclick="return confirm('Bạn có chắc chắn báo hỏng thiết bị?')">Lưu
