@@ -56,14 +56,23 @@ label {
     <label for="fname">Tần suất thực hiện</label><br>
     <select name="fq">
       <option value="">{{ $act->scheduleTime}}</option>
+      <option value="hàng ngày">Hàng ngày</option>
       <option value="1 tuần">1 tuần</option>
+      <option value="2 tuần">2 tuần</option>
+      <option value="3 tuần">3 tuần</option>
       <option value="1 tháng">1 tháng</option>
       <option value="2 tháng">2 tháng</option>
       <option value="3 tháng">3 tháng</option>
       <option value="4 tháng">4 tháng</option>
       <option value="5 tháng">5 tháng</option>
       <option value="6 tháng">6 tháng</option>
-      <option value="12 tháng">12 tháng</option>
+      <option value="7 tháng">7 tháng</option>
+      <option value="8 tháng">8 tháng</option>
+      <option value="9 tháng">9 tháng</option>
+      <option value="10 tháng">10 tháng</option>
+      <option value="11 tháng">11 tháng</option>
+      <option value="1 năm">1 năm</option>
+      <option value="2 năm">2 năm</option>
     </select><br>
     <label >Ghi chú</label><br>
     <input type="text"  name="note" value="{{$act->note}}"><br>

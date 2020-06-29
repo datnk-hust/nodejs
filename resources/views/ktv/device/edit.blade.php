@@ -302,7 +302,7 @@ label {
         <td>
             {{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('type')->first() }}
         </td>
-        <td>{{ $acc->export_date}}</td>
+        <td>{{ $acc->export_date }}</td>
         @if($acc->status == 0)
         <td>Vật tư thay thế</td>
         @else

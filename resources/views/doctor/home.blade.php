@@ -42,8 +42,8 @@
 
   }
 </style>
-<div style="margin-left: 40px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
-<div style="margin-left: 40px;font-size: 17px;font-weight: bold;">Bạn đang có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> thông báo</div>
+<div style="margin-left: 100px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
+<div style="margin-left: 100px;font-size: 17px;font-weight: bold;">Bạn đang có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> thông báo</div>
 <div class="container2">
   @if($notices->total() != 0)
   <table class="table table-condensed table-bordered table-hover">

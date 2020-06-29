@@ -36,11 +36,11 @@
 
   }
 </style>
-
+<?php $noticees = DB::table('notification')->where('status','=',0)->orWhere('status','=',2)->orWhere('status','=',15)->orderBy('id','asc')->get() ?>
 <div style="margin-left: 50px;font-size: 17px;font-weight: bold;">Chào mừng đến với hệ thống quản lý trang thiết bị y tế BME-HUST</div><br>
-<div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
+<div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Bạn Có <span style="color: red;font-size: 25px;">{{count($noticees)}}</span> Thông Báo Mới!</div>
 <div class="container2">
-  @if($notices->total() != 0)
+  
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 18px;">
@@ -54,8 +54,7 @@
     </thead>
     <tbody>
         
-        @foreach($notices as $notice)
-        @if($notice->status == 0 || $notice->status == 2 || $notice->status == 15)
+        @foreach($noticees as $notice)
         <tr style="font-size: 15px;color: red;font-weight: bold;">
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
         <td>{{$notice->req_date}}</td>
@@ -68,11 +67,12 @@
         <td>{{ \App\User::where(['user_id' => $notice->annunciator_id])->pluck('fullname')->first()}} </td>
         <td style="text-align: center;">
            
-          <a href="{{route('ktv.acceptNotice',['user_id'=>Auth::id(),'id'=>$notice->id,'dv_id'=>$notice->dv_id,'status'=>$notice->status]) }}"><i class="fa fa-pencil-square-o " title="Đã xem" aria-hidden="true" onclick="return confirm('Bạn có chắc chắn?')"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{{route('ktv.delete.notification',['id'=>$notice->id])}}" ><i class="fa fa-trash "  title="Xóa" aria-hidden="true"></i></a>
+          <a href="{{route('ktv.acceptNotice',['user_id'=>Auth::id(),'id'=>$notice->id,'dv_id'=>$notice->dv_id,'status'=>$notice->status]) }}"><i class="fa fa-pencil-square-o " title="Đã xem" aria-hidden="true" ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{{route('ktv.delete.notification',['id'=>$notice->id])}}" onclick="return confirm('Bạn có chắc chắn?')" ><i class="fa fa-trash "  title="Xóa" aria-hidden="true" ></i></a>
         </td>
       </tr>
-      @else
+      @endforeach
+      @foreach($notices as $notice)
       <tr style="font-size: 15px;">
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
         <td>{{$notice->req_date}}</td>
@@ -84,15 +84,14 @@
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_name')->first()}}</td>
         <td>{{ \App\User::where(['user_id' => $notice->annunciator_id])->pluck('fullname')->first()}} </td>
         <td style="text-align: center;">
-          <a href="{{route('ktv.delete.notification',['id'=>$notice->id])}}" ><i class="fa fa-trash "  title="Xóa" aria-hidden="true"></i></a>
+          <a href="{{route('ktv.delete.notification',['id'=>$notice->id])}}" onclick="return confirm('Bạn có chắc chắn?')"><i class="fa fa-trash "  title="Xóa" aria-hidden="true"></i></a>
         </td>
       </tr>
-      @endif
       @endforeach
      
     </tbody>
   </table>
-   @endif
+   
   <div class="page-nav text-right">
     <nav aria-label="Page navigation">
       {{$notices->links()}}

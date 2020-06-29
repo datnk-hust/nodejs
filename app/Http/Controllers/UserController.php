@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',0)->orWhere('status',2)->orWhere('status',15)->orWhere('status',1)->orWhere('status',3)->orWhere('status',16)->paginate(8);
+        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','desc')->paginate(20);
         return view('ktv.trangchu',['notices'=>$notices]);
     }
 
@@ -56,10 +56,10 @@ class UserController extends Controller
   public function postEditKTV(Request $request, $id){
    $this->validate($request,
     [
-        'phone' => 'min:10'
+        'phone' => 'min:9'
     ],
     [
-        'phone.min'=>'Số điện thoại ít nhất 10 số!'
+        'phone.min'=>'Số điện thoại ít nhất 9 chữ số!'
     ]);
    $user=User::find($id);
    $user ->fullname = $request->fullname;
@@ -124,13 +124,20 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
 
         //tạo thông báo gửi phòng đã điều chuyển
         $response = new Notification;
-        $response->req_date =Carbon::now('Asia/Ho_Chi_Minh');
-        $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name;
+        $response->req_date = Carbon::now('Asia/Ho_Chi_Minh');
+        $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name .' đến khoa '. \App\Department::where(['id'=>$dept])->pluck('department_name')->first();
         $response->status = 6;
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
         $response->save();
-
+         $his = new History_ktv;
+         $his->time = Carbon::now('Asia/Ho_Chi_Minh');
+         $his->action = 'Thiết bị được điều chuyển từ '.$dep_now.' đến '.$dep_next;
+         $his->implementer = 'Phòng vật tư';
+         $his->dv_id = $device->dv_id;
+         $his->note = 'Điều chuyển thiết bị';
+         $his->status = 'ddv'; //direction device
+         $his->save();
         //điều chuyển thiết bị về trang thái chưa bàn giao
          Device::where('id','=',$dv_id)->update(['department_id'=>$dept]);  
     }
@@ -525,7 +532,7 @@ public function saveAcc(Request $request, $id){
     $acc->amount = $request->accNumber;
     $acc->type = $request->typeAcc;
     $acc->expire_date = $request->expire_date;
-    $acc->import_date = Carbon::now();
+    $acc->import_date = date('Y-m-d');
     $acc->note = $request->note; 
     $acc->status = 1;
 
@@ -534,6 +541,7 @@ public function saveAcc(Request $request, $id){
     $dv_acc->dv_id = $id;
     $dv_acc->acc_id = $acc->id;
     $dv_acc->amount = $request->accNumber;
+    $dv_acc->export_date = date('Y-m-d');
     $dv_acc->status = 1;
     $dv_acc->save();
     return redirect()->route('device.getAcc',['id'=>$dv->id])->with(['message'=>'Đã lưu vật tư kèm theo.']);
@@ -550,18 +558,35 @@ public function moveDevice(Request $request, $id)
         ]
     );
          $device = Device::find($id);
+         $group = $device->group;
+         $dvType = $device->dv_type_id;
          if($request->hasFile('image')){
 
-        $fname = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $image = $request->file('image');
-       // $fname = time();
-        $destinationPath = public_path('/asset');
-        $imagePath = $destinationPath. "/".  $fname;
-        $image->move($destinationPath, $fname);
-            // $path = $request->file('image')->store('public/images');
+            $fname = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $image = $request->file('image');
+
+        
+            }
+       if($group == 'A'){
+        $destinationPath = public_path('/asset/groupA');
+       }elseif ($group == 'B') {
+           $destinationPath = public_path('/asset/groupB');
+       }elseif ($group == 'B') {
+           $destinationPath = public_path('/asset/groupC');
+       }elseif ($group == 'D') {
+           $destinationPath = public_path('/asset/groupD');
+       }else{
+            $destinationPath = public_path('/asset/groupX');
+       }
+
+        $path = $destinationPath. "/".$dvType;
+        if(!File::isDirectory($path)){
+        File::makeDirectory($path, 0777, true, true);
+        }
+        $imagePath = $path. "/".  $fname;
+        $image->move($path, $fname);
         $device->handover_img = $fname;
       
-        }
     $dep = $request->select_dept;
     $dep_name = Department::where(['id' => $dep])->pluck('department_name')->first();
     if($device->department_id){
@@ -577,6 +602,7 @@ public function moveDevice(Request $request, $id)
     $device->save();
     $notice = new Notification;
     $notice->req_content = "Phòng vật tư xác nhận bàn giao thiết bị ".$name." cho khoa ".$dep_name;
+    $notice->req_date = Carbon::now();
     $notice->dv_id = $id;
     $notice->dept_now = $request->select_dept;
     $notice->status = 12;
@@ -585,7 +611,7 @@ public function moveDevice(Request $request, $id)
     //tạo lịch sử điều chuyển
     $his =new History_ktv;
     $his->status = 'mdv'; //mdv = move device
-    $his->action = 'Thiết bị được điều chuyển từ '.$dep_now.' sang '.$dep_name;
+    $his->action = 'Thiết bị được bàn giao từ '.$dep_now.' sang '.$dep_name;
     $his->time = date('Y-m-d');
     $his->dv_id = $id;
     $his->implementer = 'Phòng vật tư';
@@ -1051,7 +1077,7 @@ public function showmaintain(Request $request){
     }
     
     public function viewDevice(Request $request){
-        $dv = Device::where('status',0)->orWhere('status',1)->orWhere('status',2)->orWhere('status',3)->orWhere('status',4)->orderBy('id','desc');
+        $dv = Device::where('status',0)->orWhere('status',1)->orWhere('status',2)->orWhere('status',3)->orWhere('status',4)->orderBy('id','asc');
         $dvt = DB::table('device_type')->get();
         $dept = DB::table('department')->get();
         if($request->dvId){

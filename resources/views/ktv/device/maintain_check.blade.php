@@ -114,7 +114,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} </b></td>
         @for($i = 1; $i<=28; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 
@@ -154,7 +154,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} </b></td>
         @for($i = 1; $i<=30; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 
@@ -194,7 +194,7 @@
       <tr>
         <td class="bod" style="text-align: left;"><b>{{ $row->scheduleAct}}</b></td>
         <td class="bod" style="text-align: left;"><b>{{ $row->startDate}}</b></td>
-        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} ngày</b></td>
+        <td class="bod" style="text-align: left;"> <b>{{ $row->scheduleTime}} </b></td>
         @for($i = 1; $i<=31; $i++)
         <td  style="text-align: center; width: 1.5%;cursor: pointer;border: 1px solid black" class="check" data-deviceid="{{ $row->act_id.$i }}" id="{{ $i }}">
                 @if($checked != null) 

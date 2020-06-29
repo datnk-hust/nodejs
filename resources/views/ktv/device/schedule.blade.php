@@ -47,7 +47,25 @@
   	</div>
   	<div class="form-group">
     <label>Tần suất thực hiện </label><br>
-    <input style="width: 85%;float: left;" type="number" name="timeAct" class="form-control" placeholder="nhập số ngày" required=""><input style="float: left;width: 5%" disabled="" class="form-control" value="Ngày" />
+    <select style="width: 90%;float: left;" type="text" name="timeAct" class="form-control" placeholder="nhập số ngày" required="">
+      <option value="hàng ngày">Hàng ngày</option>
+      <option value="1 tuần">1 tuần</option>
+      <option value="2 tuần">2 tuần</option>
+      <option value="3 tuần"> 3 tuần</option>
+      <option value="1 tháng">1 tháng</option>
+      <option value="2 tháng"> 2 tháng</option>
+      <option value="3 tháng"> 3 tháng</option>
+      <option value="4 tháng">4 tháng</option>
+      <option value="5 tháng">5 tháng</option>
+      <option value="6 tháng">6 tháng</option>
+      <option value="7 tháng">7 tháng</option>
+      <option value="8 tháng">8 tháng</option>
+      <option value="9 tháng">9 tháng</option>
+      <option value="10 tháng">10 tháng</option>
+      <option value="11 tháng">11 tháng</option>
+      <option value="1 năm">1 năm</option>
+      <option value="2 năm">2 năm</option>
+    </select>
   	</div>
     <div class="form-group">
       <label >Ngày bắt đầu bảo dưỡng</label>

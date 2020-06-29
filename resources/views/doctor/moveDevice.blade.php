@@ -81,7 +81,7 @@ hr{
 				<td colspan="2"><div style="padding-top: 20px;padding-left: 0px;  font-size: 20px;font-weight: bold;">Nội dung</div></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="reason" value="Điều chuyển thiết bị"></td>
+				<td><input type="text" name="reason" value="Xin điều chuyển thiết bị từ khoa tới khoa"></td>
 			</tr>
 			<tr style="padding: 5px;">
 				<td colspan="2">

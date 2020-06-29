@@ -152,10 +152,10 @@ class DoctorController extends Controller
      public function postEdit(Request $request, $id){
         $this->validate($request,
         [
-            'phone' => 'min:10'
+            'phone' => 'min:9'
         ],
         [
-            'phone.min'=>'Số điện thoại ít nhất 10 số!'
+            'phone.min'=>'Số điện thoại ít nhất 9 chữ số!'
         ]);
        $user=User::find($id);
        $user ->fullname = $request->fullname;
