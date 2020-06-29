@@ -65,6 +65,7 @@
   <table style="font-size: 20px;width: 100%">
     <tr>
       <td>Tên thiết bị:  <b>{{ $device->dv_name }}</b></td>
+      <td>Mã thiết bị: <b>{{ $device->dv_id }}</b></td>
       <td>Model: <b>{{ $device->dv_model }}</b></td>
       <td>Serial: <b>{{ $device->dv_serial }}</b></td>
     </tr>
@@ -234,7 +235,7 @@
         </tr>
         <tr>
           <td><label>Mã thiết bị</label></td>
-          <td><input type="text" name="dv_id" value="{{$device->dv_id}}"></td>
+          <td><input type="text" name="dv_id" value="{{$device->dv_id}}" ></td>
         </tr>
         <tr>
           <td width="20%"><label>Mã kiểm tra</label></td>

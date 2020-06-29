@@ -59,10 +59,10 @@ class DoctorController extends Controller
             $notice = new Notification;
             $notice->req_date = $request->req_date;
             $notice->req_content = $request->reason;
-            $notice->annunciator_id = $id;
+            $notice->annunciator_id = $user->user_id;
             $notice->dept_now = $user->department_id;
             $notice->dept_next = $request->dept_name;
-            $notice->dv_id= $request->dv_name;
+            $notice->dv_id= $request->dv_id; //dv_id la id
             $notice->status = 2;
             $notice->save();
             return redirect()->route('doctor.home')->with('message','Đã gửi phiếu điều chuyển tới phòng vật tư.');
@@ -74,7 +74,7 @@ class DoctorController extends Controller
         $notice = new Notification;
         $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
         $notice->req_content = $request->reason;
-        $notice->dv_id = $request->dv_id;
+        $notice->dv_id = $request->dv_id; //dv_id la id
         $notice->status = 0;
         $notice->annunciator_id = $request->user_id;
         $notice->save();
@@ -117,7 +117,7 @@ class DoctorController extends Controller
             $i = $notice->dv_id;
             $dv = DB::table('device')->where('id',$i)->first();
             $dvname = $dv->dv_name;
-            $notice->dv_id = $dv->dv_id;
+            $notice->dv_id = $dv->id;
             $notice->status = 15;
             $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
             $notice->req_content = "Đã xác nhận thiết bị ".$dvname." sử dụng tốt";

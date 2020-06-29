@@ -163,12 +163,12 @@
     <form action="{{ route('doctor.noticeDev', 'id') }}" class="form-container form1" method="post">
       @csrf
       <table style="font-size: 17px;" border="0" width="100%">
-        <tr>
-          <td><label>Mã thiết bị</label></td>
+        <tr style="display: none;">
+          <td></td>
           @if(isset($row))
-          <td width="70%"><input type="text" name="dv_id" value="{{$row->dv_id}}"></td>
+          <td width="70%"><input type="text" name="dv_id" value="{{$row->id}}" hidden=""></td>
           @else
-          <td width="70%"><input type="text" name="dv_id" value=""></td>
+          <td width="70%"><input type="text" name="dv_id" value="" hidden=""></td>
           @endif
         </tr>
         <tr>

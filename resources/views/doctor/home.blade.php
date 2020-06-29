@@ -42,10 +42,9 @@
 
   }
 </style>
-<div style="margin-left: 40px;font-size: 17px;font-weight: bold;">Chào mừng đến với hệ thống quản lý thiết bị tại khoa phòng</div>
+<div style="margin-left: 40px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
 <div style="margin-left: 40px;font-size: 17px;font-weight: bold;">Bạn đang có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> thông báo</div>
 <div class="container2">
-  <br>
   @if($notices->total() != 0)
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
@@ -59,7 +58,8 @@
     </thead>
     <tbody>
         @foreach($notices as $notice)
-      <tr style="font-size: 15px;">
+        @if($notice->status == 4 || $notice->status == 6 || $notice->status == 8 || $notice->status == 12 || $notice->status == 14)
+        <tr style="font-size: 15px;color: red;font-weight: bold;">
         <td>{{$notice->id}}</td>
         <td>{{$notice->req_date}}</td>
         <td>{{$notice->req_content}}</td>
@@ -68,7 +68,19 @@
           <a href="{{ route('doctor.acceptNoitce',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a> -->
         </td>
-      </tr>
+        </tr>
+        @else
+          <tr style="font-size: 15px;">
+        <td>{{$notice->id}}</td>
+        <td>{{$notice->req_date}}</td>
+        <td>{{$notice->req_content}}</td>
+        <td>Phòng vật tư</td>
+        <td style="text-align: center;">
+          <a href="{{ route('doctor.acceptNoitce',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a> -->
+        </td>
+        </tr>
+        @endif
       @endforeach
       
     </tbody>

@@ -66,7 +66,7 @@ hr{
 		<table border="0" class="tab">
 			<tr style="padding: 5px;">
 				<td colspan="2">
-					<select type="text" name="dv_name" required>
+					<select type="text" name="dv_id" required>
 						<option value="">Lựa chọn thiết bị cần điều chuyển</option>
 						@if(isset($devices))
 						@foreach($devices as $row)

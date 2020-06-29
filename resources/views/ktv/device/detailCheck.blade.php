@@ -68,8 +68,18 @@
         <tr>
           <td  width="20%"><label>Loại kiểm tra</label></td>
           <td>
-            <select id="select_check" disabled="" type="text" class="form-container" name="select_check" style="font-style: 17px;">
-              <option value="{$check->type_check}}">{{$check->type_check}}</option>
+            <select id="select_check" type="text" class="form-container" name="select_check" style="font-style: 17px;">
+              <option value="{{$check->type_check}}">{{$check->type_check}}</option>
+              @if($check->type_check == 'C')
+              <option value="M">M</option>
+              <option value="I">I</option>
+              @elseif($check->type_check == 'M')
+              <option value="C">C</option>
+              <option value="I">I</option>
+              @else
+              <option value="C">C</option>
+              <option value="M">M</option>
+              @endif
             </select> 
           </td>
         </tr>

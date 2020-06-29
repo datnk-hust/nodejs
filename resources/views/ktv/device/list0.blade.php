@@ -89,7 +89,7 @@
 </style>
 <script type="text/javascript">
     $("body").on("click", "#luuAnh", function () {
-        var allowedFiles = [".png", ".jpg", ".giff", "tiff"];
+        var allowedFiles = [".png", ".jpg", ".giff", "tiff",""];
         var fileUpload = $("#fileUpload");
         var lblError = $("#lblError");
         var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");

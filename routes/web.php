@@ -40,6 +40,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['CheckLogin','Admin']],function(
 Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		//ktv
 		Route::get('Notification','UserController@notice')->name('get.home');
+		Route::get('Notification/delete/{id}','UserController@deleteNotification')->name('ktv.delete.notification');
 		Route::get('dashboard','UserController@index')->name('get.ktv');
 		Route::get('edit/{id}','UserController@getEditKTV')->name('getEdit.ktv');
 		Route::post('edit/{id}','UserController@postEditKTV')->name('postEdit.ktv');
@@ -88,6 +89,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('device/check/detail','UserController@detailCheck')->name('device.detailCheck');
 		Route::get('device/edit/actSchedule/{id}','UserController@getEditAct')->name('device.getEditAct');
 		Route::post('device/post/edit/act/{id}','UserController@postEditAct')->name('postEditAct.ktv');
+
 		//device_type
 		Route::get('device_type/list','UserController@showDvType')->name('dvtype.show');
 		Route::get('device_type/add','UserController@getAddDvType')->name('dvtype.getAdd');

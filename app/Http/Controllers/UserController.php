@@ -39,8 +39,14 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',0)->orWhere('status',2)->orWhere('status',15)->paginate(8);
+        $notices = DB::table('notification')->where('status',0)->orWhere('status',2)->orWhere('status',15)->orWhere('status',1)->orWhere('status',3)->orWhere('status',16)->paginate(8);
         return view('ktv.trangchu',['notices'=>$notices]);
+    }
+
+    public function deleteNotification($id){
+        $not = Notification::find($id);
+        $not->delete();
+        return redirect()->route('get.home');
     }
     public function getEditKTV($id){
     	$user=User::find($id);
@@ -89,9 +95,11 @@ public function postPswKTV(Request $request, $id){
 //accept notice biến cần tuyền từ route sang theo đúng thứ tự $user_id, $id, $dv_id, $status
 public function acceptNotice( $user_id, $id, $dv_id, $status){
     $notice = Notification::find($id);
+    $dept = $notice->dept_next;
     $dep_now = Department::where(['id'=>$notice->dept_now])->pluck('department_name')->first();
     $dep_next = Department::where(['id'=>$notice->dept_next])->pluck('department_name')->first();
-    $device = DB::table('device')->where('dv_id','=',$dv_id)->first();
+    $device = DB::table('device')->where('id','=',$dv_id)->first();
+    
     if((int)$status == 0)
     {
         $notice->status = 1;
@@ -100,7 +108,7 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $notice->save();
         $response = new Notification;
         $response->req_date = Carbon::now('Asia/Ho_Chi_Minh');
-        $response->req_content = "Đã xác nhận thông báo hỏng thiết bị ".$device->dv_name;
+        $response->req_content = "Phòng vật tư đã xác nhận thông báo hỏng thiết bị ".$device->dv_name;
         $response->status = 4;
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
@@ -117,24 +125,14 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         //tạo thông báo gửi phòng đã điều chuyển
         $response = new Notification;
         $response->req_date =Carbon::now('Asia/Ho_Chi_Minh');
-        $response->req_content = "Đồng ý điều chuyển thiết bị ".$device->dv_name;
+        $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name;
         $response->status = 6;
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
         $response->save();
 
-        // tạo thông báo gửi phòng nhận điều chuyển
-        // $receive = new Notification;
-        // $receive->req_date = $notice->res_date;
-        // $dept_new = Department::where(['id' =>$dept_next])->pluck('department_name')->first();
-        // $receive->req_content = 'Thiết thiết bị '.$device->dv_name.' sẽ được điều chuyển từ khoa '.$dep_now.' tới khoa '.$dep_new;
-        // $receive->annunciator_id = $user_id;
-        // $receive->dv_id = $dv_id;
-        // $receive->status = 8;
-        // $receive->save();
-
         //điều chuyển thiết bị về trang thái chưa bàn giao
-         Device::where('id','=',$dv_id)->update(['status'=>0]);  
+         Device::where('id','=',$dv_id)->update(['department_id'=>$dept]);  
     }
     if((int)$status == 15){
         $notice->status = 16;
@@ -1026,7 +1024,8 @@ public function showmaintain(Request $request){
             $check->note = $request->note;
             $check->type_check = $request->select_check;
             $check->save();
-        return redirect()->route('device.maintainCheck',['id'=>$request->dv_id]);
+        // return redirect()->route('device.maintainCheck',['id'=>$request->dv_id]);
+            return back();
     }
 
      //edit checked view
@@ -1045,8 +1044,10 @@ public function showmaintain(Request $request){
             $check->time = $request->date_check;
             $check->checker = $request->checker;
             $check->note = $request->note;
+            $check->type_check = $request->select_check;
             $check->save();
-            return redirect()->route('device.maintainCheck',['id'=>$d]);
+            //return redirect()->route('device.maintainCheck',['id'=>$d]);
+            return back()->with('message',"Đã chỉnh sửa thành công!");
     }
     
     public function viewDevice(Request $request){
