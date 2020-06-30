@@ -131,8 +131,8 @@
                     <ul class="nav navbar-nav">
                         <li ><a class="dropdown-toggle" data-toggle="dropdown" style="background-color:#00BD9C;">Bàn giao và Điều chuyển TB </a>
                           <ul class="dropdown-menu multi-level">
-                            <li><a href="{{route('doctor.addDevice') }}">Phiếu bàn giao thiết bị</a></li>
-                            <li class="divider"></li>
+                            <!-- <li><a href="{{route('doctor.addDevice') }}">Phiếu bàn giao thiết bị</a></li>
+                            <li class="divider"></li> -->
                             <li><a href="{{route('doctor.moveDevice',['id' => Auth::id()]) }}">Phiếu điều chuyển thiết bị</a></li>
 
                             </ul>
