@@ -111,6 +111,11 @@ select[type=text]{
       <tr>
         <td><label>Đơn vị tính</label></td>
         <td><input type="text"  name="unit"></td>
+        <td><label>Số lượng dùng</label></td>
+        <td><input type="text"  name="used" value="1"></td>
+      </tr>
+      <tr><td></td>
+        <td></td>
         <td></td>
         <td>
           <div>
@@ -119,6 +124,7 @@ select[type=text]{
           </div>
         </td>
       </tr>
+        
     </table> 
   </form>
 </div>

@@ -116,7 +116,7 @@ label {
         <td><input type="text"  name="unit" ><br></td>
       </tr>
       <tr>
-        <td width="50%"><label>Ngày sản xuất</label></td>
+        <td width="50%"><label>Năm sản xuất</label></td>
         <td><input type="text"  name="produce_date" ></td>
       </tr>
       <tr>
@@ -125,7 +125,7 @@ label {
       </tr>
        <tr>
         <td><label>Ngày nhập kho</label></td>
-        <td><input type="date"  name="importDate" ><br></td>
+        <td><input type="date"  name="importDate" value="{{ date('Y-m-d')}}"><br></td>
       </tr>
       <tr>
         <td width="50%"><label>Hạn sử dụng</label></td>

@@ -520,7 +520,7 @@ public function addAccessory($id){
     return view('ktv.device.addAcc')->with(['dv'=>$dv,'providers'=>$provider]);
     
 }
-//save Acc
+//save Acc when import device
 public function saveAcc(Request $request, $id){
     $dv = Device::find($id);
     $acc = new Accessory;
@@ -531,9 +531,11 @@ public function saveAcc(Request $request, $id){
     $acc->serial = $request->serial;
     $acc->amount = $request->accNumber;
     $acc->type = $request->typeAcc;
+    $acc->produce_date = $request->produce_date;
     $acc->expire_date = $request->expire_date;
     $acc->import_date = date('Y-m-d');
     $acc->note = $request->note; 
+    $acc->used = $request->used;
     $acc->status = 1;
 
     $acc->save();
@@ -571,7 +573,7 @@ public function moveDevice(Request $request, $id)
         $destinationPath = public_path('/asset/groupA');
        }elseif ($group == 'B') {
            $destinationPath = public_path('/asset/groupB');
-       }elseif ($group == 'B') {
+       }elseif ($group == 'C') {
            $destinationPath = public_path('/asset/groupC');
        }elseif ($group == 'D') {
            $destinationPath = public_path('/asset/groupD');
@@ -813,7 +815,7 @@ public function plusAcc(Request $request, $id, $user_id){
     $his->save();
     return redirect()->route('accessory.show')->with('message','Thêm thành công.');
 }
-
+//save ACC when import Acc
 public function postAddAcc(Request $request){
     $this->validate($request,[
         'accName'=> 'required',
@@ -864,6 +866,7 @@ public function postEditAcc(Request $request, $id){
     $acc->import_date = $request->importDate;
     $acc->unit        = $request->unit;
     $acc->expire_date = $request->expire_date;
+    $acc->produce_date = $request->produce_date;
     $acc->note        = $request->note;
 
     $acc->save();

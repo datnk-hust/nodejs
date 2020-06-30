@@ -85,7 +85,7 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>ID</th>
+        <th>Mã thiết bị</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>

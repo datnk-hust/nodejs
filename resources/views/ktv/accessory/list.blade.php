@@ -183,7 +183,7 @@
         </tr>
         <tr>
           <td colspan="2"><div style="margin-left: 10px;"><span style="font-size: 20px;font-weight: bold;">Ngày nhập</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="date"  name="import_date" style="width: 300px;height: 40px;border-radius: 5px;" required></div></td>
+          <input type="date"  name="import_date" style="width: 300px;height: 40px;border-radius: 5px;" value="{{date('Y-m-d')}}"></div></td>
         </tr>
         <tr>
           <td colspan="2"><div style="padding: 10px;margin-left: 50px;"><button type="submit" class="btn" onclick="return confirm('Bạn có chắc chắn nhập thêm số lượng cho vật tư?')">Lưu

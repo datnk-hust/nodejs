@@ -87,7 +87,7 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>ID</th>
+        <th>Mã thiết bị</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>
@@ -109,7 +109,7 @@
         <td>{{$device->handover_date}}</td>
         <td style="text-align: center;">
           
-          <a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o " title="Xem thông tin" style="font-size: 18px" aria-hidden="true"></i></a>
+          <a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o " title="Xem thông tin" style="font-size: 18px" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
           <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " style="font-size: 18px" title="Lịc sử TB" aria-hidden="true"></i></a>
         </td>
       </tr>
