@@ -17,16 +17,16 @@
     margin-left: 20px;
     font-weight: bold;
   }
-.fa-pencil-square-o:hover{
+.fa-history:hover{
     border-radius: 4px;
     background-color: yellow;
   }
-  .fa-history:hover{
+  .fa-trash:hover{
     border-radius: 4px;
     color: red;
   }
 </style>
-<h2>Danh Sách Thiết Bị Đã Bàn Giao</h2>
+<h2>Danh Sách Thiết Bị Đã Thanh Lý</h2>
 <div class="container2">
   <div>
     <form action="" method="get" style="float: left;">
@@ -37,19 +37,19 @@
             <input style="width: 90%;" type="text" class="form-control" placeholder="Tên thiết bị" name="dv_name" value="{{request()->dv_name}}">
           </td>
           <td width="25%">
-            <select class="form-control" name="dvt_id" style="background-color: #D8D8D8;width: 90%">
-              <option value="">Mọi loại thiết bị</option>
-              @if(isset($dvts))
-              @foreach($dvts as $rows)
-              <option value="{{ $rows->id }}" >
-                {{ $rows->dv_type_name }}
+            <select class="form-control" name="provider_id" style="background-color: #D8D8D8;width: 90%">
+              <option value="">Mọi nhà cung cấp</option>
+              @if(isset($providers))
+              @foreach($providers as $rv)
+              <option value="{{ $rv->id }}" >
+                {{ $rv->provider_name }}
               </option>
               @endforeach
               @endif
             </select>
           </td>
           <td width="25%">
-            <select class="form-control" name="department_id" style="background-color: #D8D8D8; width: 90%"  >
+            <select class="form-control" name="department_id" style="background-color: #D8D8D8;width: 90%">
               <option value="">Mọi khoa</option>
               @if(isset($depts))
               @foreach($depts as $row)
@@ -65,9 +65,7 @@
           </td>
           <td style="text-align: left;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
         </tr>
-        <tr>
-          <td colspan="5"><br></td>
-        </tr>
+        <tr><td colspan="5"><br></td></tr>
         <tr>
           <td width="25%"> 
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Model thiết bị" name="model" value="{{request()->model}}">
@@ -91,10 +89,11 @@
         <th>Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>
-        <th>Khoa phòng</th>
-        <th>Năm SX</th>
+        <th>Nhà cung cấp</th>
         <th>Ngày bàn giao</th>
-        <th width="10%">Tùy chọn</th>
+        <th>Ngày thu hồi</th>
+        <th>Ngày thanh lý</th>
+        <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
@@ -104,13 +103,13 @@
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
         <td>{{$device->dv_serial}}</td>
-        <td>{{$device->department->department_name}}</td>
-        <td>{{$device->produce_date}}</td>
+        <td>{{$device->provider->provider_name}}</td>
         <td>{{$device->handover_date}}</td>
+        <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
+        <td>{{$device->sale_date}}</td>
         <td style="text-align: center;">
-          
-          <a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o " title="Xem thông tin" style="font-size: 18px" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-          <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " style="font-size: 18px" title="Lịc sử TB" aria-hidden="true"></i></a>
+          <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " title="Xem vòng đời" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;
+          <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.del',['id'=>$device->id])}}"><i class="fa fa-trash " style="font-size: 20px" title="Xóa" aria-hidden="true"></i></a>
         </td>
       </tr>
       @endforeach

@@ -21,9 +21,30 @@
     border-radius: 4px;
     background-color: yellow;
   }
-  .fa-trash:hover{
+  .fa-truck:hover{
     border-radius: 4px;
     color: red;
+  }
+  .form-popup {
+    display: none;
+    position: fixed;
+    top: 300px;
+    bottom: 200px;
+    left: 500px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 800px;
+    padding: 10px;
+    background-color: #BDBDBD;
+    max-height: 500px;
+    border-radius: 5px;
+  }
+  .form-container .cancel {
+    background-color: red;
   }
 </style>
 <h2>Danh Sách Thiết Bị Ngưng Sử Dụng</h2>
@@ -92,7 +113,7 @@
         <th>Nhà cung cấp</th>
         <th>Ngày bàn giao</th>
         <th>Ngày thu hồi</th>
-        <th width="7%"></th>
+        <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
@@ -107,7 +128,7 @@
         <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
         <td style="text-align: center;">
           <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " title="Xem vòng đời" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;
-          <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.del',['id'=>$device->id])}}"><i class="fa fa-trash " style="font-size: 20px" title="Xóa" aria-hidden="true"></i></a>
+          <a class="sale" data-deviceid="{{$device->id}}"><i class="fa fa-truck " style="font-size: 20px;cursor: pointer;" title="Thanh lý" aria-hidden="true" ></i></a>
         </td>
       </tr>
       @endforeach
@@ -119,5 +140,60 @@
     </nav>
   </div>
 </div>
+  <div class="form-popup" id="myForm">
+    <form action="{{ route('device.sale', 'id') }}" class="form-container form1" enctype="multipart/form-data" method="post">
+      @csrf
+      <table style="font-size: 17px;" border="0" >
+        <tr>
+          <td colspan="2"><label for="email" style="text-align: center; font-size: 22px;"><b>Thanh lý thiết bị</b></label></td>
+        </tr>
+        <tr>
+          <td colspan="2"><hr style="height: 2px;background-color: green"></td>
+        </tr>
+        <tr>
+          <td>Ngày thanh lý</td>
+          <td><input style="margin-left: 3px;" value="{{date('Y-m-d')}}" type="date" name="sale_date" class="form-control"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><br></td>
+        </tr>
+        <tr>
+          <td>Chịu trách nhiệm</td>
+          <td><input style="margin-left: 3px;" class="form-control" type="text" name="saler" value="{{Auth::user()->fullname}}"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><br></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center;"><button type="submit" id="luuAnh" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn thanh lý thiết bị?')">Xác nhận
+          </button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Hủy</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
 
+ 
+<script>
+  function openForm() {
+    
+    // document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  $(document).on('click', '.sale', function(){
+    // Lấy id của data
+    var id = $(this).attr('data-deviceid');
+    // Lấy action hiện tại của form theo class
+    var action = $('.form1').attr('action');
+    // Thay thế id data vào đoạn action của form
+    var actions= $('.form1').attr('action', action.replace('id',id));
+    // Hiện form
+    document.getElementById("myForm").style.display = "block";
+  });
+
+</script>
 @endsection

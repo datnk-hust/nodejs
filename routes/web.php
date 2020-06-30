@@ -63,6 +63,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('device/list/broken','UserController@showDevice2')->name('device.show2');
 		Route::get('device/list/fix','UserController@showDevice3')->name('device.show3');
 		Route::get('device/list/die','UserController@showDevice4')->name('device.show4');
+		Route::get('device/list/sale','UserController@showDevice5')->name('device.show5');
 		Route::post('device/repair/schedule/{id}','UserController@scheduleRepair')->name('device.scheduleRepair');
 		Route::get('device/maintain','UserController@showMaintain')->name('device.maintain');
 		Route::get('device/add/accessory/{id}','UserController@addAccessory')->name('device.getAcc');
@@ -89,7 +90,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('device/check/detail','UserController@detailCheck')->name('device.detailCheck');
 		Route::get('device/edit/actSchedule/{id}','UserController@getEditAct')->name('device.getEditAct');
 		Route::post('device/post/edit/act/{id}','UserController@postEditAct')->name('postEditAct.ktv');
-
+		Route::post('device/sale/{id}','UserController@saleDevice')->name('device.sale');
 		//device_type
 		Route::get('device_type/list','UserController@showDvType')->name('dvtype.show');
 		Route::get('device_type/add','UserController@getAddDvType')->name('dvtype.getAdd');

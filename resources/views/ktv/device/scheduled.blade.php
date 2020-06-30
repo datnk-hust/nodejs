@@ -82,7 +82,7 @@
 			<th>Tần suất bảo dưỡng</th>
       <th>Ngày bắt đầu bảo dưỡng</th>
 			<th>Ghi chú</th>
-			<th></th>
+			<th>Tùy chọn</th>
 		</thead>
 		<tbody>
       @if(isset($schedules))

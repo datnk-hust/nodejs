@@ -47,7 +47,7 @@
       <th>Năm sản xuất</th>
       <th>Loại thiết bị</th>
       <th>Ngày nhập</th>
-      <th></th>
+      <th>Tùy chọn</th>
     </thead>
     <tbody>
       

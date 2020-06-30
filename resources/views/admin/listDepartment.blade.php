@@ -50,7 +50,7 @@
         <th width="5%">ID</th>
         <th width="40%">Khoa - Phòng</th>
         <th width="45%">Địa chỉ</th>
-        <th></th>
+        <th>Tùy chọn</th>
       </tr>
     </thead>
     <tbody style="font-size: 17px;">

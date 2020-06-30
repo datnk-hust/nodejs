@@ -119,6 +119,8 @@
                                     <li><a href="{{route('device.show3')}}">Đang sửa chữa</a></li>
                                     <li class="divider"></li>
                                     <li><a href="{{route('device.show4')}}">Đã ngưng sử dụng</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{route('device.show5')}}">Đã thanh lý</a></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>

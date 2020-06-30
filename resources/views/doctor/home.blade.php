@@ -53,7 +53,7 @@
         <th>Thời gian</th>
         <th>Nội dung</th>
         <th>Người gửi</th>
-        <th width="10%">Điều khiển</th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

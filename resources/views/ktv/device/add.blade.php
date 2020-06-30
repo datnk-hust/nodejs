@@ -98,9 +98,9 @@ label {
   	     @csrf
     <table border="0" width="100%" >
       <tr>
-        <td><label>Tên thiết bị</label></td>
+        <td><label>Tên thiết bị <span style="color: red">*</span></label></td>
         <td><input type="text"  name="name_device" required></td>
-        <td><label>Nhà cung cấp</label></td>
+        <td><label>Nhà cung cấp<span style="color: red">*</span></label></td>
         <td><select type="text" name="provider" required>
         		<option value="">Nhà cung cấp</option>
         		@isset($providers)
@@ -111,13 +111,13 @@ label {
         	</select></td>
       </tr>
        <tr>
-        <td><label>Model</label></td>
+        <td><label>Model<span style="color: red">*</span></label></td>
         <td><input type="text"  name="model" required></td>
-        <td><label>Serial</label></td>
+        <td><label>Serial<span style="color: red">*</span></label></td>
         <td><input type="text"  name="serial" ></td>
       </tr>
        <tr>
-        <td><label>Loại thiết bị</label></td>
+        <td><label>Loại thiết bị<span style="color: red">*</span></label></td>
         <td>
         	<select id="searchDvt" type="text" name="device_type" required>
         		<option value="">Loại thiết bị</option>
@@ -128,7 +128,7 @@ label {
         		@endif
         	</select>
         </td>
-          <td><label>Nhóm thiết bị</label></td>
+          <td><label>Nhóm thiết bị<span style="color: red">*</span></label></td>
         <td>
             <select type="text" id="group" name="group" required="">
               <option value="X">X</option>
@@ -140,10 +140,10 @@ label {
         </td>
       </tr>
        <tr>
-        <td><label>Năm sản xuất</label></td>
+        <td><label>Năm sản xuất<span style="color: red">*</span></label></td>
         <td><input type="text"  name="produce_date" required=""></td>  
         
-        <td><label>Hãng sản xuất</label></td>
+        <td><label>Hãng sản xuất<span style="color: red">*</span></label></td>
         <td><input type="text"  name="produce" required=""></td>
       </tr>
        <tr>
@@ -155,7 +155,7 @@ label {
       <tr>
         <td><label>Giá nhập</label></td>
         <td><input type="text"  name="price" ></td>
-        <td><label>Xuất xứ</label></td>
+        <td><label>Xuất xứ<span style="color: red">*</span></label></td>
         <td><input type="text"  name="country" required=""></td>
       </tr>
       <tr>
@@ -165,7 +165,7 @@ label {
         <td><input type="date"  name="license_number_date" ></td>
       </tr>
        <tr>
-        <td><label>Bảo dưỡng ĐK</label></td>
+        <td><label>Bảo dưỡng ĐK<span style="color: red">*</span></label></td>
         <td>
             <select type="text"  name="maintain_date">
               <option disabled="" value=""></option>
@@ -178,7 +178,7 @@ label {
               <option value="12 tháng">12 tháng</option>
             </select>
         </td>
-        <td><label>Mã thiết bị</label></td>
+        <td><label>Mã thiết bị<span style="color: red">*</span></label></td>
         <td><input type="text" id="dvId"  name="dv_id" required=""></td>
       </tr>
       <tr>

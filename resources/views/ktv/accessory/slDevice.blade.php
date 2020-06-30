@@ -131,7 +131,7 @@
 				<th width="10%">Serial</th>
 				<th width="20%">Loại thiết bị</th>
 				<th width="5%">Năm SX</th>
-				<th width="5%"></th>
+				<th width="5%">Tùy chọn</th>
 			</thead>
 			<tbody>
 				

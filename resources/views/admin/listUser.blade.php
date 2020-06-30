@@ -64,7 +64,7 @@
         <th>Địa chỉ</th>
         <th>Phone</th>
         <th>Khoa</th>
-        <th></th>
+        <th>Tùy chọn</th>
       </tr>
     </thead>
     <tbody style="font-size: 17px;">

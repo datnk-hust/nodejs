@@ -19,20 +19,24 @@ class DoctorController extends Controller
 {
     //
     public function index(){
-        $notice = Notification::where('status','=',4)->orWhere('status',6)->orWhere('status',8)->orWhere('status',12)->orWhere('status',14)->paginate(10);
+        $notice = Notification::where('status','=',4)->orWhere('status',6)->orWhere('status',8)->orWhere('status',12)->orWhere('status',14)->orderBy('id','desc')->paginate(100);
     	return view('doctor.home',['notices'=>$notice]);
     }
 
     public function showDev(Request $request, $id){
         $user = User::find($id);
-        // $user = DB::table('users')->where('user_id','=',$id)->get();
-
         $dept = DB::table('department')->get();
         $devices = Device::where('status',1)->where('department_id',$user->department_id)->orderBy('id','desc');
         if($request->dv_name){
             $devices = $devices->where('dv_name','like','%'.$request->dv_name.'%');
         }
-        $devices = $devices->paginate(8);
+        if($request->model){
+            $devices = $devices->where('dv_model','like','%'.$request->model.'%');
+        }
+        if($request->serial){
+            $devices = $devices->where('dv_serial','like','%'.$request->serial.'%');
+        }
+        $devices = $devices->paginate(100);
     	return view('doctor.listDevice',['devices'=>$devices,'user'=>$user,'depts'=>$dept]);
     }
 

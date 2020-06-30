@@ -157,7 +157,7 @@
         <th>Nhà cung cấp</th>
         <th>Ngày nhập</th>
         <th>Ngày bàn giao</th>
-        <th width="10%"></th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

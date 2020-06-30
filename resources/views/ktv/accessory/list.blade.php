@@ -135,7 +135,7 @@
         <th>Đơn vị tính</th>
         <th>Năm sản xuất</th>
         <th>Ngày nhập kho</th>
-        <th width="10%">Điều khiển</th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

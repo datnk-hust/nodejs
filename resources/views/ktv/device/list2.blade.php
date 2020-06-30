@@ -155,7 +155,7 @@
         <th>Nhà cung cấp</th>
         <th>Năm SX</th>
         <th>Ngày nhập</th>
-        <th width="10%"></th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

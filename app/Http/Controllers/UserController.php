@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','desc')->paginate(20);
+        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','asc')->paginate(20);
         return view('ktv.trangchu',['notices'=>$notices]);
     }
 
@@ -125,7 +125,7 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         //tạo thông báo gửi phòng đã điều chuyển
         $response = new Notification;
         $response->req_date = Carbon::now('Asia/Ho_Chi_Minh');
-        $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name .' đến khoa '. \App\Department::where(['id'=>$dept])->pluck('department_name')->first();
+        $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name .' đến  '. \App\Department::where(['id'=>$dept])->pluck('department_name')->first();
         $response->status = 6;
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
@@ -455,7 +455,56 @@ public function showDevice4(Request $request) {
     return view('ktv.device.list4',['devices'=>$devices,'depts'=>$dep,'providers'=>$provider]);
 
 }
-    //add device
+
+public function showDevice5(Request $request){
+    $devices = Device::where('status',5)->orderBy('id','desc');
+    $dep = DB::table('department')->get();
+    $provider = DB::table('provider')->get();
+    if($request->dv_name)
+    {
+        $devices = $devices->where('dv_name', 'like', '%'.$request->dv_name.'%');
+    }
+     if($request->model)
+    {
+        $devices = $devices->where('dv_model', '=', $request->model);
+    }if($request->serial)
+    {
+        $devices = $devices->where('dv_serial', '=', $request->serial);
+    }
+    if($request->import_id){
+        $devices = Device::where('import_id','like','%'. $request->import_id. '%')->orderBy('id','desc');
+    }
+    if($request->provider_id)
+    {
+        $devices = $devices->where('provider_id', '=', $request->provider_id);
+    }
+    if($request->department_id)
+    {
+        $devices = $devices->where('department_id', '=', $request->department_id);
+    }
+    $devices = $devices->paginate(100);
+    return view('ktv.device.list5',['devices'=>$devices,'depts'=>$dep,'providers'=>$provider]);
+}
+    
+//sale device
+public function saleDevice(Request $request, $id){
+    $device = Device::find($id);
+    $dvname = $device->dv_name;
+    $device->status = 5;
+    $device->sale_date = $request->sale_date;
+    $device->saler = $request->saler;
+    //tao lich su
+    $his = new History_ktv;
+    $his->action = "Thanh lý thiết bị";
+    $his->time = Carbon::now();
+    $his->dv_id = $device->dv_id;
+    $his->status = 'sdv'; //sdv = sale device
+    $his->implementer = 'Phòng vật tư';
+    $his->save();
+    $device->save();
+    return back()->with('message','Đã thanh lý thiết bị '.$dvname);
+}
+//add device
 public function getAddDevice(){
     $dv_types = DB::table('device_type')->get();
     $provider = DB::table('provider')->get();

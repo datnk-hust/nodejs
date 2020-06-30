@@ -90,7 +90,7 @@
         <th>Khoa phòng</th>
         <th>Nhà cung cấp</th>
         <th>Bảo dưỡng đk</th>
-        <th width="10%"></th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
