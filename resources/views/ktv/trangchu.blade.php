@@ -84,6 +84,7 @@
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_name')->first()}}</td>
         <td>{{ \App\User::where(['user_id' => $notice->annunciator_id])->pluck('fullname')->first()}} </td>
         <td style="text-align: center;">
+          <a href="{{route('ktv.acceptNotice',['user_id'=>Auth::id(),'id'=>$notice->id,'dv_id'=>$notice->dv_id,'status'=>$notice->status]) }}"><i class="fa fa-pencil-square-o " title="Đã xem" aria-hidden="true" ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="{{route('ktv.delete.notification',['id'=>$notice->id])}}" onclick="return confirm('Bạn có chắc chắn?')"><i class="fa fa-trash "  title="Xóa" aria-hidden="true"></i></a>
         </td>
       </tr>

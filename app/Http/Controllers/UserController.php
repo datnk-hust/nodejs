@@ -114,6 +114,18 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $response->annunciator_id = $user_id;
         $response->save();
     }
+    if((int)$status == 1){
+        $notice->status = 0;
+        $notice->save();
+    }
+    if((int)$status == 3){
+        $notice->status = 2;
+        $notice->save();
+    }
+    if((int)$status == 16){
+        $notice->status = 15;
+        $notice->save();
+    }
     if((int)$status == 2)
     {
         // xác nhận thông báo
@@ -808,12 +820,13 @@ public function getEditDvType($id){
 }
 
 public function postEditDvType(Request $request, $id){
-    $this->validate($request,[
-        'dv_group' => 'required',
-        'idDvt' =>'unique|dv_type,dv_type_id'
-    ],[
-        'dv_group.required' => 'Bạn chưa phân loại nhóm thiết bị.'
-    ]);
+    $this->validate($request, [
+        'idDvt' => 'unique:device_type,dv_type_id'
+    ],
+        $messages = [
+            'idDvt.unique'    => 'Mã thiết bị đã tồn tại.'
+        ]
+    );
     $dv_types = Device_type::find($id);
     $dv_types->dv_type_id = $request->idDvt;
     $dv_types->dv_type_name = $request->nameDvt;
@@ -829,16 +842,16 @@ public function deleteDvType($id){
 
     //accessory
 public function showAcc(Request $request){
-    $acc = DB::table('accessory');
+    $acc = DB::table('accessory')->orderBy('id','desc');
     $prov = DB::table('provider')->get();
     $devs = DB::table('device')->where('status',0)->orWhere('status',1)->get();
     if($request->acc_name){
-        $acc = $acc->where('acc_name','like','%'.$request->acc_name.'%');
+        $acc = $acc->where('acc_name','like','%'.$request->acc_name.'%')->orderBy('id','desc');
     }
     if($request->provider_id){
-        $acc = $acc->where('provider_id','=', $request->provider_id);
+        $acc = $acc->where('provider_id','=', $request->provider_id)->orderBy('id','desc');
     }
-    $acc = $acc->paginate(10);
+    $acc = $acc->paginate(50);
     return view('ktv.accessory.list',['accs'=>$acc,'providers'=>$prov,'devs'=>$devs]);
 
 }

@@ -88,7 +88,7 @@
       <tr>
         <td></td>
         <td>
-    <div class="canl"><a href="{{route('dvtype.show')}}" style="color: white; text-decoration: none;">Hủy cập nhật thiết bị</a></div>
+    <div class="canl" style="text-align: center;"><a href="{{route('dvtype.show')}}" style="color: white; text-decoration: none;">Hủy cập nhật thiết bị</a></div>
         </td>
       </tr>
     </table> 
