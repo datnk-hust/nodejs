@@ -46,7 +46,7 @@
         <th>Người đại diện</th>
         <th>Phone</th>
         <th>Email</th>
-        <th width="7%">Tùy chọn</th>
+        <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

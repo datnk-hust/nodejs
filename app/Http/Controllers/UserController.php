@@ -979,7 +979,7 @@ public function fileDevice($id){
     $device = Device::find($id);
     $dv_id = $device->dv_id;
     $his = History_ktv::where('dv_id',$dv_id)->get();
-    $file = History_ktv::where('dv_id',$id)->get();
+    $file = History_ktv::where('dv_id',$id)->orderBy('id','asc')->get();
     
     return view('ktv.device.file')->with(['file'=>$file,'hiss'=>$his,'dv'=>$id,'dv_id'=>$dv_id]);
 }
