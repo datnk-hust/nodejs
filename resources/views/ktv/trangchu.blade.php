@@ -49,7 +49,7 @@
         <th>Nội dung thông báo</th>
         <th>Tên thiết bị</th>
         <th>Người tạo</th>
-        <th width="7%"></th>
+        <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

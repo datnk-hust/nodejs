@@ -20,8 +20,8 @@ class CreateMaintenScheduleTable extends Migration
             $table->string('note')->nullable();
             $table->string('dv_id')->nullable();
             $table->integer('status')->nullable();
-            $table->datetime('schedule_date')->nullable();
-            $table->datetime('proceed_date')->nullable();
+            $table->date('schedule_date')->nullable();
+            $table->date('proceed_date')->nullable();
             $table->timestamps();
         });
     }

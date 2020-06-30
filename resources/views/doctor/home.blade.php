@@ -50,10 +50,10 @@
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 20px;">
         <th>ID</th>
-        <th>Thời gian</th>
+        <th width="12%">Thời gian</th>
         <th>Nội dung</th>
         <th>Người gửi</th>
-        <th width="10%">Tùy chọn</th>
+        <th width="8%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
