@@ -60,9 +60,9 @@ select[type=text]{
          @csrf
     <table border="0" width="100%" >
       <tr>
-        <td><label>Tên vật tư</label></td>
+        <td><label>Tên vật tư<span style="color: red">*</span></label></td>
         <td><input type="text"  name="accName" required></td>
-        <td><label>Nhà cung cấp</label></td>
+        <td><label>Nhà cung cấp<span style="color: red">*</span></label></td>
         <td><select type="text" name="provider" required>
             <option value="">Nhà cung cấp</option>
             @isset($providers)
@@ -79,7 +79,7 @@ select[type=text]{
         <td><input type="text"  name="serial" ></td>
       </tr>
        <tr>
-        <td><label>Loại vật tư</label></td>
+        <td><label>Loại vật tư<span style="color: red">*</span></label></td>
         <td>
           <select id="sl_dvt" type="text" name="typeAcc" required>
             <option value="">Chọn loại vật tư</option>
@@ -87,7 +87,7 @@ select[type=text]{
             <option value="vttt">Vật tư thay thế</option>
           </select>
         </td>
-        <td><label>Năm sản xuất</label></td>
+        <td><label>Năm sản xuất<span style="color: red">*</span></label></td>
         <td><input type="text"  name="produce_date" ></td>
       </tr>
        <tr>
@@ -99,7 +99,7 @@ select[type=text]{
        <tr>
         <td><label>Hạn sử dụng</label></td>
         <td><input type="text"  name="expire_date" ></td>
-        <td><label>Mã thiết bị đi kèm</label></td>
+        <td><label>Mã thiết bị đi kèm<span style="color: red">*</span></label></td>
         <td><input type="text" id="dvId"  name="dv_id" value="{{$dv->dv_id}}"></td>
       </tr>
       <tr>

@@ -75,7 +75,7 @@ label {
          @csrf
     <table border="0">
       <tr>
-        <td width="50%"><label>Tên vật tư</label></td>
+        <td width="50%"><label>Tên vật tư<span style="color: red">*</span></label></td>
         <td><input type="text"  name="accName" required></td>
       </tr>
        <tr>
@@ -87,7 +87,7 @@ label {
         <td><input type="text"  name="serial" ></td>
       </tr>
        <tr>
-        <td width="50%"><label>Loại vật tư</label></td>
+        <td width="50%"><label>Loại vật tư<span style="color: red">*</span></label></td>
         <td><select id="sl_dvt" type="text" name="typeAcc" required>
             <option value="">Chọn loại vật tư</option>
             <option value="vtth">Vật tư tiêu hao</option>
@@ -95,7 +95,7 @@ label {
           </select></td>
       </tr>
        <tr>
-        <td><label>Nhà cung cấp</label></td>
+        <td><label>Nhà cung cấp<span style="color: red">*</span></label></td>
         <td> <select name="provider_id" type="text" required>
               <option value="">Mọi nhà cung cấp</option>
               @if(isset($providers))
@@ -116,11 +116,11 @@ label {
         <td><input type="text"  name="unit" ><br></td>
       </tr>
       <tr>
-        <td width="50%"><label>Năm sản xuất</label></td>
+        <td width="50%"><label>Năm sản xuất<span style="color: red">*</span></label></td>
         <td><input type="text"  name="produce_date" ></td>
       </tr>
       <tr>
-        <td width="50%"><label>Hãng sản xuất</label></td>
+        <td width="50%"><label>Hãng sản xuất<span style="color: red">*</span></label></td>
         <td><input type="text"  name="factory" ></td>
       </tr>
        <tr>

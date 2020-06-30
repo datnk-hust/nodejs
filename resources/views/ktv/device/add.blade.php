@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style>
-input[type=text], input[type=date]{
+input[type=text], input[type=date], input[type=number]{
   width: 450px;
   padding: 3px;
   margin: 5px 0;
@@ -183,10 +183,10 @@ label {
       </tr>
       <tr>
         <td><label>Giá trị bđ</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khbd" ><input style="width: 14%;float: left;margin-top: 6px;" class="form-control" value="đv %" disabled="">
+        <td><input style="width: 20%; float: left;" type="number"  name="khbd" ><input style="width: 8%;float: left;margin-top: 6px;" class="form-control" value="%" disabled="">
           </td>
         <td><label style="font-size: 20px;">Khấu hao hn</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khhn" ><input style="width: 14%;float: left;margin-top: 6px;" class="form-control" value="đv %" disabled="">
+        <td><input style="width: 20%; float: left;" type="number"  name="khhn" ><input style="width: 8%;float: left;margin-top: 6px;" class="form-control" value="%" disabled="">
         </td>
       </tr>
       <tr>
