@@ -89,13 +89,12 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị chưa bàn giao sử dụng',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
             $devices->produce_date,
             $devices->price,
             $devices->import_date,
-            $devices->handover_date,
-            $devices->khbd,
-            $devices->khhn,
-            $gtht,
+            
+            
             $devices->project,
             $devices->note
 
@@ -115,13 +114,11 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị đang sử dụng tốt',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
             $devices->produce_date,
             $devices->price,
-            $devices->import_date,
-            $devices->handover_date,
-            $devices->khbd,
-            $devices->khhn,
-            $gtht,
+            $devices->import_date,            
+            
             $devices->project,
             $devices->note
 
@@ -141,13 +138,11 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị đang báo hỏng',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
             $devices->produce_date,
             $devices->price,
-            $devices->import_date,
-            $devices->handover_date,
-            $devices->khbd,
-            $devices->khhn,
-            $gtht,
+            $devices->import_date,            
+            
             $devices->project,
             $devices->note
 
@@ -167,13 +162,12 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị đang sửa chữa',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
             $devices->produce_date,
             $devices->price,
             $devices->import_date,
-            $devices->handover_date,
-            $devices->khbd,
-            $devices->khhn,
-            $gtht,
+            
+            
             $devices->project,
             $devices->note
 
@@ -193,13 +187,10 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị đã ngưng sử dụng',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
     		$devices->produce_date,
     		$devices->price,
     		$devices->import_date,
-    		$devices->handover_date,
-    		$devices->khbd,
-    		$devices->khhn,
-    		$gtht,
     		$devices->project,
     		$devices->note
 
@@ -219,13 +210,12 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
             'Thiết bị đã thanh lý',
             $devices->khbd,
             $devices->khhn,
+            $gtht,
             $devices->produce_date,
             $devices->price,
             $devices->import_date,
-            $devices->handover_date,
-            $devices->khbd,
-            $devices->khhn,
-            $gtht,
+           
+            
             $devices->project,
             $devices->note
 
