@@ -78,99 +78,107 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
     		return [
     		++$this->rows,
     		$devices->dv_id,
-    		$devices->dv_name,
-    		\App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
-    		$devices->dv_model,
-    		$devices->dv_serial,
-    		$devices->manufacturer,
-    		$devices->country,
+            $devices->dv_name,
+            \App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
+            $devices->dv_model,
+            $devices->dv_serial,
+            $devices->manufacturer,
+            $devices->country,
             \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
             'Thiết bị chưa bàn giao sử dụng',
-    		$devices->produce_date,
-    		$devices->price,
-    		$devices->import_date,
-    		$devices->handover_date,
-    		
-    		$devices->khbd,
-    		$devices->khhn,
-    		$gtht,
-    		$devices->project,
-    		$devices->note
+            $devices->khbd,
+            $devices->khhn,
+            $devices->produce_date,
+            $devices->price,
+            $devices->import_date,
+            $devices->handover_date,
+            $devices->khbd,
+            $devices->khhn,
+            $gtht,
+            $devices->project,
+            $devices->note
 
     	];
     }elseif ($devices->status == 1) {
     		return [
     		++$this->rows,
     		$devices->dv_id,
-    		$devices->dv_name,
-    		\App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
-    		$devices->dv_model,
-    		$devices->dv_serial,
-    		$devices->manufacturer,
-    		$devices->country,
+            $devices->dv_name,
+            \App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
+            $devices->dv_model,
+            $devices->dv_serial,
+            $devices->manufacturer,
+            $devices->country,
             \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
             'Thiết bị đang sử dụng tốt',
-    		$devices->produce_date,
-    		$devices->price,
-    		$devices->import_date,
-    		$devices->handover_date,
-    		
-    		$devices->khbd,
-    		$devices->khhn,
-    		$gtht,
-    		$devices->project,
-    		$devices->note
+            $devices->khbd,
+            $devices->khhn,
+            $devices->produce_date,
+            $devices->price,
+            $devices->import_date,
+            $devices->handover_date,
+            $devices->khbd,
+            $devices->khhn,
+            $gtht,
+            $devices->project,
+            $devices->note
 
     	];
     }elseif ($devices->status == 2) {
     		return [
     		++$this->rows,
     		$devices->dv_id,
-    		$devices->dv_name,
-    		\App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
-    		$devices->dv_model,
-    		$devices->dv_serial,
-    		$devices->manufacturer,
-    		$devices->country,
+            $devices->dv_name,
+            \App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
+            $devices->dv_model,
+            $devices->dv_serial,
+            $devices->manufacturer,
+            $devices->country,
             \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
             'Thiết bị đang báo hỏng',
-    		$devices->produce_date,
-    		$devices->price,
-    		$devices->import_date,
-    		$devices->handover_date,
-    		
-    		$devices->khbd,
-    		$devices->khhn,
-    		$gtht,
-    		$devices->project,
-    		$devices->note
+            $devices->khbd,
+            $devices->khhn,
+            $devices->produce_date,
+            $devices->price,
+            $devices->import_date,
+            $devices->handover_date,
+            $devices->khbd,
+            $devices->khhn,
+            $gtht,
+            $devices->project,
+            $devices->note
 
     	];
     }elseif ($devices->status == 3) {
     		return [
     		++$this->rows,
     		$devices->dv_id,
-    		$devices->dv_name,
-    		\App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
-    		$devices->dv_model,
-    		$devices->dv_serial,
-    		$devices->manufacturer,
-    		$devices->country,
+            $devices->dv_name,
+            \App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
+            $devices->dv_model,
+            $devices->dv_serial,
+            $devices->manufacturer,
+            $devices->country,
             \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
             'Thiết bị đang sửa chữa',
-    		$devices->produce_date,
-    		$devices->price,
-    		$devices->import_date,
-    		$devices->handover_date,
-    		
-    		$devices->khbd,
-    		$devices->khhn,
-    		$gtht,
-    		$devices->project,
-    		$devices->note
+            $devices->khbd,
+            $devices->khhn,
+            $devices->produce_date,
+            $devices->price,
+            $devices->import_date,
+            $devices->handover_date,
+            $devices->khbd,
+            $devices->khhn,
+            $gtht,
+            $devices->project,
+            $devices->note
 
     	];
-    }else{
+    }elseif ($devices->status == 4){
     	return [
     		++$this->rows,
     		$devices->dv_id,
@@ -181,12 +189,14 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
     		$devices->manufacturer,
     		$devices->country,
             \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
             'Thiết bị đã ngưng sử dụng',
+            $devices->khbd,
+            $devices->khhn,
     		$devices->produce_date,
     		$devices->price,
     		$devices->import_date,
     		$devices->handover_date,
-    		
     		$devices->khbd,
     		$devices->khhn,
     		$gtht,
@@ -194,6 +204,32 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
     		$devices->note
 
     	];
+    }else{
+        return [
+            ++$this->rows,
+            $devices->dv_id,
+            $devices->dv_name,
+            \App\Device_type::where( ['dv_type_id'=>$devices->dv_name] )->pluck('dv_type_name')->first(),
+            $devices->dv_model,
+            $devices->dv_serial,
+            $devices->manufacturer,
+            $devices->country,
+            \App\Department::where( ['id'=>$devices->department_id] )->pluck('department_name')->first(),
+            $devices->handover_date,
+            'Thiết bị đã thanh lý',
+            $devices->khbd,
+            $devices->khhn,
+            $devices->produce_date,
+            $devices->price,
+            $devices->import_date,
+            $devices->handover_date,
+            $devices->khbd,
+            $devices->khhn,
+            $gtht,
+            $devices->project,
+            $devices->note
+
+        ];
     }
     	
     }
@@ -203,7 +239,7 @@ class DeviceExportQuery implements FromCollection, WithMapping, WithHeadings, Sh
     	return [
             [' ', ' ', ' ',' ',' ',' ',' ',' ',' ', 'Lọc Danh Sách Thiết Bị', ' ', ' ', ' ',' ',' ',' ',' ',' ',' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '],
-            ['STT', 'Mã thiết bị', 'Tên thiết bị','Loại thiết bị', 'Model', 'Serial', 'Hãng SX','Xuất xứ','Khoa phòng', 'Tình trạng sử dụng', 'Năm SX','Giá nhập','Ngày nhập','Ngày bàn giao','Giá trị ban đầu (đv %)','Khấu hao hàng năm (đv %)','Giá trị hiện tại(đv %)','Dự án thầu','Ghi chú']
+            ['STT', 'Mã thiết bị', 'Tên thiết bị','Loại thiết bị', 'Model', 'Serial', 'Hãng SX','Xuất xứ','Khoa phòng','Ngày bàn giao','Tình trạng sử dụng','Giá trị ban đầu (đv %)','Khấu hao hàng năm (đv %)','Giá trị hiện tại(đv %)',  'Năm SX','Giá nhập','Ngày nhập','Dự án thầu','Ghi chú']
         ];
     }
 
