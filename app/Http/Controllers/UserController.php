@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','asc')->paginate(20);
+        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','desc')->paginate(20);
         return view('ktv.trangchu',['notices'=>$notices]);
     }
 
@@ -113,6 +113,7 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
         $response->save();
+        
     }
     if((int)$status == 1){
         $notice->status = 0;
@@ -366,9 +367,10 @@ public function scheduleRepair(Request $request, $id){
     $his = new History_ktv;
     $his->time = $request->fix_date;
     $his->action = 'Tạo lịch sửa chữa';
-    $his->dv_id = $id;
+    $his->dv_id = $device->dv_id;
     $his->status = 'of';//of = order-fix
     $his->implementer = 'Phòng vật tư';
+    $his->note = 'Tạo lịch sửa chữa thiết bị';
     $his->save();
     return redirect()->route('device.show2')->with('message', 'Đã tạo lịch sửa chữa thành công cho thiết bị '.$device->dv_name);
 }
@@ -393,7 +395,7 @@ public function updateStatus(Request $request, $id){
     $dvname = $device->dv_name;
     $his = new History_ktv;
     $notice = new Notification;
-    $his->dv_id = $id;
+    $his->dv_id = $device->dv_id;
     $his->time = $request->update_time;
     if($request->status == '0'){
         $device->status = 1;
@@ -504,7 +506,7 @@ public function saleDevice(Request $request, $id){
     $dvname = $device->dv_name;
     $device->status = 5;
     $device->sale_date = $request->sale_date;
-    $device->saler = $request->saler;
+    $device->saler = $request->saler;    
     //tao lich su
     $his = new History_ktv;
     $his->action = "Thanh lý thiết bị";
@@ -512,6 +514,7 @@ public function saleDevice(Request $request, $id){
     $his->dv_id = $device->dv_id;
     $his->status = 'sdv'; //sdv = sale device
     $his->implementer = 'Phòng vật tư';
+    $his->note = 'Đã thanh lý thiết bị';
     $his->save();
     $device->save();
     return back()->with('message','Đã thanh lý thiết bị '.$dvname);
@@ -571,6 +574,7 @@ public function postAddDevice(Request $request){
     $his->dv_id = $request->dv_id;
     $his->time = date('Y-m-d');
     $his->implementer = 'Phòng vật tư';
+    $his->note = 'Mua mới thiết bị';
     $his->save();
     return redirect()->route('device.show0')->with('message','Thêm thiết bị thành công');
 }
@@ -623,6 +627,7 @@ public function moveDevice(Request $request, $id)
          $device = Device::find($id);
          $group = $device->group;
          $dvType = $device->dv_type_id;
+         $dvId = $device->dv_id;
          if($request->hasFile('image')){
 
             $fname = time() . '.' . $request->file('image')->getClientOriginalExtension();
@@ -676,7 +681,7 @@ public function moveDevice(Request $request, $id)
     $his->status = 'mdv'; //mdv = move device
     $his->action = 'Thiết bị được bàn giao từ '.$dep_now.' sang '.$dep_name;
     $his->time = date('Y-m-d');
-    $his->dv_id = $id;
+    $his->dv_id = $dvId;
     $his->implementer = 'Phòng vật tư';
     $his->note = 'Bàn giao sử dụng thiết bị thành công';
     $his->save();
@@ -768,6 +773,7 @@ public function accessoryDevice(Request $request, $id){
         $his->time = $request->export_date;
         $his->dv_id = $request->dv_id;
         $his->implementer = 'Phòng vật tư';
+        $his->note = 'Bàn giao vật tư cho thiết bị';
         $his->save();
         return redirect()->route('accessory.show')->with(['message'=>'Bàn giao vật tư thành công!']);
     }
@@ -787,9 +793,9 @@ public function showDvType(Request $request){
     {
         $dv_type = $dv_type->where('dv_type_name', 'like' , '%'.$request->searchName.'%');
     }
-    if($request->dv_group)
+    if($request->searchId)
     {
-        $dv_type = $dv_type->where('dv_group', '=',$request->dv_group);
+        $dv_type = $dv_type->where('dv_type_id', 'like' , '%'.$request->searchId.'%');
     }
     $dv_type = $dv_type->paginate(8);
     return view('ktv.device_type.list',['dv_types'=>$dv_type]);
@@ -991,10 +997,10 @@ public function delDeviceAcc($id){
 public function fileDevice($id){
     $device = Device::find($id);
     $dv_id = $device->dv_id;
-    $his = History_ktv::where('dv_id',$dv_id)->get();
-    $file = History_ktv::where('dv_id',$id)->orderBy('id','asc')->get();
+    $his = History_ktv::where('dv_id',$dv_id)->orderBy('id','asc')->get();
+    //$file = History_ktv::where('dv_id',$id)->orderBy('id','asc')->get();
     
-    return view('ktv.device.file')->with(['file'=>$file,'hiss'=>$his,'dv'=>$id,'dv_id'=>$dv_id]);
+    return view('ktv.device.file')->with(['hiss'=>$his,'dv'=>$id,'dv_id'=>$dv_id]);
 }
 
 //lịch bảo dưỡng

@@ -8,9 +8,9 @@ use App\User;
 use App\Notification;
 use App\Device;
 use DB;
-use Device_type;
-use History_ktv;
-use Device_accessory;
+use App\Device_type;
+use App\History_ktv;
+use App\Device_accessory;
 use PDF;
 use Dompdf\Dompdf;
 
@@ -86,6 +86,14 @@ class DoctorController extends Controller
         $dev->status = 2;
         $dvname = $dev->dv_name;
         $dev->save();
+        $his = new History_ktv;
+        $his->action = 'Thiết bị được báo hỏng';
+        $his->time = Carbon::now('Asia/Ho_Chi_Minh');
+        $his->dv_id = $dev->dv_id;
+        $his->implementer = \App\User::where(['user_id'=>$request->user_id])->pluck('fullname')->first() ;
+        $his->note = 'Báo hỏng thiết bị';
+        $his->status = 'nbd'; //nb = notice broken device
+        $his->save();
         return redirect()->route('doctor.home')->with('message','Đã báo hỏng thiết bị '.$dvname.' thành công.');
     }
 

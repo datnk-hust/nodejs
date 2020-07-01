@@ -46,12 +46,8 @@
       <tr>
         <td>{{ $his->time }}</td>
         <td>{{ $his->action }}</td>
-        <td>Phòng vật tư</td>
-        @if($his->status == 'sadv')
-        <td>Nhập thiết bị thành công</td>
-        @else
-        <td></td>
-        @endif
+        <td>{{ $his->implementer }}</td>
+        <td>{{ $his->note }}</td>
       </tr>
       @endforeach
       @endif

@@ -26,15 +26,9 @@
       @csrf
       <table width="100%" border="0">
         <tr>
-          <td width="30%"><input style="width: 400px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}"></td>
+          <td width="30%"><input style="width: 300px;" type="text" class="form-control" placeholder="Mã loại thiết bị" name="searchId" value="{{request()->searchId}}"></td>
           <td width="30%">
-            <select title="dv_group" name="dv_group" class="form-control" style="background-color: #E6E6E6">
-              <option value="">Phân loại theo nhóm</option>
-              <option value="A">Nhóm A</option>
-              <option value="B">Nhóm B</option>
-              <option value="C">Nhóm C</option>
-              <option value="D">Nhóm D</option>
-            </select>  
+            <input style="width: 300px;margin-left: 10px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}">
           </td>
           <td width="30%">
             <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 30px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
@@ -56,7 +50,7 @@
     <tbody>
     	@foreach($dv_types as $dv_type)
       <tr style="font-size: 15px;">
-        <td>{{$dv_type->id}}</td>
+        <td>{{$dv_type->dv_type_id}}</td>
         <td>{{$dv_type->dv_type_name}}</td>
         <td style="text-align: center;">
           <a href="{{route('dvtype.getEdit',['id'=>$dv_type->id])}}"><i class="fa fa-pencil-square-o " style="font-size: 20px;" title="Sửa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

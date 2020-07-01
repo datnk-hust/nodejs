@@ -93,6 +93,7 @@
         <th>Ngày bàn giao</th>
         <th>Ngày thu hồi</th>
         <th>Ngày thanh lý</th>
+        <th>Người thanh lý</th>
         <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
@@ -107,8 +108,9 @@
         <td>{{$device->handover_date}}</td>
         <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
         <td>{{$device->sale_date}}</td>
+        <td>{{$device->saler}}</td>
         <td style="text-align: center;">
-          <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " title="Xem vòng đời" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;
+          <a href="{{route('device.view',['id'=>$device->id])}}"><i class="fa fa-history " title="Hồ sơ thiết bị" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;
           <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.del',['id'=>$device->id])}}"><i class="fa fa-trash " style="font-size: 20px" title="Xóa" aria-hidden="true"></i></a>
         </td>
       </tr>
