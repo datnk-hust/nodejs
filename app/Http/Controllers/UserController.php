@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',17)->orderBy('id','desc')->paginate(20);
+        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',17)->orderBy('id','desc')->paginate(10);
         return view('ktv.trangchu',['notices'=>$notices]);
     }
 
@@ -259,7 +259,7 @@ public function showDevice0(Request $request){
         $devices = $devices->where('dv_type_id', '=', $request->dv_type_id);
     }
 
-    $devices = $devices->paginate(100);
+    $devices = $devices->paginate(10);
 
     return view('ktv.device.list0', ['devices'=>$devices,'dv_types'=>$dv_types,'depts'=>$dept,'providers'=>$provider]);
 }
@@ -291,7 +291,7 @@ public function showDevice1(Request $request){
         $devices = $devices->where('department_id', '=', $request->department_id);
     }
 
-    $devices = $devices->paginate(100);
+    $devices = $devices->paginate(10);
     return view('ktv.device.list1',['devices'=>$devices,'dvts'=>$dvt,'depts'=>$dept]);
 
 }
@@ -322,7 +322,7 @@ public function showDevice2(Request $request){
     {
         $devices = $devices->where('dv_type_id', '=', $request->dv_type_id);
     }
-    $devices = $devices->paginate(50);
+    $devices = $devices->paginate(10);
     return view('ktv.device.list2',['devices'=>$devices, 'depts' => $department,'dv_types'=>$dv_type]);
 }
     //device fixing
@@ -350,7 +350,7 @@ public function showDevice3(Request $request) {
     {
         $device = $device->where('department_id', '=', $request->department_id);
     }
-    $device = $device->paginate(50);
+    $device = $device->paginate(10);
     return view('ktv.device.list3',['devices'=>$device,'departments'=>$dept,'providers'=>$provider]);
 }
 
@@ -469,7 +469,7 @@ public function showDevice4(Request $request) {
     {
         $devices = $devices->where('department_id', '=', $request->department_id);
     }
-    $devices = $devices->paginate(100);
+    $devices = $devices->paginate(10);
     return view('ktv.device.list4',['devices'=>$devices,'depts'=>$dep,'providers'=>$provider]);
 
 }
@@ -500,7 +500,7 @@ public function showDevice5(Request $request){
     {
         $devices = $devices->where('department_id', '=', $request->department_id);
     }
-    $devices = $devices->paginate(100);
+    $devices = $devices->paginate(10);
     return view('ktv.device.list5',['devices'=>$devices,'depts'=>$dep,'providers'=>$provider]);
 }
     
@@ -802,7 +802,7 @@ public function showDvType(Request $request){
     {
         $dv_type = $dv_type->where('dv_type_id', 'like' , '%'.$request->searchId.'%');
     }
-    $dv_type = $dv_type->paginate(8);
+    $dv_type = $dv_type->paginate(10);
     return view('ktv.device_type.list',['dv_types'=>$dv_type]);
 }
 
@@ -862,7 +862,7 @@ public function showAcc(Request $request){
     if($request->provider_id){
         $acc = $acc->where('provider_id','=', $request->provider_id)->orderBy('id','desc');
     }
-    $acc = $acc->paginate(50);
+    $acc = $acc->paginate(10);
     return view('ktv.accessory.list',['accs'=>$acc,'providers'=>$prov,'devs'=>$devs]);
 
 }
@@ -1031,7 +1031,7 @@ public function showmaintain(Request $request){
     }if($request->provider){
         $devices = $devices->where('provider_id','=',$request->provider);
     }
-    $devices = $devices->paginate(100);
+    $devices = $devices->paginate(10);
     return view('ktv.device.maintain')->with(['devices'=>$devices,'dvts'=>$dvt,'providers'=>$provider]);
 }
     public function createSchedule(){
@@ -1180,7 +1180,7 @@ public function showmaintain(Request $request){
             $dv = Device::where('dv_type_id','=', $request->dvt)->orderBy('id','desc');
             
         }
-        $dv = $dv->paginate(100);
+        $dv = $dv->paginate(10);
         if($request->dept){
             $dep_id = $request->dept;
             return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'depId'=>$dep_id]);

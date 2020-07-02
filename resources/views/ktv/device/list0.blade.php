@@ -177,7 +177,7 @@
 				<td>{{$device->dv_id}}</td>
 				<td>{{$device->dv_name}}</td>
 				<td>{{$device->dv_model}}</td>
-				<td>{{$device->dv_type->dv_type_name}}</td>
+				<td>{{ \App\Device_type::where(['dv_type_id'=>$device->dv_type_id])->pluck('dv_type_name')->first() }}</td>
 				<td>{{$device->provider->provider_name}}</td>
 				<td>{{$device->import_date}}</td>
 				<td style="text-align: center;">
