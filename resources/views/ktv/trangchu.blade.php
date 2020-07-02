@@ -44,7 +44,6 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 18px;">
-        <th>ID</th>
         <th width="10%">Mã TB</th>
         <th width="15%">Thời gian</th>
         <th>Nội dung thông báo</th>
@@ -55,7 +54,6 @@
     </thead>
     <tbody>
         @foreach($noticees as $notice)
-        <tr>{{ $i++}}</tr>
         <tr style="font-size: 15px;color: red;font-weight: bold;">
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
         <td>{{$notice->req_date}}</td>
