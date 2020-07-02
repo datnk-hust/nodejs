@@ -200,7 +200,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<select type="text"  name="select_dept" style="font-style: 15px;">
+						<select class="form-control"  name="select_dept" style="font-style: 15px;">
 							<option value="">Lựa chọn khoa phòng</option>
 							@if(isset($depts))
 							@foreach($depts as $rows)
@@ -210,23 +210,31 @@
 						</select>
 					</td>
 				</tr>
+				<tr><td class="2"><br></td></tr>
 				<tr>
-					<td>Người phụ trách</td>
-					<td><input style="margin-left: 3px;" class="form-control" type="text" name="receiver"></td>
+					<td colspan="2">
+						<?php $users = DB::table('users')->where('rule',3)->get() ;?>
+						
+						<select  class="form-control" name="receiver" required="">
+							<option value="">Chọn người phụ trách ở khoa</option>
+							@foreach($users as $r)
+							<option value="{{ $r->user_id }}">{{ $r->fullname}} -- {{ $r->user_id}} </option>
+							@endforeach
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><br></td>
 				</tr>
 				<tr >
-					<td >Biên bản</td>
-					<td ><input type="file" id="fileUpload"  name="image">
+					<td colspan="2"><input type="file" id="fileUpload" name="image">
 						<br />
 						<span id="lblError" style="color: red;"></span>
 						<br />
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit" id="luuAnh" class="btn" onclick="return confirm('Bạn có chắc chắn bàn giao thiết bị?')">Lưu
+					<td colspan="2"><button style="margin-left: 30px;" type="submit" id="luuAnh" class="btn" onclick="return confirm('Bạn có chắc chắn bàn giao thiết bị?')">Lưu
 					</button>
 					<button type="button" class="btn cancel" onclick="closeForm()">Hủy</button></td>
 				</tr>

@@ -166,9 +166,9 @@
         <tr style="display: none;">
           <td></td>
           @if(isset($row))
-          <td width="70%"><input type="text" name="dv_id" value="{{$row->id}}" hidden=""></td>
+          <td width="80%"><input type="text" name="dv_id" value="{{$row->id}}" hidden=""></td>
           @else
-          <td width="70%"><input type="text" name="dv_id" value="" hidden=""></td>
+          <td width="80%"><input type="text" name="dv_id" value="" hidden=""></td>
           @endif
         </tr>
         <tr>

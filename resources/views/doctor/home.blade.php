@@ -45,7 +45,6 @@
 <?php $noticees = DB::table('notification')->where('status',5)->orWhere('status',7)->orWhere('status',9)->orWhere('status',13)->orWhere('status',15)->orWhere('status',16)->orderBy('id','desc')->get() ?>
 
 <div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
-<div style="margin-left: 50px;font-size: 17px;font-weight: bold;">Bạn Có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> Thông Báo Mới!</div>
 <div class="container2">
   
   <table class="table table-condensed table-bordered table-hover">
@@ -62,6 +61,7 @@
       <?php $i =1 ?>
       @if($notices->total() != 0)
         @foreach($notices as $notice)
+        @if($notice->annunciator_id == Auth::user()->user_id || $notice->receiver == Auth::user()->user_id || $notice->receiver == Auth::user()->department_id)
         <tr style="font-size: 15px;color: red;font-weight: bold;">
         <td>{{$i++}}</td>
         <td>{{$notice->req_date}}</td>
@@ -72,10 +72,12 @@
           <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>
         </td>
         </tr>
+        @endif
         @endforeach
         @endif
         @foreach($noticees as $notice)
-          <tr style="font-size: 15px;">
+        @if($notice->annunciator_id == Auth::user()->user_id || $notice->receiver == Auth::user()->user_id || $notice->receiver == Auth::user()->department_id)
+        <tr style="font-size: 15px;">
         <td>{{$i++}}</td>
         <td>{{$notice->req_date}}</td>
         <td>{{$notice->req_content}}</td>
@@ -89,6 +91,7 @@
           <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>
         </td>
         </tr>
+        @endif
       @endforeach
       
     </tbody>

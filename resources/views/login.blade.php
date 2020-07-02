@@ -37,7 +37,7 @@ h1{
   border: #2980b9 4px solid; 
   margin-left: 550px;
   margin-top: 300px;
-  height: 360px;
+  max-height: 400px;
   
 }
 

@@ -95,6 +95,7 @@ public function postPswKTV(Request $request, $id){
 //accept notice biến cần tuyền từ route sang theo đúng thứ tự $user_id, $id, $dv_id, $status
 public function acceptNotice( $user_id, $id, $dv_id, $status){
     $notice = Notification::find($id);
+    $sender = $notice->annunciator_id;
     $dept = $notice->dept_next;
     $dep_now = Department::where(['id'=>$notice->dept_now])->pluck('department_name')->first();
     $dep_next = Department::where(['id'=>$notice->dept_next])->pluck('department_name')->first();
@@ -111,7 +112,7 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $response->req_content = "Phòng vật tư đã xác nhận thông báo hỏng thiết bị ".$device->dv_name;
         $response->status = 4;
         $response->dv_id = $dv_id;
-        $response->annunciator_id = $user_id;
+        $response->receiver = $sender;
         $notice->receiver = 1;
         $response->save();
         
@@ -142,16 +143,17 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $response->req_content = " Phòng vật tư xác nhận điều chuyển thiết bị ".$device->dv_name .' đến  '. \App\Department::where(['id'=>$dept])->pluck('department_name')->first();
         $response->status = 6;
         $response->dv_id = $dv_id;
-        $response->annunciator_id = $user_id;
+        $response->annunciator_id = 'Phòng vật tư';
+        $response->receiver = $sender;
         $response->save();
-         $his = new History_ktv;
-         $his->time = Carbon::now('Asia/Ho_Chi_Minh');
-         $his->action = 'Thiết bị được điều chuyển từ '.$dep_now.' đến '.$dep_next;
-         $his->implementer = 'Phòng vật tư';
-         $his->dv_id = $device->dv_id;
-         $his->note = 'Điều chuyển thiết bị';
-         $his->status = 'ddv'; //direction device
-         $his->save();
+        $his = new History_ktv;
+        $his->time = Carbon::now('Asia/Ho_Chi_Minh');
+        $his->action = 'Thiết bị được điều chuyển từ '.$dep_now.' đến '.$dep_next;
+        $his->implementer = 'Phòng vật tư';
+        $his->dv_id = $device->dv_id;
+        $his->note = 'Điều chuyển thiết bị';
+        $his->status = 'ddv'; //direction device
+        $his->save();
         //điều chuyển thiết bị về trang thái chưa bàn giao
          Device::where('id','=',$dv_id)->update(['department_id'=>$dept]);  
     }
@@ -675,6 +677,7 @@ public function moveDevice(Request $request, $id)
     $notice->dv_id = $id;
     $notice->dept_now = $request->select_dept;
     $notice->status = 12;
+    $notice->annunciator_id = 'Phòng vật tư';
     $notice->receiver = $request->receiver;
     $notice->save();
     //tạo lịch sử điều chuyển

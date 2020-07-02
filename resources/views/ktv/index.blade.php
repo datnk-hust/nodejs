@@ -185,9 +185,9 @@
     </div>
     <br>
     <div class="container1" style="padding-top: 5px;">
-        <div style="width: 500px; padding-left:10px; ">
+        <div style="width: 90%; padding-left:30px; ">
             @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" style="text-align: center;">
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -196,7 +196,7 @@
             </div>
             @endif
             @if (session('message'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="text-align: center;">
                {{ session('message') }}
            </div> 
            @endif
