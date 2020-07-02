@@ -42,10 +42,12 @@
 
   }
 </style>
-<div style="margin-left: 100px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
-<div style="margin-left: 100px;font-size: 17px;font-weight: bold;">Bạn đang có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> thông báo</div>
+<?php $noticees = DB::table('notification')->where('status',5)->orWhere('status',7)->orWhere('status',9)->orWhere('status',13)->orWhere('status',15)->orWhere('status',16)->orderBy('id','desc')->get() ?>
+
+<div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
+<div style="margin-left: 50px;font-size: 17px;font-weight: bold;">Bạn Có <span style="color: red;font-size: 30px;">{{$notices->total()}}</span> Thông Báo Mới!</div>
 <div class="container2">
-  @if($notices->total() != 0)
+  
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 20px;">
@@ -57,35 +59,41 @@
       </tr>
     </thead>
     <tbody>
+      <?php $i =1 ?>
+      @if($notices->total() != 0)
         @foreach($notices as $notice)
-        @if($notice->status == 4 || $notice->status == 6 || $notice->status == 8 || $notice->status == 12 || $notice->status == 14)
         <tr style="font-size: 15px;color: red;font-weight: bold;">
-        <td>{{$notice->id}}</td>
+        <td>{{$i++}}</td>
         <td>{{$notice->req_date}}</td>
         <td>{{$notice->req_content}}</td>
         <td>Phòng vật tư</td>
         <td style="text-align: center;">
-          <a href="{{ route('doctor.acceptNoitce',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a> -->
+          <a href="{{ route('doctor.acceptNotice',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>
         </td>
         </tr>
-        @else
-          <tr style="font-size: 15px;">
-        <td>{{$notice->id}}</td>
-        <td>{{$notice->req_date}}</td>
-        <td>{{$notice->req_content}}</td>
-        <td>Phòng vật tư</td>
-        <td style="text-align: center;">
-          <a href="{{ route('doctor.acceptNoitce',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a> -->
-        </td>
-        </tr>
+        @endforeach
         @endif
+        @foreach($noticees as $notice)
+          <tr style="font-size: 15px;">
+        <td>{{$i++}}</td>
+        <td>{{$notice->req_date}}</td>
+        <td>{{$notice->req_content}}</td>
+        @if($notice->status == 15 || $notice->status == 16)
+        <td>{{\App\User::where(['user_id'=>$notice->annunciator_id])->pluck('fullname')->first()}}</td>
+        @else
+        <td>Phòng vật tư</td>
+        @endif
+        <td style="text-align: center;">
+          <a href="{{ route('doctor.acceptNotice',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>
+        </td>
+        </tr>
       @endforeach
       
     </tbody>
   </table>
-  @endif
+  
   <div class="page-nav text-right">
     <nav aria-label="Page navigation">
       {{$notices->links()}}

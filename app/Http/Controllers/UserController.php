@@ -112,6 +112,7 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         $response->status = 4;
         $response->dv_id = $dv_id;
         $response->annunciator_id = $user_id;
+        $notice->receiver = 1;
         $response->save();
         
     }

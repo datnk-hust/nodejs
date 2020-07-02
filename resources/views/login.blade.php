@@ -13,7 +13,11 @@ body{
   text-align:center;
   margin: 20px 0px 20px 0px;   
 }
-
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
 p{
   font-size:12px;
   text-decoration: none;
@@ -32,7 +36,7 @@ h1{
   padding: 20px;
   border: #2980b9 4px solid; 
   margin-left: 550px;
-  margin-top: 370px;
+  margin-top: 300px;
   height: 360px;
   
 }

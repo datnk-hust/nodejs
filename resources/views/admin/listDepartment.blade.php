@@ -61,8 +61,8 @@
         <td>{{$dep->department_name}}</td>
         <td>{{$dep->address}}</td>
         <td style="text-align: center;">
-          <a href="{{route('edit.dep',['id'=>$dep->id])}}"><i class="material-icons" style="cursor: pointer;">mode_edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{{route('del.dep',['id'=>$dep->id])}}" onclick="return confirm('Bạn có chắc chắn xóa?')"><i class="material-icons" style="color: red; cursor: pointer;">delete_sweep</i></a>
+          <a href="{{route('edit.dep',['id'=>$dep->id])}}"><i title="Sửa" class="material-icons" style="cursor: pointer;">mode_edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{{route('del.dep',['id'=>$dep->id])}}" onclick="return confirm('Bạn có chắc chắn xóa?')"><i title="Xóa" class="material-icons" style="color: red; cursor: pointer;">delete_sweep</i></a>
         </td>
       </tr>
       @endforeach

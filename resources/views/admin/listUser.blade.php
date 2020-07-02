@@ -33,10 +33,10 @@
         <tr>
           <td style="float: left;"><input style="width: 300px;" type="text" class="form-control" placeholder="Họ tên" name="searchName" value="{{request()->searchName}}"></td>
           <td style="float: left;">
-            <input style="width: 300px;" type="text" class="form-control" placeholder="Email" name="searchEmail" value="{{request()->searchEmail}}">
+            <input style="width: 300px;margin-left: 6px" type="text" class="form-control" placeholder="Email" name="searchEmail" value="{{request()->searchEmail}}">
           </td>
           <td style="float: left;">
-            <button class="btnsearch" type="submit" style="width: 100px;margin-left: 10px;padding: 3px"><i class="fa fa-search"></i></button>
+            <button class="btnsearch" type="submit" style="width: 100px;margin-left: 10px;padding: 3px"><i class="fa fa-search">Tìm kiếm</i></button>
           </td>
           <td>
              <div style="width: 250px; padding-top: 0px;padding-bottom: 10px;padding-left: 30px; float: left;" class="input-group">
@@ -77,8 +77,8 @@
         <td>{{$user->mobile}}</td>
         <td>{{ \App\Department::where(['id'=>$user->department_id])->pluck('department_name')->first()}}</td>
         <td style="text-align: center;">
-          <a  href="{{route('edit.user',['id'=>$user->id])}}"><i class="material-icons" style="cursor: pointer;">mode_edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{{route('del.user',['id'=>$user->id])}}" onclick="return confirm('Bạn có chắc chắn xóa?')"><i class="material-icons" style="color: red; cursor: pointer;">delete_sweep</i></a>
+          <a  href="{{route('edit.user',['id'=>$user->id])}}"><i title="Sửa" class="material-icons" style="cursor: pointer;">mode_edit</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{{route('del.user',['id'=>$user->id])}}" onclick="return confirm('Bạn có chắc chắn xóa?')"><i title="Xóa" class="material-icons" style="color: red; cursor: pointer;">delete_sweep</i></a>
         </td>
       </tr>
       @endforeach

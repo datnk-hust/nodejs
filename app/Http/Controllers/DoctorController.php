@@ -68,6 +68,7 @@ class DoctorController extends Controller
             $notice->dept_next = $request->dept_name;
             $notice->dv_id= $request->dv_id; //dv_id la id
             $notice->status = 2;
+            $notice->receiver = 1;
             $notice->save();
             return redirect()->route('doctor.home')->with('message','Đã gửi phiếu điều chuyển tới phòng vật tư.');
 
@@ -81,6 +82,7 @@ class DoctorController extends Controller
         $notice->dv_id = $request->dv_id; //dv_id la id
         $notice->status = 0;
         $notice->annunciator_id = $request->user_id;
+        $notice->receiver = 1;
         $notice->save();
         $dev = Device::find($id);
         $dev->status = 2;
@@ -100,31 +102,56 @@ class DoctorController extends Controller
     //accept notice from ktv
     public function acceptNotice($id, $user_id){
         $notice = Notification::find($id);
-        if($notice->status == '4')
+        $stt = $notice->status;
+        if( $stt == '4')
         {
         $notice->status = 5;
         $notice->res_date = Carbon::now('Asia/Ho_Chi_Minh');
         $notice->res_content = "Đã xác nhận.";
+        $notice->annunciator_id = $user_id;
+        $notice->save();
         }
-        if($notice->status == '6')
+        if($stt == '6')
         {
         $notice->status = 7;
         $notice->res_date = Carbon::now('Asia/Ho_Chi_Minh');
         $notice->res_content = "Đã xác nhận.";
+        $notice->annunciator_id = $user_id;
+        $notice->save();
         }
-        if($notice->status == '8')
+        if($stt == '8')
         {
         $notice->status = 9;
         $notice->res_date = Carbon::now('Asia/Ho_Chi_Minh');
         $notice->res_content = "Đã xác nhận.";
+        $notice->annunciator_id = $user_id;
+        $notice->save();
         }
-        if($notice->status == '12')
+        if($stt == '12')
         {
         $notice->status = 13;
         $notice->res_date = Carbon::now('Asia/Ho_Chi_Minh');
         $notice->res_content = "Đã xác nhận.";
+        $notice->annunciator_id = $user_id;
+        $notice->save();
         }
-        if($notice->status == '14')
+        if($stt == '5'){
+            $notice->status = 4;
+            $notice->save();
+        }
+        if($stt == '7'){
+            $notice->status = 6;
+            $notice->save();
+        }
+        if($stt == '9'){
+            $notice->status = 8;
+            $notice->save();
+        }
+        if($stt == '13'){
+            $notice->status = 12;
+            $notice->save();
+        }
+        if($stt == '14')
         {
             $i = $notice->dv_id;
             $dv = DB::table('device')->where('id',$i)->first();
@@ -134,9 +161,8 @@ class DoctorController extends Controller
             $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
             $notice->req_content = "Đã xác nhận thiết bị ".$dvname." sử dụng tốt";
             $notice->annunciator_id = $user_id;
+            $notice->save();
         }
-
-        $notice->save();
 
         return redirect()->route('doctor.home');
     }
