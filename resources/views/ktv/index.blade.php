@@ -105,7 +105,7 @@
                 <ul class="nav navbar-nav navbar-left">
                    
 
-                        <li ><a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #00BD9C">QL Thiết Bị Y Tế</a>
+                        <li ><a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #00BD9C">Quản Lý Thiết Bị Y Tế</a>
                           <ul class="dropdown-menu multi-level">
                             <li class="dropdown-submenu">
                                 <a class="dropdown-toggle" data-toggle="dropdown">Danh sách thiết bị</a>
@@ -156,14 +156,14 @@
                     </ul>
                     <ul class="nav navbar-nav">
                         <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">QL Vật Tư</b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản Lý Vật Tư</b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('accessory.show')}}">Danh sách vật tư</a></li>
                             <li class="divider"></li>
                             <li><a href="{{route('accessory.add')}}">Thêm mới vật tư</a></li>
                         </ul>
                     </li> 
-                        <li><a  class="dropdown-toggle" data-toggle="dropdown">QL Nhà Cung Cấp</a>
+                        <li><a  class="dropdown-toggle" data-toggle="dropdown">Quản Lý Nhà Cung Cấp</a>
                         <ul class="dropdown-menu multi-level">
                             <li><a href="{{route('show.provider')}}">Danh sách NCC</a></li>
                             <li class="divider"></li>
@@ -171,7 +171,7 @@
                         </ul></li>
 
                     <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown">QL Loại Thiết Bị </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Quản Lý Loại Thiết Bị </a>
                         <ul class="dropdown-menu multi-level">
                             <li><a href="{{route('dvtype.show')}}">Danh sách loại TB</a></li>
                             <li class="divider"></li>
