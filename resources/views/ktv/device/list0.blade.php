@@ -215,8 +215,8 @@
 					<td colspan="2">
 						<?php $users = DB::table('users')->where('rule',3)->get() ;?>
 						
-						<select  class="form-control" name="receiver" required="">
-							<option value="">Chọn người phụ trách ở khoa</option>
+						<select style="width: 100%"  class="form-control" id="searchUser" name="receiver" required="">
+							<option value="" >Chọn người phụ trách ở khoa</option>
 							@foreach($users as $r)
 							<option value="{{ $r->user_id }}">{{ $r->fullname}} -- {{ $r->user_id}} </option>
 							@endforeach
@@ -249,6 +249,9 @@
 	</div>
 </div>
 <script>
+	$(document).ready(function(){
+		$('#searchUser').select2({});
+	})
 	function openForm() {
 		
 		// document.getElementById("myForm").style.display = "block";
