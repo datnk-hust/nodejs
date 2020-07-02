@@ -42,9 +42,9 @@
 
   }
 </style>
-<?php $noticees = DB::table('notification')->where('status',5)->orWhere('status',7)->orWhere('status',9)->orWhere('status',13)->orWhere('status',15)->orWhere('status',16)->orderBy('id','desc')->get() ?>
+<?php $noticees = DB::table('notification')->where('status',5)->orWhere('status',7)->orWhere('status',9)->orWhere('status',13)->orWhere('status',15)->orderBy('id','desc')->get() ?>
 
-<div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo</div>
+<div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo!</div>
 <div class="container2">
   
   <table class="table table-condensed table-bordered table-hover">

@@ -185,7 +185,7 @@
     </div>
     <br>
     <div class="container1" style="padding-top: 5px;">
-        <div style="width: 90%; padding-left:30px; ">
+        <div>
             @if ($errors->any())
             <div class="alert alert-danger" style="text-align: center;">
                 <ul>

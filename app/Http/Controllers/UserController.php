@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     public function notice(Request $request){
-        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',16)->orderBy('id','desc')->paginate(20);
+        $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',17)->orderBy('id','desc')->paginate(20);
         return view('ktv.trangchu',['notices'=>$notices]);
     }
 
@@ -157,8 +157,9 @@ public function acceptNotice( $user_id, $id, $dv_id, $status){
         //điều chuyển thiết bị về trang thái chưa bàn giao
          Device::where('id','=',$dv_id)->update(['department_id'=>$dept]);  
     }
-    if((int)$status == 15){
-        $notice->status = 16;
+    if((int)$status == 16){
+        $notice->status = 17;
+        $notice->res_date = Carbon::now();
         $notice->save();
     }
     return redirect()->route('get.home');

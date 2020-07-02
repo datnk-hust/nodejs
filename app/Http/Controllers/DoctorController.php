@@ -152,11 +152,15 @@ class DoctorController extends Controller
             $i = $notice->dv_id;
             $dv = DB::table('device')->where('id',$i)->first();
             $dvname = $dv->dv_name;
-            $notice->dv_id = $dv->id;
             $notice->status = 15;
-            $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
-            $notice->req_content = "Đã xác nhận thiết bị ".$dvname." sử dụng tốt";
             $notice->save();
+            $resp = new Notification;
+            $resp->dv_id = $dv->id;
+            $resp->req_date = Carbon::now('Asia/Ho_Chi_Minh');
+            $resp->req_content = "Đã xác nhận thiết bị ".$dvname." sử dụng tốt";
+            $resp->annunciator_id = $user_id;
+            $resp->status = 16;
+            $resp->save();
         }
 
         return redirect()->route('doctor.home');

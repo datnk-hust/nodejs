@@ -36,7 +36,7 @@
 
   }
 </style>
-<?php $noticees = DB::table('notification')->where('status','=',0)->orWhere('status','=',2)->orWhere('status','=',15)->orderBy('id','desc')->get() ?>
+<?php $noticees = DB::table('notification')->where('status','=',0)->orWhere('status','=',2)->orWhere('status','=',16)->orderBy('id','desc')->get() ?>
 <div style="margin-left: 50px;font-size: 17px;font-weight: bold;">Chào mừng đến với hệ thống quản lý trang thiết bị y tế BME-HUST</div><br>
 <div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Bạn Có <span style="color: red;font-size: 25px;">{{count($noticees)}}</span> Thông Báo Mới!</div>
 <div class="container2">
@@ -45,7 +45,7 @@
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 18px;">
         <th width="10%">Mã TB</th>
-        <th width="15%">Thời gian</th>
+        <th width="12%">Thời gian</th>
         <th>Nội dung thông báo</th>
         <th>Tên thiết bị</th>
         <th>Người tạo</th>
