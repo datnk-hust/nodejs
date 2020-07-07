@@ -533,11 +533,24 @@ public function getAddDevice(){
 }
 
 public function postAddDevice(Request $request){
-    // $pdate = strtotime($request->produce_date);
-    // $idate = strtotime($request->import_date);
-    // if($pdate > $idate){
-    //     return
-    // }
+    //
+     if($request->get('query'))
+        {
+            $query = $request->get('query');
+
+            $data = DB::table('device_type')
+            ->where('dv_group', 'LIKE', "%{$query}%")
+            ->get();
+            //dd($data);
+            $output = '<option value="">chọn loại thiết bị</option>';
+            foreach($data as $row)
+            {
+               $output .= '<option value="'.$row->dv_type_id.'">'.$row->dv_type_name.'</option>
+               ';
+           }
+           //echo $output;
+           return response()->json(['msg'=>$output]) ;
+       }else{
     $this->validate($request,[
         'name_device' => 'required',
         'serial' => 'unique:device,dv_serial',
@@ -548,6 +561,7 @@ public function postAddDevice(Request $request){
         'amount.numeric'=>'Số lượng phải là số tự nhiên',
         'dv_id.unique' => 'Mã thiết bị này đã tồn tại vui lòng nhập mã khác'
     ]);
+
     $device = new Device;
     $device->dv_name = $request->name_device;
     $device->dv_model = $request->model;
@@ -581,6 +595,7 @@ public function postAddDevice(Request $request){
     $his->note = 'Mua mới thiết bị';
     $his->save();
     return redirect()->route('device.show0')->with('message','Thêm thiết bị thành công');
+}
 }
 //Add Acc
 public function addAccessory($id){
@@ -821,6 +836,7 @@ public function postAddDvType(Request $request){
     $dv_types = new Device_type;
     $dv_types->dv_type_name = $request->nameDvt;
     $dv_types->dv_type_id = $request->idDvt;
+    $dv_types->dv_group = $request->group;
     $dv_types->save();
     return redirect()->route('dvtype.show')->with('message','Thêm thành công loại thiết bị '.$request->nameDvt);
 }
@@ -841,6 +857,7 @@ public function postEditDvType(Request $request, $id){
     $dv_types = Device_type::find($id);
     $dv_types->dv_type_id = $request->idDvt;
     $dv_types->dv_type_name = $request->nameDvt;
+    $dv_types->dv_group = $request->group;
     $dv_types->save();
     return redirect()->route('dvtype.show')->with('message','Cập nhật thông tin loại thiết bị thành công.');
 }

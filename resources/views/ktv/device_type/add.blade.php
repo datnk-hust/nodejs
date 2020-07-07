@@ -78,6 +78,11 @@
         <td><input type="text"  name="idDvt" placeholder="Nhập mã loại thiết bị"><br></td>
       </tr>
       <tr>
+        <tr>
+        <td width="50%"><label>Nhóm thiết bị</label></td>
+        <td><input type="text"  name="group" placeholder="X,A,B,C,D"><br></td>
+      </tr>
+      <tr>
         <td></td>
         <td>
           <input class="btn" type="submit" value="Lưu loại thiết bị" ></input>

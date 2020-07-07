@@ -44,6 +44,7 @@
       <tr style="font-size: 20px;font-weight: bold;">
         <th>ID</th>
         <th>Tên loại thiết bị</th>
+        <th>Nhóm thiết bị</th>
         <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
@@ -52,6 +53,7 @@
       <tr style="font-size: 15px;">
         <td>{{$dv_type->dv_type_id}}</td>
         <td>{{$dv_type->dv_type_name}}</td>
+        <td>{{$dv_type->dv_group}}</td>
         <td style="text-align: center;">
           <a href="{{route('dvtype.getEdit',['id'=>$dv_type->id])}}"><i class="fa fa-pencil-square-o " style="font-size: 20px;" title="Sửa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('dvtype.del',['id'=>$dv_type->id])}}"><i style="font-size: 20px;" class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>

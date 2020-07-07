@@ -17,6 +17,7 @@ class CreateDeviceTypeTable extends Migration
             $table->bigIncrements('id');
             $table->string('dv_type_id')->nullable();
             $table->string('dv_type_name')->nullable();
+            $table->string('dv_group')->nullable();
             $table->timestamps();
         });
     }

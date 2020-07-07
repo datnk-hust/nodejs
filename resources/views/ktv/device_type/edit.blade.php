@@ -78,7 +78,11 @@
         <td width="50%"><label>Mã loại thiết bị</label></td>
         <td><input type="text"  name="idDvt" value="{{ $dv_type->dv_type_id }}"><br></td>
       </tr>
-        
+      <tr>
+        <tr>
+        <td width="50%"><label>Nhóm thiết bị</label></td>
+        <td><input type="text"  name="group" value="{{ $dv_type->dv_group}}"><br></td>
+      </tr>  
       <tr>
         <td></td>
         <td>

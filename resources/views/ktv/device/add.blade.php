@@ -117,18 +117,7 @@ label {
         <td><input type="text"  name="serial" ></td>
       </tr>
        <tr>
-        <td><label>Loại thiết bị<span style="color: red">*</span></label></td>
-        <td>
-        	<select id="searchDvt" type="text" name="device_type" required>
-        		<option value="">Loại thiết bị</option>
-        		@isset($dv_types)
-        		@foreach($dv_types as $rows)
-        		<option value="{{$rows->dv_type_id}}">{{$rows->dv_type_name}}</option>
-        		@endforeach
-        		@endif
-        	</select>
-        </td>
-          <td><label>Nhóm thiết bị<span style="color: red">*</span></label></td>
+        <td><label>Nhóm thiết bị<span style="color: red">*</span></label></td>
         <td>
             <select type="text" id="group" name="group" required="">
               <option value="X">X</option>
@@ -138,6 +127,13 @@ label {
               <option value="D">D</option>
             </select>
         </td>
+        <td><label>Loại thiết bị<span style="color: red">*</span></label></td>
+        <td>
+        	<select id="searchDvt" type="text" name="device_type" required>
+        		
+        	</select>
+        </td>
+          
       </tr>
        <tr>
         <td><label>Năm sản xuất<span style="color: red">*</span></label></td>
@@ -202,6 +198,7 @@ label {
           </div>
         </td>
       </tr>
+      {{ csrf_field() }}
     </table> 
   </form>
 </div>
@@ -228,19 +225,34 @@ label {
       $('#searchDvt').select2({});
 
       $('#group').on('change',function(){
-        //var optionValue = $(this).val();
-        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
+        $.ajaxSetup({
+          headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
         g = $("#group option:selected").val();
         //  alert("Selected Option Text: "+optionText);  
+        if(g != '')
+        {          
+         $.ajax({
+         url:"{{ route('device.postAdd') }}", 
+          method:"POST", // phương thức gửi dữ liệu.
+          data:{query:g},
+            success:function(data){ //dữ liệu nhận về
+              console.log(data);
+            $('#searchDvt').html(data.msg);
+            },
+            error: function(err){
+              console.log("Co loi xay ra");
+            }
+            })
+      }
+
     });
       $('#searchDvt').on('change',function(){
-        //var optionValue = $(this).val();
-        //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
-        dvt = $("#searchDvt option:selected").val();
-        //  alert("Selected Option Text: "+optionText);
-        
+        dvt = $("#searchDvt option:selected").val();        
     });
-      // + $("#import_date").val()
+      
       $('#luu').click(function(){
         text = g+dvt+'-'+today+'-'+dv;
         $('#dvId').val(text);
