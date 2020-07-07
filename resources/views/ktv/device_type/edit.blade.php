@@ -103,13 +103,18 @@
             <option value="X">X</option>
             <option value="A">A</option>
             <option value="B">B</option>
-            
             <option value="D">D</option>
+            @elseid($dv_type->dv_group == 'D')
+            <option value="X">X</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
             @else
             <option value="X">X</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
+            <option value="D">D</option>
             @endif
           </select></td>
       </tr>  

@@ -108,7 +108,7 @@
               <option value="">Mọi nhà cung cấp</option>
               @if(isset($providers))
               @foreach($providers as $rows)
-              <option value="{{ $rows->id }}" >
+              <option value="{{ $rows->id }}" {{ (request()->provider_id == $rows->id) ? 'selected' : "" }} >
                 {{ $rows->provider_name }}
               </option>
               @endforeach

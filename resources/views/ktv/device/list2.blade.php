@@ -101,7 +101,7 @@
              <option value="">Mọi khoa</option>
               @if(isset($depts))
               @foreach($depts as $row)
-              <option value="{{ $row->id }}" >
+              <option value="{{ $row->id }}" {{ (request()->department_id == $rows->id) ? 'selected' : "" }}>
                 {{ $row->department_name }}
               </option>
               @endforeach
@@ -113,7 +113,7 @@
               <option value="">Tất cả loại thiết bị</option>
               @if(isset($dv_types))
               @foreach($dv_types as $rows)
-              <option value="{{ $rows->id }}"> {{ $rows->dv_type_name }}
+              <option value="{{ $rows->id }}" {{ (request()->dv_type_id == $rows->id) ? 'selected' : "" }}> {{ $rows->dv_type_name }}
               </option>
               @endforeach
               @endif
