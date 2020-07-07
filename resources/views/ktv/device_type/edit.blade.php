@@ -76,7 +76,7 @@
       </tr>
       <tr>
         <td width="50%"><label>Mã loại thiết bị</label></td>
-        <td><input type="text"  name="idDvt" value="{{ $dv_type->dv_type_id }}"><br></td>
+        <td><input type="text"  name="idDvt" value="{{ $dv_type->dv_type_id }}" disabled=""><br></td>
       </tr>
       <tr>
         <tr>

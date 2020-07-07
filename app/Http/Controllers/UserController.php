@@ -851,15 +851,9 @@ public function getEditDvType($id){
 }
 
 public function postEditDvType(Request $request, $id){
-    $this->validate($request, [
-        'idDvt' => 'unique:device_type,dv_type_id'
-    ],
-        $messages = [
-            'idDvt.unique'    => 'Mã thiết bị đã tồn tại.'
-        ]
-    );
+    
     $dv_types = Device_type::find($id);
-    $dv_types->dv_type_id = $request->idDvt;
+   // $dv_types->dv_type_id = $request->idDvt;
     $dv_types->dv_type_name = $request->nameDvt;
     $dv_types->dv_group = $request->group;
     $dv_types->save();
