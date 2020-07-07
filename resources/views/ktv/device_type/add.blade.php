@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style>
-  input[type=text], select[title=dv_group] {
+  input[type=text], select[type=text] {
     width: 520px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -80,7 +80,14 @@
       <tr>
         <tr>
         <td width="50%"><label>Nhóm thiết bị</label></td>
-        <td><input type="text"  name="group" placeholder="X,A,B,C,D"><br></td>
+        <td>
+          <select type="text"  name="group">
+            <option value="X">X</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>  
+          </select></td>
       </tr>
       <tr>
         <td></td>

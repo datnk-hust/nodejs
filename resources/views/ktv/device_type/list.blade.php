@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style type="text/css">
-  input[type=text], select[title=dv_group] {
+  input[type=text], select[type=text] {
     padding: 3px;
     font-size: 20px;
     border: #A4A4A4 solid 1px;
@@ -25,12 +25,22 @@
     <form action="" method="get" style="float: left;">
       @csrf
       <table width="100%" border="0">
+
         <tr>
-          <td width="30%"><input style="width: 300px;" type="text" class="form-control" placeholder="Mã loại thiết bị" name="searchId" value="{{request()->searchId}}"></td>
-          <td width="30%">
-            <input style="width: 300px;margin-left: 10px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}">
+          <td width="25%"><select style="width: 90%" class="form-control" type="text" name="dv_group">
+            <option value="">Chọn nhóm thiết bị</option>  
+            <option value="A" {{ (request()->dv_group == 'A') ? 'selected' : "" }}>A</option>
+            <option value="B" {{ (request()->dv_group == 'B') ? 'selected' : "" }}>B</option>
+            <option value="C" {{ (request()->dv_group == 'C') ? 'selected' : "" }}>C</option>
+            <option value="D" {{ (request()->dv_group == 'D') ? 'selected' : "" }}>D</option>
+            <option value="X" {{ (request()->dv_group == 'X') ? 'selected' : "" }}>X</option>
+          </select>
+            </td>
+          <td width="25%"><input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Mã loại thiết bị" name="searchId" value="{{request()->searchId}}"></td>
+          <td width="25%">
+            <input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}">
           </td>
-          <td width="30%">
+          <td width="20%">
             <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 30px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
           <td width="10%" style="text-align: left;font-size: 18px;">Tất cả: {{$dv_types->total()}}</td>
@@ -43,14 +53,17 @@
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 20px;font-weight: bold;">
         <th>ID</th>
+        <th>Mã loại thiết bị</th>
         <th>Tên loại thiết bị</th>
         <th>Nhóm thiết bị</th>
         <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
+      <?php $i= 1 ?>
     	@foreach($dv_types as $dv_type)
       <tr style="font-size: 15px;">
+        <td>{{$i++}}</td>
         <td>{{$dv_type->dv_type_id}}</td>
         <td>{{$dv_type->dv_type_name}}</td>
         <td>{{$dv_type->dv_group}}</td>

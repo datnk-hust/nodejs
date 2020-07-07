@@ -809,6 +809,10 @@ public function historyDevice($id){
 
 public function showDvType(Request $request){
     $dv_type = DB::table('device_type');
+    if($request->dv_group)
+    {
+        $dv_type = $dv_type->where('dv_group', 'like' , '%'.$request->dv_group.'%');
+    }
     if($request->searchName)
     {
         $dv_type = $dv_type->where('dv_type_name', 'like' , '%'.$request->searchName.'%');

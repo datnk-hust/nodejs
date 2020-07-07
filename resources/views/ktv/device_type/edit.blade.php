@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style>
-  input[type=text], select[title=dv_group] {
+  input[type=text], select[type=text] {
     width: 520px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -81,7 +81,37 @@
       <tr>
         <tr>
         <td width="50%"><label>Nhóm thiết bị</label></td>
-        <td><input type="text"  name="group" value="{{ $dv_type->dv_group}}"><br></td>
+        <td>
+        <select type="text"  name="group">
+            <option value="{{ $dv_type->dv_group}}">{{ $dv_type->dv_group}}</option>
+            @if($dv_type->dv_group == 'X')
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option> 
+            @elseif($dv_type->dv_group == 'A') 
+            <option value="X">X</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            @elseif($dv_type->dv_group == 'B') 
+            <option value="X">X</option>
+            <option value="A">A</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            @elseif($dv_type->dv_group == 'C') 
+            <option value="X">X</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            
+            <option value="D">D</option>
+            @else
+            <option value="X">X</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            @endif
+          </select></td>
       </tr>  
       <tr>
         <td></td>
@@ -92,7 +122,7 @@
       <tr>
         <td></td>
         <td>
-    <div class="canl" style="text-align: center;"><a href="{{route('dvtype.show')}}" style="color: white; text-decoration: none;">Hủy cập nhật thiết bị</a></div>
+    <div class="canl" style="text-align: center;"><a href="{{route('dvtype.show')}}" style="color: white; text-decoration: none;">Hủy cập nhật loại thiết bị</a></div>
         </td>
       </tr>
     </table> 
