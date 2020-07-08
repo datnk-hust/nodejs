@@ -27,7 +27,7 @@
       <table width="100%" border="0">
 
         <tr>
-          <td width="25%"><select style="width: 90%" class="form-control" type="text" name="dv_group">
+          <td width="22%"><select style="width: 90%" class="form-control" type="text" name="dv_group">
             <option value="">Chọn nhóm thiết bị</option>  
             <option value="A" {{ (request()->dv_group == 'A') ? 'selected' : "" }}>A</option>
             <option value="B" {{ (request()->dv_group == 'B') ? 'selected' : "" }}>B</option>
@@ -36,14 +36,14 @@
             <option value="X" {{ (request()->dv_group == 'X') ? 'selected' : "" }}>X</option>
           </select>
             </td>
-          <td width="25%"><input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Mã loại thiết bị" name="searchId" value="{{request()->searchId}}"></td>
-          <td width="25%">
+          <td width="22%"><input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Mã loại thiết bị" name="searchId" value="{{request()->searchId}}"></td>
+          <td width="22%">
             <input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}">
           </td>
-          <td width="20%">
+          <td width="22%">
             <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 30px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
-          <td width="10%" style="text-align: left;font-size: 18px;">Tất cả: {{$dv_types->total()}}</td>
+          <td width="12%" style="text-align: left;font-size: 18px;">Tất cả: {{$dv_types->total()}}</td>
         </tr>
       </table>  
     </form>

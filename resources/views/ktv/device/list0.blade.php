@@ -162,6 +162,7 @@
 	<table class="table table-condensed table-bordered table-hover">
 		<thead style="background-color: #81BEF7;">
 			<tr style="font-size: 17px;">
+				<th>ID</th>
 				<th>Mã thiết bị</th>
 				<th>Tên thiết bị</th>
 				<th>Model</th>
@@ -172,8 +173,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php $i =1 ?>
 			@foreach($devices as $device)
 			<tr style="font-size: 15px;">
+				<td>{{$i++}}</td>
 				<td>{{$device->dv_id}}</td>
 				<td>{{$device->dv_name}}</td>
 				<td>{{$device->dv_model}}</td>
@@ -200,7 +203,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<select class="form-control"  name="select_dept" style="font-style: 15px;">
+						<select class="form-control" id="slDept"  name="select_dept" style="font-style: 15px;">
 							<option value="">Lựa chọn khoa phòng</option>
 							@if(isset($depts))
 							@foreach($depts as $rows)
@@ -216,10 +219,10 @@
 						<?php $users = DB::table('users')->where('rule',3)->get() ;?>
 						
 						<select style="width: 100%"  class="form-control" id="searchUser" name="receiver" required="">
-							<option value="" >Chọn người phụ trách ở khoa</option>
+							<!-- <option value="" >Chọn người phụ trách ở khoa</option>
 							@foreach($users as $r)
 							<option value="{{ $r->user_id }}">{{ $r->fullname}} -- {{ $r->user_id}} </option>
-							@endforeach
+							@endforeach -->
 						</select>
 					</td>
 				</tr>
@@ -238,6 +241,7 @@
 					</button>
 					<button type="button" class="btn cancel" onclick="closeForm()">Hủy</button></td>
 				</tr>
+				{{ csrf_field() }}
 			</table>
 		</form>
 	</div>
@@ -249,6 +253,7 @@
 	</div>
 </div>
 <script>
+	var id
 	$(document).ready(function(){
 		$('#searchUser').select2({});
 	})
@@ -271,7 +276,31 @@
 		// Hiện form
 		document.getElementById("myForm").style.display = "block";
 	});
-
+	$('#slDept').on('change', function(){
+		$.ajaxSetup({
+          headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+		 g = $("#slDept option:selected").val();
+        //  alert("Selected Option Text: "+optionText);  
+        if(g != '')
+        {    
+        var url =  "{{ route('device.move',['id'=>"+id+"]) }}"     
+		$.ajax({
+         url: url, 
+         method:"POST", // phương thức gửi dữ liệu.
+         data:{query:g},
+            success:function(data){ //dữ liệu nhận về
+              console.log(data);
+            $('#searchUser').html(data.msg);
+            },
+            error: function(err){
+              console.log("Co loi xay ra");
+            }
+            })
+	}
+	})
 </script>
 @endsection
 

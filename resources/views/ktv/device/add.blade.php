@@ -100,8 +100,8 @@ label {
       <tr>
         <td><label>Tên thiết bị <span style="color: red">*</span></label></td>
         <td><input type="text"  name="name_device" required></td>
-        <td><label>Nhà cung cấp<span style="color: red">*</span></label></td>
-        <td><select type="text" name="provider" required>
+        <td><label>Nhà cung cấp</label></td>
+        <td><select type="text" name="provider">
         		<option value="">Nhà cung cấp</option>
         		@isset($providers)
         		@foreach($providers as $rows)
@@ -164,7 +164,7 @@ label {
         <td><label>Bảo dưỡng ĐK<span style="color: red">*</span></label></td>
         <td>
             <select type="text"  name="maintain_date">
-              <option disabled="" value=""></option>
+              <option  value=""></option>
               <option value="hàng ngày">hàng ngày</option>
               <option value="1 tuần">1 tuần</option>
               <option value="1 tháng">1 tháng</option>
@@ -179,7 +179,7 @@ label {
       </tr>
       <tr>
         <td><label>Giá trị bđ</label></td>
-        <td><input style="width: 20%; float: left;" type="number"  name="khbd" ><input style="width: 8%;float: left;margin-top: 6px;" class="form-control" value="%" disabled="">
+        <td><input style="float: left;width: 20%;" type="number"  name="khbd" ><label style="width: 8%;float: left;margin-top: 6px;" class="form-control" value="%" disabled="">%</label>
           </td>
         <td><label style="font-size: 20px;">Khấu hao hn</label></td>
         <td><input style="width: 20%; float: left;" type="number"  name="khhn" ><input style="width: 8%;float: left;margin-top: 6px;" class="form-control" value="%" disabled="">

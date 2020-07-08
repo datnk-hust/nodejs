@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style>
-input[type=text], input[type=date]{
+input[type=text], input[type=date], input[type=number]{
   width: 450px;
   padding: 5px;
   margin: 5px 0;
@@ -13,6 +13,7 @@ input[type=text], input[type=date]{
 }
 select[type=text]{
   width: 450px;
+  height: 40px;
   padding: 5px;
   margin: 5px 0;
   display: inline-block;
@@ -172,7 +173,7 @@ label {
         <td><label>Tên thiết bị</label></td>
         <td><input type="text"  name="name_device" value="{{$dev->dv_name}}" ></td>
         <td><label>Nhà cung cấp</label></td>
-        <td><select type="text" name="provider" required>
+        <td><select type="text" name="provider">
         		<option value="{{$dev->provider_id}}">{{$dev->provider->provider_name}}</option>
         		@isset($providers)
         		@foreach($providers as $rows)
@@ -190,27 +191,18 @@ label {
         <td><input type="text"  name="serial" value="{{$dev->dv_serial}}" ></td>
       </tr>
        <tr>
+        <td><label>Nhóm thiết bị</label></td>
+        <td><input type="text"  name="group" value="{{$dev->group}}" disabled=""></td>
         <td><label>Loại thiết bị</label></td>
-        <td>
-        	<select type="text" name="device_type" id="searchDvt" required>
-        		<option value="{{$dev->dv_type_id}}">{{$dev->dv_type->dv_type_name}}</option>
-        		@isset($dv_types)
-        		@foreach($dv_types as $rows)
-            @if($rows->id !== $dev->dv_type_id)
-        		<option value="{{$rows->id}}">{{$rows->dv_type_name}}</option>
-            @endif
-        		@endforeach
-        		@endif
-        	</select>
+        <td><input type="text" name="device_type" disabled="" value="{{\App\Device_type::where(['dv_type_id'=>$dev->dv_type_id])->pluck('dv_type_name')->first()}}">
         </td>
-        <td><label>Hãng sản xuất</label></td>
-        <td><input type="text"  name="produce" value="{{$dev->manufacturer}}" ></td>
+        
       </tr>
        <tr>
         <td><label>Năm sản xuất</label></td>
         <td><input type="text"  name="produce_date" value="{{$dev->produce_date}}" ></td>
-        <td><label>Nhóm thiết bị</label></td>
-        <td><input type="text"  name="group" value="{{$dev->group}}" ></td>
+        <td><label>Hãng sản xuất</label></td>
+        <td><input type="text"  name="produce" value="{{$dev->manufacturer}}" ></td>
       </tr>
        <tr>
         <td><label>Ngày nhập kho</label></td>
@@ -232,16 +224,20 @@ label {
       </tr>
        <tr>
         <td><label>Bảo dưỡng ĐK</label></td>
-        <td><input type="text"  name="maintain_date" value="{{$dev->maintain_date}}"></td>
+        <td>
+          <select type="text"  name="maintain_date" disabled="">
+            <option value="{{$dev->maintain_date}}">{{$dev->maintain_date}}</option>
+          </select>
+        </td>
        <td><label>Khoa</label></td>
         <td><input type="text"  name="department" value="{{\App\Department::where(['id' =>$dev->department_id])->pluck('department_name')->first() }}" disabled=""></td>
       </tr>
       <tr>
         <td><label>Giá trị bđ</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khbd" value="{{ $dev->khbd}}" ><input style="width: 14%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="đv %" disabled="">
+        <td><input style="float: left;width: 20%;" type="number" value="{{$dev->khbd}}"  name="khbd" ><input style="width: 8%;float: left;margin-top: 6px;height: 39px;" class="form-control" value="%" disabled="">
           </td>
         <td><label style="font-size: 20px;">Khấu hao hn</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khhn" value="{{ $dev->khhn}}"  ><input style="width: 14%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="đv %" disabled="">
+        <td><input style="width: 20%; float: left;" type="number" value="{{$dev->khhn}}"  name="khhn" ><input style="width: 8%;float: left;margin-top: 6px;height: 39px;" class="form-control" value="%" disabled="">
         </td>
       </tr>
       <tr>
@@ -355,11 +351,11 @@ label {
   }
 function openForm1(){
         
-                    document.getElementById("myForm1").style.display = "block";
+        document.getElementById("myForm1").style.display = "block";
           }
 function openForm()
           {       
-                   document.getElementById("myForm").style.display = "block";
+        document.getElementById("myForm").style.display = "block";
           }
 
 $(document).ready(function(){

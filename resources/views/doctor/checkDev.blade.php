@@ -219,16 +219,16 @@ label {
       </tr>
        <tr>
         <td><label>Bảo dưỡng ĐK</label></td>
-        <td><input type="text"  name="maintain_date" value="{{$dev->maintain_date}}"></td>
+        <td><input type="text"  name="maintain_date" value="{{$dev->maintain_date}}" disabled=""></td>
        <td><label>Khoa</label></td>
         <td><input type="text"  name="department" value="{{\App\Department::where(['id' =>$dev->department_id])->pluck('department_name')->first() }}" disabled=""></td>
       </tr>
       <tr>
         <td><label>Giá trị bđ</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khbd" value="{{ $dev->khbd}}" ><input style="width: 14%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="đv %" disabled="">
+        <td><input style="width: 20%; float: left;" type="text"  name="khbd" value="{{ $dev->khbd}}" ><input style="width: 10%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="%" disabled="">
           </td>
         <td><label style="font-size: 20px;">Khấu hao hn</label></td>
-        <td><input style="width: 80%; float: left;" type="text"  name="khhn" value="{{ $dev->khhn}}"  ><input style="width: 14%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="đv %" disabled="">
+        <td><input style="width: 20%; float: left;" type="text"  name="khhn" value="{{ $dev->khhn}}"  ><input style="width: 10%;float: left;margin-top: 6px;height: 40px;" class="form-control" value="%" disabled="">
         </td>
       </tr>
       <tr>

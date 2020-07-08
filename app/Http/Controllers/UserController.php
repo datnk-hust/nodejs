@@ -178,7 +178,7 @@ if($request->searchEmail)
 {
     $provider = $provider->where('email','like','%'.$request->searchEmail.'%');
 }
-$provider = $provider->paginate(7);  
+$provider = $provider->paginate(10);  
 return view('ktv.provider.list', ['providers' => $provider]);
 }
 
@@ -636,6 +636,23 @@ public function saveAcc(Request $request, $id){
 // move device
 public function moveDevice(Request $request, $id)
 {  
+     if($request->get('query'))
+        {
+            $query = $request->get('query');
+
+            $data = DB::table('users')
+            ->where('department_id', '=', $query)
+            ->get();
+            //dd($data);
+            $output = '<option value="">Chọn người phụ trách</option>';
+            foreach($data as $row)
+            {
+               $output .= '<option value="'.$row->user_id.'">'.$row->fullname.'</option>
+               ';
+           }
+           //echo $output;
+           return response()->json(['msg'=>$output]) ;
+       }else{
      $this->validate($request, [
         'image' => 'max:4096'
     ],
@@ -707,6 +724,7 @@ public function moveDevice(Request $request, $id)
     $his->save();
 
     return redirect()->route('device.show0')->with('message','Đã bàn giao thiết bị thành công');
+}
 }
 //viewImage
 public function imageView($id){
@@ -808,7 +826,7 @@ public function historyDevice($id){
     //device_type
 
 public function showDvType(Request $request){
-    $dv_type = DB::table('device_type');
+    $dv_type = DB::table('device_type')->orderBy('id','desc');
     if($request->dv_group)
     {
         $dv_type = $dv_type->where('dv_group', 'like' , '%'.$request->dv_group.'%');

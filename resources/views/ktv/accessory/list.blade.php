@@ -139,9 +139,10 @@
       </tr>
     </thead>
     <tbody>
+      <?php $i = 1 ?>
       @foreach($accs as $acc)
       <tr style="font-size: 15px;">
-        <td>{{ $acc->id }}</td>
+        <td>{{ $i++ }}</td>
         <td>{{$acc->acc_name}}</td>
         <td>{{ \App\Provider::where(['id' => $acc->provider_id])->pluck('provider_name')->first() }}</td>
         <td>{{ $acc->amount }}</td>
