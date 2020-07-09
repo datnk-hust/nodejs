@@ -129,12 +129,12 @@
       @csrf
       <table width="100%" border="0" class="input-group mb-3">
         <tr>
-            <td width="40%"><input type="text"  name="dv_name" placeholder="Nhập tên thiết bị"></td>
-            <td width="40%"><div style="margin-left: 10px;"><button class="btn btn-primary" type="submit" ><i class="fa fa-search"></i> Tìm kiếm</button></div>
+            <td width="25%"><div><input class="form-control" type="text" name="dv_name" placeholder="Nhập tên thiết bị" value="{{request()->dv_name}}"></div></td>
+            <td width="20%"><div style="margin-left: 5px;"><input class="form-control" type="text" name="model" placeholder="Nhập model" value="{{request()->model}}"></div></td>
+            <td width="20%"><div style="margin-left: 5px;"><input class="form-control" type="text" name="serial" placeholder="Nhập serial" value="{{request()->serial}}"></div></td>
+            <td width="20%"><div style="margin-left: 5px"><button  class="btn btn-primary" type="submit" ><i class="fa fa-search"></i> Tìm kiếm</button></div>
             </td>
-            <td></td>
-            <td></td>
-            <td><div style="font-size: 20px;">Tổng: {{ $devices->total() }}</div></td>
+            <td><div style="font-size: 20px;text-align: center;">Tổng: {{ $devices->total() }}</div></td>
         </tr>
       </table>  
     </form>

@@ -19,7 +19,7 @@ class DoctorController extends Controller
 {
     //
     public function index(){
-        $notice = Notification::where('status','=',4)->orWhere('status',6)->orWhere('status',8)->orWhere('status',12)->orWhere('status',14)->orderBy('id','desc')->paginate(100);
+        $notice = Notification::where('status','=',4)->orWhere('status',6)->orWhere('status',8)->orWhere('status',12)->orWhere('status',14)->orderBy('id','desc')->paginate(10);
     	return view('doctor.home',['notices'=>$notice]);
     }
 
@@ -36,7 +36,7 @@ class DoctorController extends Controller
         if($request->serial){
             $devices = $devices->where('dv_serial','like','%'.$request->serial.'%');
         }
-        $devices = $devices->paginate(100);
+        $devices = $devices->paginate(10);
     	return view('doctor.listDevice',['devices'=>$devices,'user'=>$user,'depts'=>$dept]);
     }
 
@@ -46,7 +46,13 @@ class DoctorController extends Controller
         if($request->dv_name){
             $devices = $devices->where('dv_name','like','%'.$request->dv_name.'%');
         }
-        $devices = $devices->paginate(5);
+        if($request->model){
+            $devices = $devices->where('dv_name','like','%'.$request->model.'%');
+        }
+        if($request->serial){
+            $devices = $devices->where('dv_name','like','%'.$request->serial.'%');
+        }
+        $devices = $devices->paginate(10);
      	return view('doctor.listBroken',['devices'=>$devices,'user'=>$user]);
     }
     //báo điều chuyển thiết bị
