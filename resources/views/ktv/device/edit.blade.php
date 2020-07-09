@@ -173,7 +173,9 @@ label {
         <td><label>Tên thiết bị</label></td>
         <td><input type="text"  name="name_device" value="{{$dev->dv_name}}" ></td>
         <td><label>Nhà cung cấp</label></td>
-        <td><select type="text" name="provider">
+        <td>
+          @if($dev->provider_id)
+          <select type="text" name="provider">
         		<option value="{{$dev->provider_id}}">{{$dev->provider->provider_name}}</option>
         		@isset($providers)
         		@foreach($providers as $rows)
@@ -182,7 +184,16 @@ label {
             @endif
         		@endforeach
         		@endif
-        	</select></td>
+        	</select>
+          @else
+           <select type="text" name="provider">
+             <option>Chọn nhà cung cấp</option>
+             @foreach($providers as $rows)
+            <option name="provider" value="{{$rows->id}}">{{$rows->provider_name}}</option>
+            @endforeach
+           </select>
+           @endif
+        </td>
       </tr>
        <tr>
         <td><label>Model</label></td>

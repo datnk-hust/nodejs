@@ -94,7 +94,7 @@
           <td width="25%">
             <input style="width: 90%;" type="text" class="form-control" placeholder="Tên thiết bị" name="dv_name" value="{{request()->dv_name}}">
           </td>
-          <td width="25%">
+          <td width="30%">
             <select class="form-control" name="department_id" style="background-color: #D8D8D8;width: 90%">
              <option value="">Mọi khoa</option>
               @if(isset($depts))
@@ -106,7 +106,7 @@
               @endif
             </select>
           </td>
-          <td width="25%">
+          <td width="30%">
             <select class="form-control" name="dv_type_id" style="background-color: #D8D8D8;width: 90%">
               <option value="">Tất cả loại thiết bị</option>
               @if(isset($dv_types))
@@ -117,23 +117,23 @@
               @endif
             </select>
           </td>
-          <td width="15%">
-            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: 10px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+          <td width="7%">
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
-          <td  style="text-align: right;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
+          <td  style="text-align: center;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
         </tr>
         <tr>
           <td colspan="5"><br></td>
         </tr>
         <tr>
-          <td width="25%"> 
+          <td> 
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Model thiết bị" name="model" value="{{request()->model}}">
           </td>
           <td>
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Serial thiết bị" name="serial" value="{{request()->serial}}">
           </td>
           <td colspan="2">
-            <input style="width: 50%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
+            <input style="width: 72%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
           </td>
           <td></td>
         </tr>

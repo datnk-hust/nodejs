@@ -97,7 +97,7 @@
   <div>
     <form action="" method="get" style="float: left;">
       @csrf
-      <table width="100%" border="1">
+      <table width="100%" border="0">
         <tr>
           <td width="25%">
             <input style="width: 90%;" type="text" class="form-control" placeholder="Tên thiết bị" name="dv_name" value="{{request()->dv_name}}">
@@ -127,7 +127,7 @@
             </select>
           </td>
           <td width="15%">
-            <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
           <td style="text-align: left;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
         </tr>
@@ -139,7 +139,11 @@
           <td>
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Serial thiết bị" name="serial" value="{{request()->serial}}">
           </td>
-          <td colspan="3"></td>
+          <td colspan="2">
+            <input style="width: 56%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
+          </td>
+
+          <td></td>
         </tr>
       </table>  
     </form>
