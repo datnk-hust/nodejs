@@ -101,7 +101,11 @@
         <td>{{$row->dv_model}}</td>
         <td>{{$row->dv_serial}}</td>
         <td>{{ \App\Department::where(['id' => $row->department_id])->pluck('department_name')->first() }}</td>
-        <td>{{ \App\Provider::where(['id' => $row->provider_id])->pluck('provider_name')->first() }}</td>
+        @if($device->provider_id != '')
+        <td>{{$row->provider->provider_name}}</td>
+        @else
+        <td></td>
+        @endif
         <td>{{ $row->maintain_date }}</td>
         <td>
             <a href="{{ route('device.history',['id'=>$row->id])}}" style="text-decoration: none;"><i class="fa fa-history " style="font-size: 22px" title="Lịch sử sửa chữa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;

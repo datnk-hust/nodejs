@@ -123,7 +123,11 @@
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
         <td>{{$device->dv_serial}}</td>
+        @if($device->provider_id != '')
         <td>{{$device->provider->provider_name}}</td>
+        @else
+        <td></td>
+        @endif
         <td>{{$device->handover_date}}</td>
         <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
         <td style="text-align: center;">

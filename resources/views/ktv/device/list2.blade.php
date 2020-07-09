@@ -6,9 +6,7 @@
     font-size: 17px;
     border: #A4A4A4 solid 1px;
   }
-  .btnsearch:hover{
-    background-color: #BDBDBD;
-  }
+  
   .container2{
     margin: 20px;
     margin-top: 30px;
@@ -119,10 +117,10 @@
               @endif
             </select>
           </td>
-          <td>
-            <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 10px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+          <td width="15%">
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: 10px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
-          <td width="7%" style="text-align: left;font-size: 18px;">Tất cả:{{$devices->total()}}</td>
+          <td  style="text-align: right;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
         </tr>
         <tr>
           <td colspan="5"><br></td>
@@ -135,7 +133,7 @@
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Serial thiết bị" name="serial" value="{{request()->serial}}">
           </td>
           <td colspan="2">
-            <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
+            <input style="width: 50%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
           </td>
           <td></td>
         </tr>
@@ -165,7 +163,12 @@
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
         <td>{{$device->department->department_name}}</td>
+
+        @if($device->provider_id != '')
         <td>{{$device->provider->provider_name}}</td>
+        @else
+        <td></td>
+        @endif
         <td>{{$device->produce_date}}</td>
         <td>{{$device->import_date}}</td>
         <td style="text-align: center;">

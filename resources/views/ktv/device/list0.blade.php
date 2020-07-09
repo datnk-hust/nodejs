@@ -134,7 +134,7 @@
 						</select>
 					</td>
 					<td width="15%">
-						<button class="btnsearch" type="submit" style="width: 100px;padding: 4px; margin-left: 20px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+						<button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px; margin-left: 20px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
 					</td>
 					<td style="text-align: left;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
 				</tr>
@@ -149,7 +149,7 @@
 						<input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Serial thiết bị" name="serial" value="{{request()->serial}}">
 					</td>
 					<td colspan="2">
-						<input style="width: 90%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
+						<input style="width: 63%;" type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
 					</td>
 					<td></td>
 				</tr>

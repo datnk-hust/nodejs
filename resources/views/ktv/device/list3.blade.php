@@ -6,9 +6,7 @@
     font-size: 20px;
     border: #A4A4A4 solid 1px;
   }
-  .btnsearch:hover{
-    background-color: #BDBDBD;
-  }
+  
   .container2{
     margin: 20px;
     margin-top: 30px;
@@ -99,7 +97,7 @@
   <div>
     <form action="" method="get" style="float: left;">
       @csrf
-      <table width="100%" border="0">
+      <table width="100%" border="1">
         <tr>
           <td width="25%">
             <input style="width: 90%;" type="text" class="form-control" placeholder="Tên thiết bị" name="dv_name" value="{{request()->dv_name}}">
@@ -128,7 +126,7 @@
               @endif
             </select>
           </td>
-          <td width="20%">
+          <td width="15%">
             <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
           <td style="text-align: left;font-size: 18px;">Tất cả: {{$devices->total()}}</td>
@@ -167,7 +165,11 @@
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
         <td>{{$device->department->department_name}}</td>
+        @if($device->provider_id != '')
         <td>{{$device->provider->provider_name}}</td>
+        @else
+        <td></td>
+        @endif
         <td>{{$device->import_date}}</td>
         <td>{{$device->handover_date}}</td>
         <td style="text-align: center;">

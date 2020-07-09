@@ -102,7 +102,11 @@
 					<td>{{ $r->dv_name }}</td>
 					<td>{{ $r->dv_model }}</td>
 					<td>{{ $r->dv_serial }}</td>
-					<td>{{ $r->provider->provider_name }}</td>
+					@if($r->provider_id != '')
+				<td>{{$r->provider->provider_name}}</td>
+				@else
+				<td></td>
+				@endif
 					<td>{{ $r->produce_date }}</td>
 					<td style="text-align: center;">
 						<a  href="{{ route('device.view',['id'=>$r->id]) }}"><i  title="Xem hồ sơ" class="fa fa-history" aria-hidden="true"></i></a>

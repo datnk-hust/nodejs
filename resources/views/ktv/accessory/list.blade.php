@@ -100,11 +100,11 @@
       @csrf
       <table width="100%" border="0">
         <tr>
-          <td width="35%">
+          <td width="30%">
             <input style="width: 98%;" type="text" class="form-control" placeholder="Tên vật tư" name="acc_name" value="{{request()->acc_name}}">
           </td>
-          <td width="35%">
-            <select class="form-control" name="provider_id" style="background-color: #D8D8D8;width: 90%">
+          <td width="30%">
+            <select class="form-control" name="provider_id" style="background-color: #D8D8D8;width: 98%">
               <option value="">Mọi nhà cung cấp</option>
               @if(isset($providers))
               @foreach($providers as $rows)
@@ -115,10 +115,10 @@
               @endif
             </select>
           </td>
-          <td width="25%">
+          <td width="30%">
             <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
-          <td width="5%" style="text-align: left;font-size: 18px;">Tất cả: {{$accs->total()}}</td>
+          <td width="10%" style="text-align: right;font-size: 18px;">Tất cả: {{$accs->total()}}</td>
         </tr>
       </table>  
     </form>
