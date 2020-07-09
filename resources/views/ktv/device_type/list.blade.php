@@ -11,7 +11,7 @@
   }
   .container2{
   	margin: 20px;
-  	margin-top: 60px;
+  	margin-top: 30px;
   }
   h2{
   	margin-left: 20px;

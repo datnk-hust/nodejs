@@ -9,7 +9,6 @@
   	height: 2px;
   	background-color: green;
   	margin-left: 40px;
-    width: 90%
   }
   #sl_dv{
   	width: 500px;
@@ -23,7 +22,7 @@
 
 <div class="container2">
 	<h2>Tạo Quy Trình Bảo Dưỡng Cho Thiết Bị</h2>
-	<hr>
+	<hr style="width: 87%">
 	
  	<form class="form" action="{{ route('device.postScheduleAct')}}" method="post">
  		@csrf
@@ -43,7 +42,7 @@
       </table>
       <input type="text" name="sl_dv" value="{{$device->dv_id}}" hidden="">
   </div>
-  <hr style="margin-left: 0;width: 93%"><br>
+  <hr style="margin-left: 0;width: 90%"><br>
   	<div class="form-group">
     <label>Hoạt động bảo dưỡng</label>
     <input style="width: 90%" type="text" name="nameAct" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập hoạt động cần bảo dưỡng" required="">
@@ -85,11 +84,11 @@
     </div>
 	</form>
 <br><br><br>
-	<div style="margin-left: 50px;">
+	<div style="margin-left: 50px;width: 87%">
     <div><h3><b>Danh sách các hoạt động bảo dưỡng</b></h4></div><br>
 	<table class="table table-condensed table-bordered table-hover" >
 		<thead>
-      <th>ID</th>
+      <th width="2%">STT</th>
 			<th>Hạng mục công việc</th>
 			<th>Tần suất bảo dưỡng</th>
       <th>Ngày bắt đầu bảo dưỡng</th>
@@ -105,7 +104,7 @@
 				<td>{{$row->scheduleTime}}</td>
         <td>{{ $row->startDate}}</td>
 				<td>{{$row->note}}</td>
-				<td>
+				<td style="text-align: center;">
             <a href="{{route('device.getEditAct',['id'=>$row->id])}}"><i class="fa fa-pencil-square-o " title="Sửa" style="font-size: 18px" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
            <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.delScheduleAct',['id'=>$row->id] )}}" ><i class="fa fa-trash" title="Xóa" aria-hidden="true" style="font-size: 18px"></i></a>    
         </td>
