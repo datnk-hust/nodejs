@@ -116,7 +116,7 @@
             </select>
           </td>
           <td width="30%">
-            <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: 10px"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
           <td width="10%" style="text-align: right;font-size: 18px;">Tất cả: {{$accs->total()}}</td>
         </tr>

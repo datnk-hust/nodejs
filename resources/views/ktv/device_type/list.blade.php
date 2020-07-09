@@ -41,7 +41,7 @@
             <input style="width: 90%;margin-left: 10px;" type="text" class="form-control" placeholder="Tên loại thiết bị" name="searchName" value="{{request()->searchName}}">
           </td>
           <td width="22%">
-            <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: 30px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: 30px;"><i class="fa fa-search"></i>&nbsp;Tìm kiếm</button>
           </td>
           <td width="12%" style="text-align: left;font-size: 18px;">Tất cả: {{$dv_types->total()}}</td>
         </tr>

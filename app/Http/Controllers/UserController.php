@@ -1072,7 +1072,7 @@ public function showmaintain(Request $request){
         return view('ktv.device.schedule')->with('devices',$device);
     }
     public function createScheduled(Request $request, $id){
-        $dv = DB::table('device')->where('dv_id',$id)->get();
+        $dv = DB::table('device')->where('dv_id',$id)->first();
         $schedule = DB::table('schedule_action')->where('dv_id',$id)->get();
         return view('ktv.device.scheduled')->with(['device'=>$dv,'schedules'=>$schedule]);
     }

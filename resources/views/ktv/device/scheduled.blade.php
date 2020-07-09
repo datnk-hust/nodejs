@@ -9,6 +9,7 @@
   	height: 2px;
   	background-color: green;
   	margin-left: 40px;
+    width: 90%
   }
   #sl_dv{
   	width: 500px;
@@ -27,12 +28,22 @@
  	<form class="form" action="{{ route('device.postScheduleAct')}}" method="post">
  		@csrf
  		<div>
-    <select name="sl_dv" id="sl_dv" class="form-control" required="">
-      @foreach($device as $dv)
-      <option value="{{$dv->dv_id}}">{{$dv->dv_name}}</option>
-      @endforeach
-    </select>
-  </div><br>
+      <table>
+        <tr>
+          <td colspan="3">Tên thiết bị: <b>{{$device->dv_name}}</b></td>
+        </tr>
+        <tr>
+          <td colspan="3"><br></td>
+        </tr>
+        <tr>
+          <td width="33%" style="text-align: center;">Mã thiết bị: <b>{{$device->dv_id}}</b></td>
+          <td width="33%" style="text-align: center;">Model: <b>{{$device->dv_model}}</b></td>
+          <td width="33%" style="text-align: center;">Serial: <b>{{$device->dv_serial}}</b></td>
+        </tr>
+      </table>
+      <input type="text" name="sl_dv" value="{{$device->dv_id}}" hidden="">
+  </div>
+  <hr style="margin-left: 0;width: 93%"><br>
   	<div class="form-group">
     <label>Hoạt động bảo dưỡng</label>
     <input style="width: 90%" type="text" name="nameAct" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập hoạt động cần bảo dưỡng" required="">
@@ -73,9 +84,10 @@
       <div style="float: left;margin-left: 10px;"><a class="btn btn-primary" href="{{route('device.schedule')}}">Hoàn tất</a></div>
     </div>
 	</form>
-<br><br><br><br>
+<br><br><br>
 	<div style="margin-left: 50px;">
-	<table class="table table-condensed table-bordered table-hover" width="90%">
+    <div><h3><b>Danh sách các hoạt động bảo dưỡng</b></h4></div><br>
+	<table class="table table-condensed table-bordered table-hover" >
 		<thead>
       <th>ID</th>
 			<th>Hạng mục công việc</th>

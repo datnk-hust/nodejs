@@ -40,7 +40,7 @@
               <option value="">Loại thiết bị</option>
               @if(isset($dvts))
               @foreach($dvts as $rows)
-              <option value="{{ $rows->dv_type_id }}" >
+              <option value="{{ $rows->dv_type_id }}" {{ (request()->dvt_id == $rows->dv_type_id) ? 'selected' : "" }}>
                 {{ $rows->dv_type_name }}
               </option>
               @endforeach
@@ -52,7 +52,7 @@
               <option value="">Nhà cung cấp</option>
               @if(isset($providers))
               @foreach($providers as $row)
-              <option value="{{ $row->id }}" >
+              <option value="{{ $row->id }}" {{ (request()->provider == $rows->id) ? 'selected' : "" }}>
                 {{ $row->provider_name }}
               </option>
               @endforeach

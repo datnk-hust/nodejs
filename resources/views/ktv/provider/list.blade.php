@@ -26,10 +26,10 @@
       @csrf
       <table width="100%" border="0">
         <tr>
-          <td><input style="width: 90%;" type="text" class="form-control" placeholder="Tên nhà cung cấp" name="searchName" value="{{request()->searchName}}"></td>
-          <td><input style="width: 90%;" type="text" class="form-control" placeholder="Email nhà cung cấp" name="searchEmail" value="{{request()->searchEmail}}"></td>
+          <td width="30%"><input style="width: 90%;" type="text" class="form-control" placeholder="Tên nhà cung cấp" name="searchName" value="{{request()->searchName}}"></td>
+          <td width="30%"><input style="width: 90%;" type="text" class="form-control" placeholder="Email nhà cung cấp" name="searchEmail" value="{{request()->searchEmail}}"></td>
           <td>
-            <button class="btnsearch" type="submit" style="width: 100px;padding: 4px;margin-left: -2px;"><i class="fa fa-search">&nbsp;Tìm kiếm</i></button>
+            <button class="btn btn-primary" type="submit" style="width: 100px;padding: 4px;margin-left: -2px;"><i class="fa fa-search">&nbsp;Tìm kiếm</i></button>
           </td>
           <td width="5%" style="text-align: left;font-size: 18px;">Tất cả: {{$providers->total()}}</td>
         </tr>
