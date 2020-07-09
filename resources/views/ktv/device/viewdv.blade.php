@@ -46,10 +46,10 @@
 					</div>
 				</td>
 				<td width="15%">
-					<div style="margin-left: 5px;"><a href=""><button class="btn btn-primary">Tìm kiếm </button></a> </div>
+					<div style="margin-left: 10px;"><a href=""><button class="btn btn-primary">Tìm kiếm </button></a> </div>
 				</td>
 				<td width="10%" style="text-align: left;">
-					Tổng: <b>{{ count($devices) }}</b>
+					Tổng: {{ count($devices) }}
 				</td>
 			</tr>
 			<tr><td colspan="6"><br></td></tr>
@@ -68,7 +68,7 @@
             	<input  type="text" class="form-control" placeholder="Nhập tên dự án gói thầu" name="import_id" value="{{request()->import_id}}">
             		</div></td>
           		<td colspan="2">
-          			<div style="margin-left: 5px;" class="export">
+          			<div style="margin-left: 10px;" class="export">
      					<a  href="#" ><button formaction ="{{ route('device.export')}}" class="btn btn-success" type="submit">
      						Xuất file thống kê
      					</button>
@@ -86,18 +86,21 @@
 	<div>
 		<table class="table table-condensed table-bordered table-hover">
 			<thead style="background-color: #D8D8D8">
-				<th width="15%">Mã thiết bị</th>
+				<th width="1%">STT</th>
+				<th width="13%">Mã thiết bị</th>
 				<th width="25%">Tên thiết bị</th>
-				<th width="10%">Model</th>
-				<th width="10%">Serial</th>
-				<th width="20%">Nhà cung cấp</th>
+				<th width="7%">Model</th>
+				<th width="7%">Serial</th>
+				<th width="15%">Nhà cung cấp</th>
 				<th width="5%">Năm SX</th>
-				<th width="5%">Chi tiết</th>
+				<th width="2%"></th>
 			</thead>
 			<tbody>
+				<?php $i =1 ?>
 				@if(isset($devices))
 				@foreach($devices as $r)
 				<tr>
+					<td>{{ $i++}}</td>
 					<td>{{ $r->dv_id }}</td>
 					<td>{{ $r->dv_name }}</td>
 					<td>{{ $r->dv_model }}</td>

@@ -60,7 +60,7 @@
             </select>
           </td>
           <td>
-            <button class="btnsearch" type="submit" style="width: 100px; margin-left: 5px;padding: 4px;"><i class="fa fa-search">&nbsp;Tìm kiếm</i></button>
+            <button class="btn btn-primary" type="submit" style="width: 100px;height: 30px; margin-left: 5px;padding: 4px;"><i class="fa fa-search">&nbsp;Tìm kiếm</i></button>
           </td>
           
         </tr>
@@ -73,7 +73,7 @@
             <input style="width: 90%;" type="text" class="form-control" placeholder="Nhập Serial thiết bị" name="serial" value="{{request()->serial}}">
           </td>
           <td colspan="2">
-            <input style="width: 90%;" type="text" class="form-control" placeholder="Dự án thầu" name="import_id" value="{{request()->import_id}}">
+            <input style="width: 45%;" type="text" class="form-control" placeholder="Dự án thầu" name="import_id" value="{{request()->import_id}}">
           </td>
         </tr>
       </table>  
@@ -83,13 +83,13 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>ID</th>
+        <th>Mã thiết bị</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>
         <th>Khoa phòng</th>
         <th>Nhà cung cấp</th>
-        <th>Bảo dưỡng đk</th>
+        <th width="12%">Bảo dưỡng đk</th>
         <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
@@ -101,13 +101,13 @@
         <td>{{$row->dv_model}}</td>
         <td>{{$row->dv_serial}}</td>
         <td>{{ \App\Department::where(['id' => $row->department_id])->pluck('department_name')->first() }}</td>
-        @if($device->provider_id != '')
+        @if($row->provider_id != '')
         <td>{{$row->provider->provider_name}}</td>
         @else
         <td></td>
         @endif
         <td>{{ $row->maintain_date }}</td>
-        <td>
+        <td style="text-align: center;">
             <a href="{{ route('device.history',['id'=>$row->id])}}" style="text-decoration: none;"><i class="fa fa-history " style="font-size: 22px" title="Lịch sử sửa chữa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{{ route('device.maintainCheck', ['id' => $row->dv_id]) }}" style="text-decoration: none;"><i class="fa fa-cog"style="font-size: 22px" title="Lịch sử bảo dưỡng" aria-hidden="true"></i></a>
 

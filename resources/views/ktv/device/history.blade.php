@@ -28,7 +28,13 @@
        <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Tên thiết bị</label></td>
        <td width="35%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 20px;height: 90%">{{$device->dv_name}}</label></td>
        <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Nhà CC</label></td>
-       <td colspan="3"><label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%">{{$device->provider->provider_name}}</label></td>
+       <td colspan="3">
+        @if($device->provider_id)
+        <label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%">{{$device->provider->provider_name}}</label>
+        @else
+        <label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%"></label>
+        @endif
+      </td>
      </tr>
      <tr>
        <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Loại thiết bị</label></td>

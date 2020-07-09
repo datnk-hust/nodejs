@@ -179,7 +179,7 @@ label {
         		<option value="{{$dev->provider_id}}">{{$dev->provider->provider_name}}</option>
         		@isset($providers)
         		@foreach($providers as $rows)
-            @if($rows->id !== $dev->provider_id)
+            @if($rows->id != $dev->provider_id)
         		<option name="provider" value="{{$rows->id}}">{{$rows->provider_name}}</option>
             @endif
         		@endforeach
