@@ -119,7 +119,7 @@ label {
        <tr>
         <td><label>Nhóm thiết bị</label></td>
         <td>
-            <select type="text" id="group" name="group" required="">
+            <select type="text" id="group" name="group">
               <option value="X">X</option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -130,7 +130,8 @@ label {
         <td><label>Loại thiết bị</label></td>
         <td>
           <?php $ltb = DB::table('device_type')->where('dv_group','X')->get(); ?>
-        	<select id="searchDvt" type="text" name="device_type" required>
+        	<select id="searchDvt" type="text" name="device_type">
+            <option value="">Chọn loại thiết bị</option>
         		@foreach($ltb as $r)
             <option value="{{ $r->dv_type_id}}">{{ $r->dv_type_name}}</option>
             @endforeach

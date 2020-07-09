@@ -79,7 +79,8 @@
       </table>  
     </form>
   </div><br><br><br>
-  @if(isset($devices))
+  <div>
+  
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
@@ -88,12 +89,12 @@
         <th>Model</th>
         <th>Serial</th>
         <th>Khoa phòng</th>
-        <th>Nhà cung cấp</th>
         <th width="12%">Bảo dưỡng đk</th>
         <th width="10%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
+      @if(isset($devices))
       @foreach($devices as $row)
       <tr style="font-size: 15px;cursor: pointer;" ondblclick='location.href=("{{ route('device.maintainCheck', ['id' => $row->dv_id]) }}")' >
         <td>{{ $row->dv_id }}</td>
@@ -101,22 +102,25 @@
         <td>{{$row->dv_model}}</td>
         <td>{{$row->dv_serial}}</td>
         <td>{{ \App\Department::where(['id' => $row->department_id])->pluck('department_name')->first() }}</td>
-        @if($row->provider_id != '')
-        <td>{{$row->provider->provider_name}}</td>
-        @else
-        <td></td>
-        @endif
         <td>{{ $row->maintain_date }}</td>
         <td style="text-align: center;">
             <a href="{{ route('device.history',['id'=>$row->id])}}" style="text-decoration: none;"><i class="fa fa-history " style="font-size: 22px" title="Lịch sử sửa chữa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{{ route('device.maintainCheck', ['id' => $row->dv_id]) }}" style="text-decoration: none;"><i class="fa fa-cog"style="font-size: 22px" title="Lịch sử bảo dưỡng" aria-hidden="true"></i></a>
-
+            <a href="{{ route('device.maintainCheck', ['id' => $row->dv_id]) }}" style="text-decoration: none;"><i class="fa fa-cog"style="font-size: 22px" title="Lịch sử bảo dưỡng" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{{ route('device.scheduled', ['id' => $row->dv_id]) }}" style="text-decoration: none;"><i class="fa fa-pencil-square-o"style="font-size: 22px" title="Tạo lịch bảo dưỡng" aria-hidden="true"></i></a>
         </td>
       </tr>
       @endforeach
   @endif
-  
+</tbody>
+</table>
+  </div>
+  <div class="page-nav text-right">
+    <nav aria-label="Page navigation">
+      {{ $devices->links()}}
+    </nav>
+  </div>
 </div>
+
 @endsection
 <script type="text/javascript">
   $(document).ready(function(){

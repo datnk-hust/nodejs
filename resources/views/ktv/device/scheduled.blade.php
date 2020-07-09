@@ -12,7 +12,7 @@
   }
   #sl_dv{
   	width: 500px;
-  	margin-left: 40px;
+  	
   }
   .form{
   	margin-left: 40px;
