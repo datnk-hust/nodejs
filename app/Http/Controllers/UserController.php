@@ -1186,44 +1186,47 @@ public function showmaintain(Request $request){
     }
     
     public function viewDevice(Request $request){
-        $dv = Device::where('status',0)->orWhere('status',1)->orWhere('status',2)->orWhere('status',3)->orWhere('status',4)->orderBy('id','asc');
+        $dvs = Device::where('status',0)->orWhere('status',1)->orWhere('status',2)->orWhere('status',3)->orWhere('status',4)->orWhere('status',5)->orderBy('id','desc');
         $dvt = DB::table('device_type')->get();
         $dept = DB::table('department')->get();
         if($request->dvId){
-            $dv = Device::where('dv_id','like','%'. $request->dvId. '%')->orderBy('id','desc');
+            $dvs = Device::where('dv_id','like','%'. $request->dvId. '%');
         }
         if($request->model){
-            $dv = Device::where('dv_model','=', $request->model)->orderBy('id','desc');
+            $dvs = Device::where('dv_model','=', $request->model);
         }
         if($request->serial){
-            $dv = Device::where('dv_serial','=',$request->serial)->orderBy('id','desc');
+            $dvs = Device::where('dv_serial','=',$request->serial);
         }
         if($request->import_id){
-            $dv = Device::where('import_id','like','%'. $request->import_id. '%')->orderBy('id','desc');
+            $dvs = Device::where('import_id','like','%'. $request->import_id. '%');
         }
         if($request->dvname){
-             $dv = Device::where('dv_name','like','%'.$request->dvname.'%')->orderBy('id','desc');
+             $dvs = Device::where('dv_name','like','%'.$request->dvname.'%');
         }
         if($request->dept){ 
-            $dv = Device::where('department_id','=', $request->dept)->orderBy('id','desc');
+            $dvs = Device::where('department_id','=', $request->dept);
             
 
         }
         if($request->dvt){
-            $dv = Device::where('dv_type_id','=', $request->dvt)->orderBy('id','desc');
+            $dvs = Device::where('dv_type_id','=', $request->dvt);
             
         }
-        $dv = $dv->paginate(10);
-        if($request->dept){
-            $dep_id = $request->dept;
-            return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'depId'=>$dep_id]);
-        }
-        if($request->dvt){
-            $dvt_id = $request->dvt;
-            return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'dvtId'=>$dvt_id]);
-        }else{
-            return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept]);
-        }
+        $dvss = $dvs->get();
+        $dvs = $dvs->paginate(10);
+        //dd($dv);
+        return view('ktv.device.viewdv')->with(['dvss'=>$dvss,'devices'=>$dvs,'dvts'=>$dvt,'depts'=>$dept]);
+        // if($request->dept){
+        //     $dep_id = $request->dept;
+        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'depId'=>$dep_id]);
+        // }
+        // if($request->dvt){
+        //     $dvt_id = $request->dvt;
+        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'dvtId'=>$dvt_id]);
+        // }else{
+        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept]);
+        // }
         
     }
     //export all device

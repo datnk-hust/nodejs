@@ -49,7 +49,7 @@
 					<div style="margin-left: 10px;"><a href=""><button class="btn btn-primary">Tìm kiếm </button></a> </div>
 				</td>
 				<td width="10%" style="text-align: left;">
-					Tổng: {{ count($devices) }}
+					Tổng: {{ count($dvss) }}
 				</td>
 			</tr>
 			<tr><td colspan="6"><br></td></tr>
@@ -91,7 +91,7 @@
 				<th width="25%">Tên thiết bị</th>
 				<th width="7%">Model</th>
 				<th width="7%">Serial</th>
-				<th width="15%">Nhà cung cấp</th>
+				<th width="15%">Ngày nhập kho</th>
 				<th width="5%">Năm SX</th>
 				<th width="2%"></th>
 			</thead>
@@ -105,11 +105,7 @@
 					<td>{{ $r->dv_name }}</td>
 					<td>{{ $r->dv_model }}</td>
 					<td>{{ $r->dv_serial }}</td>
-					@if($r->provider_id != '')
-				<td>{{$r->provider->provider_name}}</td>
-				@else
-				<td></td>
-				@endif
+					<td>{{ $r->import_date }}</td>
 					<td>{{ $r->produce_date }}</td>
 					<td style="text-align: center;">
 						<a  href="{{ route('device.view',['id'=>$r->id]) }}"><i  title="Xem hồ sơ" class="fa fa-history" aria-hidden="true"></i></a>
@@ -123,7 +119,7 @@
 	</div>
 	<div class="page-nav text-right">
 		<nav aria-label="Page navigation">
-			{{$devices->links()}}
+			{{ $devices->links()}}
 		</nav>
 	</div>
 </div>
