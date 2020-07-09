@@ -75,7 +75,7 @@
   </table>
   
 </div>
-<div style="margin-top: 50px;">
+<div style="margin-top: 20px;">
   <form method="get" action="{{ route('device.maintainCheck',['id'=>$device->dv_id ]) }}">
   
   <div style="float: left; margin-left: 10px;">
