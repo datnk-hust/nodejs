@@ -30,7 +30,7 @@
  		@csrf
  		<div >
  		<select name="sl_dv" id="searchDv" class="form-control" style="width: 90%;" required="" >
- 			<option disabled="" value="">Lựa chọn thiết bị cần tạo lịch</option>
+ 			<option value="">Lựa chọn thiết bị cần tạo lịch</option>
  			@if(isset($devices))
  			@foreach($devices as $row)
  			<option value="{{$row->dv_id}}">{{ $row->dv_model }}--{{ $row->dv_serial }}--{{ $row->dv_name }}</option>
