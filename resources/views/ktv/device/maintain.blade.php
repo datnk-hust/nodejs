@@ -33,14 +33,14 @@
       <table width="100%" border="0">
         <tr>
           <td width="25%">
-            <input class="form-control" style="width: 90%" type="text" name="dv_name" placeholder="nhập tên thiết bị">  
+            <input class="form-control" style="width: 90%" type="text" name="dv_name" placeholder="Nhập tên thiết bị">  
           </td>
           <td width="25%">
             <select class="form-control" id="searchDvt" value="{{ request()->dvt_id}}" name="dvt_id" style="background-color: #D8D8D8;width: 90%">
               <option value="">Loại thiết bị</option>
               @if(isset($dvts))
               @foreach($dvts as $rows)
-              <option value="{{ $rows->id }}" >
+              <option value="{{ $rows->dv_type_id }}" >
                 {{ $rows->dv_type_name }}
               </option>
               @endforeach

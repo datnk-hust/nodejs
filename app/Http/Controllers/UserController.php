@@ -1215,18 +1215,8 @@ public function showmaintain(Request $request){
         }
         $dvss = $dvs->get();
         $dvs = $dvs->paginate(10);
-        //dd($dv);
         return view('ktv.device.viewdv')->with(['dvss'=>$dvss,'devices'=>$dvs,'dvts'=>$dvt,'depts'=>$dept]);
-        // if($request->dept){
-        //     $dep_id = $request->dept;
-        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'depId'=>$dep_id]);
-        // }
-        // if($request->dvt){
-        //     $dvt_id = $request->dvt;
-        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept,'dvtId'=>$dvt_id]);
-        // }else{
-        //     return view('ktv.device.viewdv')->with(['devices'=>$dv,'dvts'=>$dvt,'depts'=>$dept]);
-        // }
+        
         
     }
     //export all device

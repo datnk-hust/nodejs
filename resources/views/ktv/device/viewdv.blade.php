@@ -89,9 +89,9 @@
 				<th width="1%">STT</th>
 				<th width="13%">Mã thiết bị</th>
 				<th width="25%">Tên thiết bị</th>
-				<th width="7%">Model</th>
-				<th width="7%">Serial</th>
-				<th width="15%">Ngày nhập kho</th>
+				<th width="12%">Model</th>
+				<th width="12%">Serial</th>
+				<th width="10%">Ngày nhập kho</th>
 				<th width="5%">Năm SX</th>
 				<th width="2%"></th>
 			</thead>

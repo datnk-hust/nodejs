@@ -117,7 +117,7 @@ label {
         <td><input type="text"  name="serial" ></td>
       </tr>
        <tr>
-        <td><label>Nhóm thiết bị<span style="color: red">*</span></label></td>
+        <td><label>Nhóm thiết bị</label></td>
         <td>
             <select type="text" id="group" name="group" required="">
               <option value="X">X</option>
@@ -127,10 +127,13 @@ label {
               <option value="D">D</option>
             </select>
         </td>
-        <td><label>Loại thiết bị<span style="color: red">*</span></label></td>
+        <td><label>Loại thiết bị</label></td>
         <td>
+          <?php $ltb = DB::table('device_type')->where('dv_group','X')->get(); ?>
         	<select id="searchDvt" type="text" name="device_type" required>
-        		
+        		@foreach($ltb as $r)
+            <option value="{{ $r->dv_type_id}}">{{ $r->dv_type_name}}</option>
+            @endforeach
         	</select>
         </td>
           
@@ -225,6 +228,7 @@ label {
       $('#searchDvt').select2({});
 
       $('#group').on('change',function(){
+        $('#searchDvt').html('');
         $.ajaxSetup({
           headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
