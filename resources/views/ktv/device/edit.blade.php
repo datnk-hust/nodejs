@@ -295,6 +295,7 @@ label {
       <tr style="font-size: 17px;">
         <th>Tên vật tư</th>
         <th>Số lượng</th>
+        <th>Đơn vị tính</th>
         <th>Loại vật tư</th>
         <th>Ngày bàn giao</th>
         <th>Ghi chú</th>
@@ -307,8 +308,9 @@ label {
         <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('acc_name')->first() }}</td>
         <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('used')->first() }} </td>
         <td>
-            {{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('type')->first() }}
+            {{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('unit')->first() }}
         </td>
+        <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('type')->first() }}</td>
         <td>{{ $acc->export_date }}</td>
         @if($acc->status == 0)
         <td>Vật tư thay thế</td>

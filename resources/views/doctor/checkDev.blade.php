@@ -276,6 +276,7 @@ label {
       <tr style="font-size: 17px;">
         <th>Tên vật tư</th>
         <th>Số lượng</th>
+        <th>Đơn vi tính</th>
         <th>Loại vật tư</th>
         <th>Ghi chú</th>
       </tr>
@@ -286,6 +287,7 @@ label {
        <tr style="font-size: 15px;">
         <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('acc_name')->first() }}</td>
         <td>{{ $acc->amount}} </td>
+        <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('unit')->first() }} </td>
         <td>
             {{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('type')->first() }}
         </td>

@@ -107,7 +107,7 @@
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
         <th width="1%">STT</th>
-        <th width="10%">Mã thiết bị</th>
+        <th width="15%">Mã thiết bị</th>
         <th width="20%">Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>

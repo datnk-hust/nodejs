@@ -1,7 +1,7 @@
 @extends('ktv.index')
 @section('content')
 <style>
-input[type=text] , select{
+input[type=text] , select, input[type=date]{
   width: 520px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -74,6 +74,8 @@ label {
       <option value="1 năm">1 năm</option>
       <option value="2 năm">2 năm</option>
     </select><br>
+    <label>Ngày bắt đầu</label><br>
+    <input type="date" name="startDate" value="{{ $act->startDate}}"><br>
     <label >Ghi chú</label><br>
     <input type="text"  name="note" value="{{$act->note}}"><br>
     <input class="btn" type="submit" value="Cập nhật thông tin" style="margin-left: 150px" ></input>

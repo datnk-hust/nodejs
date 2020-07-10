@@ -25,7 +25,7 @@
   }
   .container2{
     margin: 40px;
-    margin-top: 40px;
+    margin-top: 20px;
   }
   h2{
     margin-left: 40px;
@@ -43,14 +43,14 @@
   }
 </style>
 <?php $noticees = DB::table('notification')->where('status',5)->orWhere('status',7)->orWhere('status',9)->orWhere('status',13)->orWhere('status',15)->orderBy('id','desc')->get() ?>
-
+<div style="margin-left: 50px;font-size: 20px;"><b>Chào mừng đến {{ \App\Department::where(['id'=>Auth::user()->department_id])->pluck('department_name')->first()}}!</b></div><br>
 <div style="margin-left: 50px;font-size: 20px;font-weight: bold;">Danh Sách Thông Báo!</div>
 <div class="container2">
   
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
-      <tr style="font-size: 20px;">
-        <th>ID</th>
+      <tr style="font-size: 16px;">
+        <th width="1%">STT</th>
         <th width="12%">Thời gian</th>
         <th>Nội dung</th>
         <th>Người gửi</th>

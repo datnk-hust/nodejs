@@ -769,11 +769,10 @@ public function postEditDevice(Request $request,$id){
 }
 public function delDevice($id){
     $device = Device::findOrFail($id);
+    $dv_name = $device->dv_name;
     $device->delete();    
-    return redirect()->route('device.show2')->with('message','Đã xóa một  thiết bị ');
+    return back()->with('message','Đã xóa thiết bị '.$dv_name);
     }
-
-}
 // bàn giao vật tư
 public function accessoryDevice(Request $request, $id){
     $acc_dv = Device_accessory::find($id);
@@ -1091,15 +1090,12 @@ public function showmaintain(Request $request){
     public function postEditAct(Request $request, $id){
         $act = ScheduleAction::find($id);
         $id = $act->dv_id;
-        if($request->actName){
-            $act->scheduleAct = $request->actName;
-        }
+        $act->scheduleAct = $request->actName;
         if($request->fq){
-            $act->scheduleTime = $request->fq;
+        $act->scheduleTime = $request->fq;
         }
-        if ($request->note) {
-            $act->note = $request->note;
-        }
+        $act->startDate = $request->startDate;
+        $act->note = $request->note;
         $act->save();
         return redirect()->route('device.scheduled',['id'=>$id]);
     }

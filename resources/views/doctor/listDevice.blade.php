@@ -124,7 +124,7 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 20px;">
-        <th>ID</th>
+        <th>STT</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>
@@ -134,10 +134,11 @@
       </tr>
     </thead>
     <tbody>
+      <?php $i =1 ?>
         @if(isset($devices))
         @foreach($devices as $row)
       <tr style="font-size: 15px;">
-        <td>{{$row->dv_id}}</td>
+        <td>{{$i++}}</td>
         <td>{{$row->dv_name}}</td>
         <td>{{ $row->dv_model}}</td>
         <td>{{ $row->dv_serial}}</td>
