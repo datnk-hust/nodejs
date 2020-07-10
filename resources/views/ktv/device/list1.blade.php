@@ -87,6 +87,7 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
+        <th>STT</th>
         <th>Mã thiết bị</th>
         <th>Tên thiết bị</th>
         <th>Model</th>
@@ -98,8 +99,10 @@
       </tr>
     </thead>
     <tbody>
+      <?php $i=1 ?>
       @foreach($devices as $device)
       <tr style="font-size: 15px;">
+        <td>{{ $i++ }}</td>
         <td>{{$device->dv_id}}</td>
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>

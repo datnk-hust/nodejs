@@ -106,19 +106,21 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>Mã thiết bị</th>
-        <th>Tên thiết bị</th>
+        <th width="1%">STT</th>
+        <th width="10%">Mã thiết bị</th>
+        <th width="20%">Tên thiết bị</th>
         <th>Model</th>
         <th>Serial</th>
         <th>Nhà cung cấp</th>
-        <th>Ngày bàn giao</th>
         <th>Ngày thu hồi</th>
         <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
+      <?php $i=1 ?>
       @foreach($devices as $device)
       <tr style="font-size: 15px;">
+        <td>{{$i++}}</td>
         <td>{{$device->dv_id}}</td>
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
@@ -128,7 +130,6 @@
         @else
         <td></td>
         @endif
-        <td>{{$device->handover_date}}</td>
         <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
         <td style="text-align: center;">
           <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " title="Xem vòng đời" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;

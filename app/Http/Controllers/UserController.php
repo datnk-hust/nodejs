@@ -1213,9 +1213,9 @@ public function showmaintain(Request $request){
             $dvs = Device::where('dv_type_id','=', $request->dvt);
             
         }
-        $dvss = $dvs->get();
+        
         $dvs = $dvs->paginate(10);
-        return view('ktv.device.viewdv')->with(['dvss'=>$dvss,'devices'=>$dvs,'dvts'=>$dvt,'depts'=>$dept]);
+        return view('ktv.device.viewdv')->with(['devices'=>$dvs,'dvts'=>$dvt,'depts'=>$dept]);
         
         
     }

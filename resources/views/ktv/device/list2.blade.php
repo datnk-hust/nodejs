@@ -146,22 +146,25 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 17px;">
-        <th>Mã thiết bị</th>
-        <th>Tên thiết bị</th>
+        <th width="1%">STT</th>
+        <th width="15%">Mã thiết bị</th>
+        <th width="20%">Tên thiết bị</th>
         <th>Model</th>
+        <th>Serial</th>
         <th>Khoa phòng</th>
         <th>Nhà cung cấp</th>
-        <th>Năm SX</th>
-        <th>Ngày nhập</th>
-        <th width="10%">Tùy chọn</th>
+        <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
+      <?php $i=1 ?>
       @foreach($devices as $device)
       <tr style="font-size: 15px;">
+        <td>{{ $i++ }}</td>
         <td>{{$device->dv_id}}</td>
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
+        <td>{{$device->dv_serial}}</td>
         <td>{{$device->department->department_name}}</td>
 
         @if($device->provider_id != '')
@@ -169,8 +172,6 @@
         @else
         <td></td>
         @endif
-        <td>{{$device->produce_date}}</td>
-        <td>{{$device->import_date}}</td>
         <td style="text-align: center;">
           <a class="ban_giao" data-deviceid="{{$device->id}}"><i class="fa fa-wrench" style="font-size: 18px;" title="Tạo lịch sửa chữa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
           <a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o" style="font-size: 18px;" title="Thông tin" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;

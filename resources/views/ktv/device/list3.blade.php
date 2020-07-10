@@ -152,30 +152,27 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>Mã thiết bị</th>
-        <th>Tên thiết bị</th>
-        <th>Model</th>
-        <th>Khoa phòng</th>
-        <th>Nhà cung cấp</th>
-        <th>Ngày nhập</th>
-        <th>Ngày bàn giao</th>
-        <th width="10%">Tùy chọn</th>
+        <th width="1%">STT</th>
+        <th width="20%">Tên thiết bị</th>
+        <th width="10%">Model</th>
+        <th width="10%">Serial</th>
+        <th width="10%">Ngày sửa chữa</th>
+        <th>Đơn vị sửa</th>
+        <th>Liên hệ</th>
+        <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
+      <?php $i=1 ?>
       @foreach($devices as $device)
       <tr style="font-size: 15px;">
-        <td>{{$device->dv_id}}</td>
+        <td>{{ $i++ }}</td>
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
-        <td>{{$device->department->department_name}}</td>
-        @if($device->provider_id != '')
-        <td>{{$device->provider->provider_name}}</td>
-        @else
-        <td></td>
-        @endif
-        <td>{{$device->import_date}}</td>
-        <td>{{$device->handover_date}}</td>
+        <td>{{$device->dv_serial}}</td>
+        <td>{{\App\Maintenance_schedule::where(['dv_id'=>$device->id])->pluck('schedule_date')->first()}}</td>
+        <td>{{\App\Maintenance_schedule::where(['dv_id'=>$device->id])->pluck('repair_responsible')->first()}}</td>
+        <td>{{\App\Maintenance_schedule::where(['dv_id'=>$device->id])->pluck('information')->first()}}</td>
         <td style="text-align: center;">
           <a class="ban_giao" data-deviceid="{{$device->id}}"><i class="fa fa-refresh " title="Cập nhật tình trạng" style="font-size: 18px" aria-hidden="true"></i></a>&nbsp;&nbsp;
         </td>

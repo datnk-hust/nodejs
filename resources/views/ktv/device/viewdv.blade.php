@@ -49,7 +49,7 @@
 					<div style="margin-left: 10px;"><a href=""><button class="btn btn-primary">Tìm kiếm </button></a> </div>
 				</td>
 				<td width="10%" style="text-align: left;">
-					Tổng: {{ count($dvss) }}
+					Tổng: {{ $devices->total()  }}
 				</td>
 			</tr>
 			<tr><td colspan="6"><br></td></tr>

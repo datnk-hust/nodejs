@@ -81,11 +81,7 @@
         <td>{{$i++}}</td>
         <td>{{$notice->req_date}}</td>
         <td>{{$notice->req_content}}</td>
-        @if($notice->status == 15 || $notice->status == 16)
-        <td>{{\App\User::where(['user_id'=>$notice->annunciator_id])->pluck('fullname')->first()}}</td>
-        @else
         <td>Phòng vật tư</td>
-        @endif
         <td style="text-align: center;">
           <a href="{{ route('doctor.acceptNotice',['id'=>$notice->id, 'user_id'=>Auth::user()->user_id])}}"><i class="fa fa-pencil-square-o " title="Xác nhận" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{ route('doctor.delNoitce',['id'=>$notice->id])}}"><i class="fa fa-trash " title="Xóa" aria-hidden="true"></i></a>

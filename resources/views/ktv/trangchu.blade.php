@@ -44,18 +44,20 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #00BD9C;">
       <tr style="font-size: 18px;">
-        <th width="10%">Mã TB</th>
+        <th  width="1%">STT</th>
         <th width="12%">Thời gian</th>
         <th>Nội dung thông báo</th>
         <th>Tên thiết bị</th>
-        <th>Người tạo</th>
+        <th width="10%">Mã TB</th>
+        <th>Người gửi</th>
         <th width="7%">Tùy chọn</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody><?php $i=1 ?>
         @foreach($noticees as $notice)
         <tr style="font-size: 15px;color: red;font-weight: bold;">
-        <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
+          <td>{{ $i++}}</td>
+        
         <td>{{$notice->req_date}}</td>
         @if($notice->status == 2)
         <td>{{$notice->req_content}} đến {{\App\Department::where(['id'=>$notice->dept_next])->pluck('department_name')->first()}}</td>
@@ -63,6 +65,7 @@
         <td>{{$notice->req_content}}</td>
         @endif
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_name')->first()}}</td>
+        <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
         <td>{{ \App\User::where(['user_id' => $notice->annunciator_id])->pluck('fullname')->first()}} </td>
         <td style="text-align: center;">
            
@@ -74,7 +77,8 @@
       @foreach($notices as $notice)
 
       <tr style="font-size: 15px;">
-        <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
+        <td>{{ $i++}}</td>
+        
         <td>{{$notice->req_date}}</td>
         @if($notice->status == 2)
         <td>{{$notice->req_content}} đến {{\App\Department::where(['id'=>$notice->dept_next])->pluck('department_name')->first()}}</td>
@@ -82,6 +86,7 @@
         <td>{{$notice->req_content}}</td>
         @endif
         <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_name')->first()}}</td>
+        <td>{{ \App\Device::where(['id' => $notice->dv_id])->pluck('dv_id')->first()}}</td>
         <td>{{ \App\User::where(['user_id' => $notice->annunciator_id])->pluck('fullname')->first()}} </td>
         <td style="text-align: center;">
           <a href="{{route('ktv.acceptNotice',['user_id'=>Auth::id(),'id'=>$notice->id,'dv_id'=>$notice->dv_id,'status'=>$notice->status]) }}"><i class="fa fa-pencil-square-o " title="Đã xem" aria-hidden="true" ></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

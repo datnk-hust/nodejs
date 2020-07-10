@@ -62,8 +62,8 @@ select[type=text]{
       <tr>
         <td><label>Tên vật tư<span style="color: red">*</span></label></td>
         <td><input type="text"  name="accName" required></td>
-        <td><label>Nhà cung cấp<span style="color: red">*</span></label></td>
-        <td><select type="text" name="provider" required>
+        <td><label>Nhà cung cấp</label></td>
+        <td><select type="text" name="provider" >
             <option value="">Nhà cung cấp</option>
             @isset($providers)
             @foreach($providers as $rows)
@@ -120,7 +120,7 @@ select[type=text]{
         <td>
           <div>
           <input style="width: 100px; margin-left: 50px;" type="submit" value="Lưu" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button style="width: 100px;" class="btn btn-danger" type="reset">Tạo lại</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="btn btn-danger" style="width: 100px;" href="{{ route('device.show0')}}">Kết thúc</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
         </td>
       </tr>

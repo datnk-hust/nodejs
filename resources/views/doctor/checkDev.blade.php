@@ -175,15 +175,15 @@ label {
         <td><label>Nhà cung cấp</label></td>
         <td>
           @if($dev->provider_id)
-          <select type="text" name="provider" required>
+          <select type="text" name="provider">
         		<option value="{{$dev->provider_id}}">{{$dev->provider->provider_name}}</option>	
         	</select>
         @else
         <?php $pros = DB::table('provider')->get(); ?>
-        <select>
+        <select type="text" name="provider">
           <option>Lựa chọn nhà cung cấp</option>
           @foreach($pros as $row)
-          <option value="{{ $row->provider_id }}">{{ $row->provider_name }}</option>
+          <option value="{{ $row->id }}">{{ $row->provider_name }}</option>
           @endforeach
         </select>
         @endif
