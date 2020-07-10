@@ -72,7 +72,7 @@ class DoctorController extends Controller
             $notice->annunciator_id = $user->user_id;
             $notice->dept_now = $user->department_id;
             $notice->dept_next = $request->dept_name;
-            $notice->dv_id= $request->dv_id; //dv_id la id
+            $notice->dv_id= $request->dv_id;
             $notice->status = 2;
             $notice->receiver = 'Phòng vật tư';
             $notice->save();
@@ -82,18 +82,18 @@ class DoctorController extends Controller
     //báo hỏng thiết bị
     public function noticeDev(Request $request,$id){
         $d = $request->user_id;
-        $notice = new Notification;
-        $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
-        $notice->req_content = $request->reason;
-        $notice->dv_id = $request->dv_id; //dv_id la id
-        $notice->status = 0;
-        $notice->annunciator_id = $request->user_id;
-        $notice->receiver = 1;
-        $notice->save();
         $dev = Device::find($id);
         $dev->status = 2;
         $dvname = $dev->dv_name;
         $dev->save();
+        $notice = new Notification;
+        $notice->req_date = Carbon::now('Asia/Ho_Chi_Minh');
+        $notice->req_content = $request->reason;
+        $notice->dv_id = $dev->id;
+        $notice->status = 0;
+        $notice->annunciator_id = $request->user_id;
+        $notice->receiver = 1;
+        $notice->save();
         $his = new History_ktv;
         $his->action = 'Thiết bị được báo hỏng';
         $his->time = Carbon::now('Asia/Ho_Chi_Minh');

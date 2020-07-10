@@ -166,12 +166,7 @@
         <td>{{$device->dv_model}}</td>
         <td>{{$device->dv_serial}}</td>
         <td>{{$device->department->department_name}}</td>
-
-        @if($device->provider_id != '')
-        <td>{{$device->provider->provider_name}}</td>
-        @else
-        <td></td>
-        @endif
+        <td>{{ \App\Provider::where(['id'=>$device->provider_id])->pluck('provider_name')->first() }}</td>
         <td style="text-align: center;">
           <a class="ban_giao" data-deviceid="{{$device->id}}"><i class="fa fa-wrench" style="font-size: 18px;" title="Tạo lịch sửa chữa" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
           <a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o" style="font-size: 18px;" title="Thông tin" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;

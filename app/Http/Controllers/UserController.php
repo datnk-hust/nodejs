@@ -769,16 +769,8 @@ public function postEditDevice(Request $request,$id){
 }
 public function delDevice($id){
     $device = Device::findOrFail($id);
-    if($device->status == 0){
-        $device->delete();    
-        return redirect()->route('device.show0')->with('message','Đã xóa một loại thiết bị ');
-    }elseif ($device->status == 1) {
-        $device->delete();    
-        return redirect()->route('device.show1')->with('message','Đã xóa một loại thiết bị ');
-    }else
-    {
-        $device->delete();    
-        return redirect()->route('device.show2')->with('message','Đã xóa một loại thiết bị ');
+    $device->delete();    
+    return redirect()->route('device.show2')->with('message','Đã xóa một  thiết bị ');
     }
 
 }

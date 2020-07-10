@@ -181,11 +181,7 @@
 				<td>{{$device->dv_name}}</td>
 				<td>{{$device->dv_model}}</td>
 				<td>{{ \App\Device_type::where(['dv_type_id'=>$device->dv_type_id])->pluck('dv_type_name')->first() }}</td>
-				@if($device->provider_id != '')
-				<td>{{$device->provider->provider_name}}</td>
-				@else
-				<td></td>
-				@endif
+				<td>{{ \App\Provider::where(['id'=>$device->provider_id])->pluck('provider_name')->first() }}</td>
 				<td>{{$device->import_date}}</td>
 				<td style="text-align: center;">
 					<a href="{{route('device.getAcc',['id'=>$device->id])}}"><i class="fa fa-medkit" style="font-size: 20px;" title="Nhập vật tư kèm theo" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;

@@ -105,7 +105,7 @@ label {
         		<option value="">Nhà cung cấp</option>
         		@isset($providers)
         		@foreach($providers as $rows)
-        		<option name="provider" value="{{$rows->id}}">{{$rows->provider_name}}</option>
+        		<option value="{{$rows->id}}">{{$rows->provider_name}}</option>
         		@endforeach
         		@endif
         	</select></td>

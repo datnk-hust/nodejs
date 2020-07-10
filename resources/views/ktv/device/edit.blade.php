@@ -176,7 +176,7 @@ label {
         <td>
           @if($dev->provider_id)
           <select type="text" name="provider">
-        		<option value="{{$dev->provider_id}}">{{$dev->provider->provider_name}}</option>
+        		<option value="{{$dev->provider_id}}">{{\App\Provider::where(['id'=>$dev->provider_id])->pluck('provider_name')->first()}}</option>
         		@isset($providers)
         		@foreach($providers as $rows)
             @if($rows->id != $dev->provider_id)
@@ -305,7 +305,7 @@ label {
       @foreach($accs as $acc)
        <tr style="font-size: 15px;">
         <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('acc_name')->first() }}</td>
-        <td>{{ $acc->amount}} </td>
+        <td>{{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('used')->first() }} </td>
         <td>
             {{\App\Accessory::where(['id' =>$acc->acc_id])->pluck('type')->first() }}
         </td>

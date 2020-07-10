@@ -125,11 +125,7 @@
         <td>{{$device->dv_name}}</td>
         <td>{{$device->dv_model}}</td>
         <td>{{$device->dv_serial}}</td>
-        @if($device->provider_id != '')
-        <td>{{$device->provider->provider_name}}</td>
-        @else
-        <td></td>
-        @endif
+        <td>{{ \App\Provider::where(['id'=>$device->provider_id])->pluck('provider_name')->first() }}</td>
         <td>{{ \App\Maintenance_schedule::where(['dv_id' => $device->id])->where(['status'=>2])->pluck('proceed_date')->first()}}</td>
         <td style="text-align: center;">
           <a href="{{route('device.history',['id'=>$device->id])}}"><i class="fa fa-history " title="Xem vòng đời" style="font-size: 20px" aria-hidden="true"></i></a>&nbsp;&nbsp;
