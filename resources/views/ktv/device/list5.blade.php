@@ -92,7 +92,7 @@
         <th width="12%">Serial</th>
         <th>Ngày thanh lý</th>
         <th>Người thanh lý</th>
-        <th width="7%">Tùy chọn</th>
+        <th width="9%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

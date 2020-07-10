@@ -113,7 +113,7 @@
         <th>Serial</th>
         <th>Nhà cung cấp</th>
         <th>Ngày thu hồi</th>
-        <th width="7%">Tùy chọn</th>
+        <th width="9%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

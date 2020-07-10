@@ -159,7 +159,7 @@
         <th width="10%">Ngày sửa chữa</th>
         <th>Đơn vị sửa</th>
         <th>Liên hệ</th>
-        <th width="7%">Tùy chọn</th>
+        <th width="9%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>

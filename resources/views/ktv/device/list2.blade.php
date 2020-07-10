@@ -153,7 +153,7 @@
         <th>Serial</th>
         <th>Khoa phòng</th>
         <th>Nhà cung cấp</th>
-        <th width="7%">Tùy chọn</th>
+        <th width="9%">Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
