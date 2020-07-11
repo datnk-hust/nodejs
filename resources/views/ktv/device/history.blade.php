@@ -27,13 +27,13 @@
      <tr >
        <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Tên thiết bị</label></td>
        <td width="35%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 20px;height: 90%">{{$device->dv_name}}</label></td>
-       <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Nhà CC</label></td>
-       <td colspan="3">
-        @if($device->provider_id)
-        <label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%">{{$device->provider->provider_name}}</label>
-        @else
-        <label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%"></label>
-        @endif
+       <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Hãng sản xuất</label></td>
+       <td colspan="1"> 
+        <label class="form-control" style="background-color: #D8D8D8; width: 95%;font-size: 20px;height: 90%">{{$device->manufacturer}}</label>
+      </td>
+      <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Xuất xứ</label></td>
+      <td> 
+        <label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 20px;height: 90%">{{$device->country}}</label>
       </td>
      </tr>
      <tr>
@@ -45,8 +45,8 @@
         <td 20%><label class="form-control" style="background-color: #D8D8D8; width: 100%;font-size: 18px;height: 90%">{{$device->produce_date}}</label></td>
      </tr>
      <tr>
-       <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Dự án</label></td>
-        <td ><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 20px;height: 90%">{{$device->import_id}}</label></td>
+       <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Nhóm thiết bị</label></td>
+        <td ><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 20px;height: 90%">{{$device->group}}</label></td>
         <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Serial</label></td>
         <td 20%><label class="form-control" style="background-color: #D8D8D8; width: 95%;font-size: 18px;height: 90%">{{$device->dv_serial}}</label></td>
         <td width="12%"><label class="form-control" style="background-color: #D8D8D8; width: 97%;font-size: 18px;height: 90%;">Model</label></td>
@@ -58,7 +58,7 @@
   <table class="table table-condensed table-bordered table-hover">
     <thead style="background-color: #81BEF7;">
       <tr style="font-size: 18px;">
-        <th>ID</th>
+        <th>STT</th>
         <th>Ngày sự cố</th>
         <th>Ngày xử lý</th>
         <th>Đơn vị sửa</th>
@@ -68,9 +68,10 @@
  -->      </tr>
     </thead>
     <tbody>
+      <?php $i=1 ?>
       @foreach($his as $row)
       <tr style="font-size: 15px;">
-        <td>{{$row->id}}</td>
+        <td>{{$i++}}</td>
         <td>{{$row->schedule_date}}</td>
         <td>{{$row->proceed_date}}</td>
         <td>{{$row->repair_responsible}}</td>
