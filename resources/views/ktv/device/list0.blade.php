@@ -183,11 +183,11 @@
 				<td>{{ \App\Device_type::where(['dv_type_id'=>$device->dv_type_id])->pluck('dv_type_name')->first() }}</td>
 				<td>{{ \App\Provider::where(['id'=>$device->provider_id])->pluck('provider_name')->first() }}</td>
 				<td>{{$device->import_date}}</td>
-				<td style="text-align: center;">
-					<a href="{{route('device.getAcc',['id'=>$device->id])}}"><i class="fa fa-medkit" style="font-size: 20px;" title="Nhập vật tư kèm theo" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-					<a class="ban_giao" data-deviceid="{{$device->id}}"><i class="fa fa-arrow-circle-o-up" style="font-size: 20px;cursor: pointer;" title="Bàn giao" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-					<a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o" style="font-size: 20px;" title="Thông tin" aria-hidden="true"></i></a>
-					<!-- <a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.del',['id'=>$device->id])}}"><i class="fa fa-trash" style="font-size: 22px;" title="Xóa" aria-hidden="true"></i></a> -->
+				<td style="text-align: left;">
+					<a href="{{route('device.getAcc',['id'=>$device->id])}}"><i class="fa fa-medkit" style="font-size: 18px;" title="Nhập vật tư kèm theo" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+					<a class="ban_giao" data-deviceid="{{$device->id}}"><i class="fa fa-arrow-circle-o-up" style="font-size: 18px;cursor: pointer;" title="Bàn giao" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+					<a href="{{route('device.getEdit',['id'=>$device->id])}}"><i class="fa fa-pencil-square-o" style="font-size: 18px;" title="Thông tin" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+					<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="{{route('device.del',['id'=>$device->id])}}"><i class="fa fa-trash" style="font-size: 18px;" title="Xóa" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			@endforeach

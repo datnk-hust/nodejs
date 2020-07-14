@@ -1228,6 +1228,50 @@ public function showmaintain(Request $request){
 
       
     }
+
+    public function addSN(Request $request, $id){
+        $this->validate($request,[
+        'newSN' => 'unique:device,dv_serial',
+        
+    ],[
+        'newSN.unique' => 'Serial thiết bị đã tồn tại, vui lòng kiểm tra lại',
+    ]);
+        $time= $request->timeAdd;
+        $time1 =  $request->timeAdd;
+        $time2 =  $request->timeAdd;
+        $n = substr($time, 8,9);
+        $t = substr($time1,5,2);
+        $y = substr($time2, 0,4);
+        $ntn=$n.$t.$y;
+        $dvs = DB::table('device')->get();
+        $dvnum = count($dvs)+1;
+
+        $dv = Device::find($id);
+        $dvId = $dv->dv_id;
+        $device = new Device;
+        $device->dv_name = $dv->dv_name;
+        $device->dv_model = $dv->dv_model;
+        $device->dv_serial = $request->newSN;
+        $device->dv_type_id = $dv->dv_type_id;
+        $device->manufacturer = $dv->manufacturer;
+        $device->produce_date = $dv->produce_date;
+        $device->import_id = $dv->import_id;
+        $device->import_date = $request->timeAdd;
+        $device->group = $dv->group;
+        $device->note = $dv->note;
+        $device->price = $dv->price;
+        $device->country = $dv->country;
+        $device->provider_id = $dv->provider_id;
+        $device->license_number = $dv->license_number;
+        $device->license_number_date = $dv->license_number_date;
+        $device->khbd = $dv->khbd;
+        $device->khhn = $dv->khhn;
+        $device->maintain_date = $dv->maintain_date;
+        $device->dv_id = $dv->group.$dv->dv_type_id.'-'.$ntn.'-'.$dvnum;
+        $device->status = 0;
+        $device->save();
+        return redirect()->route('device.show0')->with('message','Thêm thành công một Serial cho thiết bị');
+    }
     
     
 

@@ -60,7 +60,7 @@ select[type=text]{
   opacity: 1;
   cursor: pointer;
 }
-.form-container input[type=text],.form-container select[type=text]{
+.form-container input[type=text],.form-container select[type=text], input[type=date]{
     width: 98%;
     padding: 3px;
     margin: 3px;
@@ -139,7 +139,7 @@ select[type=text]{
     background-color: #BDBDBD;
     max-height: 700px;
     border-radius: 5px;
-    max-height: 500px;
+    
   }
   .hr-pop {
     margin: 0;
@@ -276,9 +276,12 @@ label {
               <a class="rgt" style="text-decoration: none;font-weight: bold;font-size: 20px;color: black;" href="{{ route('device.view',['id'=>$dev->id]) }}">Hồ sơ TB</a>
           </div>
           @if(Auth::user()->rule == 1)
-          <div style="float: right; margin-top: 2px;"><input value="Lưu" class="btn" type="submit" ></div>
+          <div style="float: right; margin-top: 2px;"><input value="Cập nhật" class="btn" type="submit" ></div>
           @endif
-           <div ><a style="text-decoration: none;float: right;color: black; font-size: 19px;margin-top: 12px;" href="{{route('device.view.image',['id'=>$dev->id])}}" class="btn btn-danger">Ảnh BG</a></div>
+          <div style="float: right;margin-left: 10px;" class="rgt1">
+              <a class="rgt addSN" data-deviceid="{{$dev->id}}" style="text-decoration: none;font-weight: bold;font-size: 20px;color: black;" >Thêm Serial</a>
+          </div>
+           <div style="float: right;margin-left: 10px;" class="rgt1"><a class="rgt" style="text-decoration: none;font-weight: bold;font-size: 20px;color: black;" href="{{route('device.view.image',['id'=>$dev->id])}}" class="btn btn-danger">Ảnh BG</a></div>
         </td>
       </tr>
     </table> 
@@ -357,10 +360,34 @@ label {
     </form>
   </div>
   
+<div class="form-popup" id="myForm2">
+    <form action="{{ route('device.addSN', 'id') }}" class="form-container form2" enctype="multipart/form-data" method="post">
+      @csrf
+      <table style="font-size: 17px;" border="0" width="100%">
+        <tr><td colspan="3" style="text-align: center;font-size: 20px"><b>Thêm Mới Serial Cho Thiết Bị</b></td></tr>
+        <tr><td colspan="3"><hr style="height: 1px;background-color: green"></td></tr>
+        <tr>
+          <td colspan="2" style="text-align: center;"><label  style="text-align: center; font-size: 22px;margin-left: 10px;"><b>Nhập serial</b></label></td>
+          <td width="70%"><input type="text" name="newSN" style="width: 90%"></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center;"><label  style="text-align: center; font-size: 22px;margin-left: 10px;"><b>Ngày nhập</b></label></td>
+          <td width="70%"><input type="date" name="timeAdd" value="{{date('Y-m-d')}}" style="width: 90%"></td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: center;"><button style="margin-left: 30px;" type="submit" id="luuAnh" class="btn" onclick="return confirm('Bạn có chắc chắn nhập thêm dv_serial?')">Lưu
+          </button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Hủy</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
 <script type="text/javascript">
  function closeForm(){
         document.getElementById("myForm").style.display = "none";
         document.getElementById("myForm1").style.display = "none";
+        document.getElementById("myForm2").style.display = "none";
+
   }
 function openForm1(){
         
@@ -371,9 +398,22 @@ function openForm()
         document.getElementById("myForm").style.display = "block";
           }
 
+
 $(document).ready(function(){
   $('#searchDvt').select2();
+
+  $(document).on('click', '.addSN', function(){
+    // Lấy id của data
+    var id = $(this).attr('data-deviceid');
+    // Lấy action hiện tại của form theo class
+    var action = $('.form2').attr('action');
+    // Thay thế id data vào đoạn action của form
+    var actions= $('.form2').attr('action', action.replace('id',id));
+    // Hiện form
+    document.getElementById("myForm2").style.display = "block";
+  });
 })
+
   </script>
 @endsection
 

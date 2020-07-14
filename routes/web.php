@@ -91,6 +91,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('device/edit/actSchedule/{id}','UserController@getEditAct')->name('device.getEditAct');
 		Route::post('device/post/edit/act/{id}','UserController@postEditAct')->name('postEditAct.ktv');
 		Route::post('device/sale/{id}','UserController@saleDevice')->name('device.sale');
+		Route::post('device/add/serial/{id}','UserController@addSN')->name('device.addSN');
 		//device_type
 		Route::get('device_type/list','UserController@showDvType')->name('dvtype.show');
 		Route::get('device_type/add','UserController@getAddDvType')->name('dvtype.getAdd');
