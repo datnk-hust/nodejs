@@ -1,4 +1,4 @@
-@extends('doctor.dashboard')
+@extends('views.header_main')
 @section('content')
 <style>
 input[type=password] {

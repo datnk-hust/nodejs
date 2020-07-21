@@ -1,4 +1,4 @@
-@extends('ktv.index')
+@extends('views.header_main')
 @section('content')
 <style>
 input[type=text] {

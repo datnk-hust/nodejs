@@ -1,4 +1,4 @@
-@extends('ktv.index')
+@extends('header_main')
 @section('content')
 <style>
 input[type=text], input[type=date], select[type=text] {

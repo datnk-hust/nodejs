@@ -35,12 +35,14 @@ class UserController extends Controller
 {
     //ktv
     public function index(){
-    	return view ('ktv.index');
+        //return view ('ktv.index');
+        return view ('header_main');
     }
 
     public function notice(Request $request){
         $notices = DB::table('notification')->where('status',1)->orWhere('status',3)->orWhere('status',17)->orderBy('id','desc')->paginate(10);
-        return view('ktv.trangchu',['notices'=>$notices]);
+        //return view('ktv.trangchu',['notices'=>$notices]);
+        return view ('header_main');
     }
 
     public function deleteNotification($id){
@@ -179,7 +181,7 @@ if($request->searchEmail)
     $provider = $provider->where('email','like','%'.$request->searchEmail.'%');
 }
 $provider = $provider->paginate(10);  
-return view('ktv.provider.list', ['providers' => $provider]);
+ return view('ktv.provider',['providers' => $provider]);
 }
 
 public function getEditProvider($id){
@@ -229,7 +231,12 @@ public function deleteProvider($id){
  $provider->delete();    
  return redirect()->route('show.provider')->with(['message'=>'Xóa một người dùng thành công','provider'=>$provider]);
 }
-    //Device
+    //Deviceall
+
+    function allDevice (Request $request){
+        $dev = DB::table('device')->orderBy('id','desc')->paginate(10);
+        return view('ktv.device')->with(['devs'=>$dev]);
+    }
     //list device not used status=0
 public function showDevice0(Request $request){
     $devices = Device::where('status', 0)->orderBy('id','desc');
@@ -887,7 +894,7 @@ public function showAcc(Request $request){
         $acc = $acc->where('provider_id','=', $request->provider_id)->orderBy('id','desc');
     }
     $acc = $acc->paginate(10);
-    return view('ktv.accessory.list',['accs'=>$acc,'providers'=>$prov,'devs'=>$devs]);
+    return view('ktv.accessory',['accs'=>$acc,'providers'=>$prov,'devs'=>$devs]);
 
 }
 

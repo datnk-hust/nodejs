@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('views.header_main')
 @section('content')
 <!-- -->
 <style type="text/css">

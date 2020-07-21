@@ -16,7 +16,7 @@ Route::post('/login','HomeController@postLogin')->name('post.login');
 //Route::get('/user','HomeController@getHello')->name('get.hello');
 Route::get('/logout', 'HomeController@getLogout')->name('get.logout');
 Route::get('/admin',function(){
-	return view('admin.master');
+	return view('header_main');
 })->name('get.admin');
 
 //admin 
@@ -57,6 +57,7 @@ Route::group(['prefix'=>'ktv','middleware'=> 'CheckLogin'],function(){
 		Route::get('provider/delete/{id}','UserController@deleteProvider')->name('provider.del');
 
 		//device
+		Route::get('device/list/all','UserController@allDevice')->name('device.all.list');
 		Route::get('device/view/image/{id}','UserController@imageView')->name('device.view.image');
 		Route::get('device/list/new','UserController@showDevice0')->name('device.show0');
 		Route::get('device/list/used','UserController@showDevice1')->name('device.show1');
