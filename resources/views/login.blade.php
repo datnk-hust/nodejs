@@ -120,7 +120,7 @@ background:#3594D2;
 @php unset($message) @endphp
 @endif
 
-<h1>PLEASE LOGIN</h1>
+<h1>Đăng nhập</h1>
 <div style="margin-top: 20px;"><input type="email" name="email" placeholder="email" class="form-control" style="width: 300px;" /></div><br>
 <div><input style="width: 300px;" type="password" name="password" placeholder="password" class="form-control" /></div>
   

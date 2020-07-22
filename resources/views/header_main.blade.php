@@ -89,11 +89,11 @@
 							<img class="rounded-circle" src="/assetss/img/user.jpg" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
-						<span>Admin</span>
+						<span></span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.html">Thông tin tài khoản</a>
-						<a class="dropdown-item" href="edit-profile.html">Chỉnh sửa tài khoản</a>
+						<a class="dropdown-item" href="#">Chỉnh sửa tài khoản</a>
 						<a class="dropdown-item" href="settings.html">Cài đặt</a>
 						<a class="dropdown-item" href="{{route('get.logout')}}">Đăng xuất</a>
 					</div>
@@ -123,7 +123,7 @@
                     @else
                         <li>
                             @if( Auth::user()->rule == 1 || Auth::user()->rule == 2)
-                            <a href="index.html"><i class="fa fa-dashboard"></i> <span>Trang chủ ktv</span></a>
+                            <a href="index.html"><i class="fa fa-dashboard"></i> <span>Trang chủ</span></a>
                             @else
                             <a href="index.html"><i class="fa fa-dashboard"></i> <span>Trang chủ 1</span></a>
                             @endif
@@ -131,12 +131,12 @@
                         
                         
                         <li class="submenu">
-                            <a href=""><i class="fa fa-delicious"></i> <span>Thiết bị  </span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i class="fa fa-delicious"></i> <span>Thiết bị  </span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
                                 <li><a href="{{route('device.all.list')}}">Danh sách thiết bị</a></li>
-                                <li><a href="deviceRecords.html">Hồ sơ thiết bị</a></li>
-                                <li><a href="repair.html">Sửa chữa và bảo dưỡng</a></li>
-                                <li><a href="typeDevice.html">Loại thiết bị</a></li>
+                                <li><a href="{{ route('device.viewdv')}}">Hồ sơ thiết bị</a></li>
+                                <li><a href="{{ route('device.maintain')}}">Sửa chữa và bảo dưỡng</a></li>
+                                <li><a href="{{ route('dvtype.show') }}">Loại thiết bị</a></li>
                             </ul>
                         </li>
                         <li>
@@ -148,10 +148,10 @@
                         </li>
                         @if( Auth::user()->rule == 1 )
                         <li>
-                            <a href="user.html"><i class="fa fa-user-md"></i> <span>Người dùng</span></a>
+                            <a href="{{route('show.user')}}"><i class="fa fa-user-md"></i> <span>Người dùng</span></a>
                         </li>
                         <li>
-                            <a href="khoa_phong.html"><i class="fa fa-hospital-o"></i> <span>Khoa phòng</span></a>
+                            <a href="{{route('show.department')}}"><i class="fa fa-hospital-o"></i> <span>Khoa phòng</span></a>
                         </li>
                         @endif
                     @endif

@@ -1,4 +1,4 @@
-@extends('views.header_main')
+@extends('header_main')
 @section('content')
 <style>
 input[type=text] , select, input[type=date]{

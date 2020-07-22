@@ -1,4 +1,4 @@
-@extends('views.header_main')
+@extends('header_main')
 @section('content')
 <!--page content-->
 <style type="text/css">

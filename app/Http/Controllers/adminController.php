@@ -21,7 +21,7 @@ class adminController extends Controller
         $deps = User::select('department_id')->groupBy('department_id')->get();
         
         if($request->searchName)
-        {
+        { 
             $users = $users->where('fullname','like','%'.$request->searchName.'%');
         }
         if($request->searchEmail)

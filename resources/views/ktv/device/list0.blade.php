@@ -86,6 +86,7 @@
 	.form-container .btn:hover, .open-button:hover {
 		opacity: 1;
 	}
+	
 </style>
 <script type="text/javascript">
     $("body").on("click", "#luuAnh", function () {
